@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/zanderp25
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://zanderp25.com
+  * I am zanderp25 (https://keybase.io/zanderp25) on keybase.
+  * I have a public key ASAGn3GTILWzXrokQrjEJkMK0bCHeIU32WCcgV0cXdTOiAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120069f719320b5b35eba2442b8c426430ad1b087788537d9609c815d1c5dd4ce880a",
+      "host": "keybase.io",
+      "kid": "0120069f719320b5b35eba2442b8c426430ad1b087788537d9609c815d1c5dd4ce880a",
+      "uid": "bcee7028396ae4e3e4343d10f7e6d319",
+      "username": "zanderp25"
+    },
+    "merkle_root": {
+      "ctime": 1597507820,
+      "hash": "ec52bf7b3d364ded33987e614957548f5c5aff1e6131eb0fc93529e1b3ce2fe395c6b07434504a938bb26c631723eb2dcb110d83d4c9fd27112982a8aa00fad1",
+      "hash_meta": "ab8ec99cb51d648c04f2ae2a35574d47e16cb64480f53a7ed35acbe16df2a140",
+      "seqno": 17288336
+    },
+    "service": {
+      "entropy": "JIxfk6EPQhUBlNrrj/FhIDwx",
+      "hostname": "zanderp25.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.5.0"
+  },
+  "ctime": 1597507912,
+  "expire_in": 504576000,
+  "prev": "aeb91ea1e66f2fe37b2b6414d70316c6d813fe88a7cc4cee7518d94a12f880e0",
+  "seqno": 5,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgBp9xkyC1s166JEK4xCZDCtGwh3iFN9lgnIFdHF3UzogKp3BheWxvYWTESpcCBcQgrrkeoeZvL+N7K2QU1wMWxtgT/oinzEzudRjZShL4gODEIKXEsH2LDLaut2M03EJeqX6/ZgaaMHSRIuR56LSOeJhQAgHCo3NpZ8RA7cVngr2tPuANw2RHOtu/3f0uPSTYpeotBoaPZzCvZFbI/JXKMimS/wCz1ZjUr+msc6F9YsLZ6Hul4EHLPFd8CKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIKEgKel1/AF4y8X98ATUSrl6Ce+Sr13MVryyUyHu5W8Eo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/zanderp25
+
+==================================================================
