@@ -1,0 +1,18 @@
+/* body{
+    background-color: darkred;
+    color: white;
+} */
+
+.countdown{
+    background-color: white;
+    color: darkolivegreen;
+    font-family: sans-serif;
+}
+
+.number{
+    display: inline-block;
+}
+
+.label{
+    display: inline-block;
+}
