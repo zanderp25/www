@@ -1,5 +1,13 @@
 function load(){
-  location.protocol = "https:";
+  if(location.protocol == "http:"){
+    location.protocol = "https:";
+  }
+}
+function shareTest(){
+  if(!navigator.share){
+    shareButton = document.getElementById("share");
+    shareButton.hidden = true;
+  }
 }
 function share(){
   navigator.share({
