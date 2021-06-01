@@ -1,0 +1,38 @@
+body{
+    background: #ff8787;
+    background: linear-gradient(135deg, 
+        rgb(255,135,135) 0%, 
+        rgb(255,212,156) 20%, 
+        rgb(249,255,166) 40%, 
+        rgb(183,244,190) 60%, 
+        rgb(154,239,200) 80%, 
+        rgb(0,212,255) 100%);
+    color: rgb(0, 0, 0);
+}
+
+.countdown{
+    box-align: center;
+    text-align: center;
+    width: max-content;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    padding: 25px;
+    margin: auto;
+    /* background: white;
+    color: green; */
+    font-family: sans-serif;
+}
+
+.number{
+    display: inline-block;
+    font-size: 72pt;
+}
+
+.label{
+    display: inline-block;
+    font-size: 36pt;
+}
