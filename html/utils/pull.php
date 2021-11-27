@@ -3,7 +3,10 @@
 // Use in the “Post-Receive URLs” section of your GitHub repo.
 
 if ( $_POST['payload'] ) {
-shell_exec( 'cd /home/zanderp25/www/ && git pull' );
+$output = shell_exec( 'cd /home/zanderp25/www/ && git pull' );
+echo $output
+} else {
+  echo "hi"
 }
 
-?>hi
+?>
