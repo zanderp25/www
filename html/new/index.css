@@ -77,6 +77,10 @@ body {
   color: #fff;
 }
 
+body {
+  background-image:url("img/SBACK2.png");
+}
+
 .content p{
   padding-left: 10px;
 }
