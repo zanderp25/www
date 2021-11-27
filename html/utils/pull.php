@@ -5,8 +5,7 @@
 if ( $_POST['payload'] ) {
 $output = shell_exec( 'cd /home/zanderp25/www/ && git pull' );
 echo $output
-} else {
-  echo "hi"
 }
 
 ?>
+hello
