@@ -1,9 +1,10 @@
 <?php
+  $output = null;
+  $value = null;
 
-// Use in the “Post-Receive URLs” section of your GitHub repo.
-
-if ( $_POST['payload'] ) {
-echo shell_exec( 'cd /home/zanderp25/www/ && git pull' );
-}
-
-?>hi
+  exec("cd /home/zanderp25/www; git pull", $output, $value);
+  echo "Returned with code: <pre style=display:inline >$value</pre><br/>";
+  echo "Output:<pre>";
+  print_r($output);
+  echo "</pre>"
+?>
