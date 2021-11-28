@@ -1,9 +1,6 @@
-// function load(){
-//   if(location.protocol == "http:"){
-//     location.protocol = "https:";
-//  }
-// }
-// why do I need this I already have a thing to redirect to https
+function load() {
+  // i had an https redirect here but i dont need it anymore
+}
 
 function shareTest(){
   if(navigator.share){
