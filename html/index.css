@@ -10,6 +10,10 @@ body {
 	margin-right:0;
 }
 
+footer {
+        bottom:0;
+}
+
 .header
 {
   height:75px;
