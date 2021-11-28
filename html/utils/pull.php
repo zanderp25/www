@@ -5,7 +5,8 @@ function run(){
   
     exec("cd /home/zanderp25/www; git pull", $output, $value);
     echo "Returned with code: $value\n";
-    echo "Output: \n$output\n";
+    echo "Output: \n";
+    print_r($output);
     if ($value===0){
       echo "Success";
       http_response_code(200);
