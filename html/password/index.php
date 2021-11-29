@@ -1,4 +1,5 @@
 <?php
+echo "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
 if (isset($_GET['password'])) {   
     if (urldecode($_GET['password']) === "https://dsc.gg/lil") {
         if (isset($_GET['content'])) {   
