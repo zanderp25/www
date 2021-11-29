@@ -7,7 +7,7 @@ function run(){
     echo "Returned with code: $value\n";
     echo "Output: \n";
     print_r($output);
-    if ($value===0){
+    if ($value === 0){
       echo "Success";
       http_response_code(200);
     } else {
