@@ -1,7 +1,5 @@
 <?php
 
-header('Location: https://youtu.be/dQw4w9WgXcQ');
+header('Refresh: 2 https://youtu.be/dQw4w9WgXcQ');
 
-exit;
-
-?>
+?>hi
