@@ -19,6 +19,7 @@ function run(){
 try {
     if (!isset($_POST['payload'])) {
         echo "Hi";
+        http_response_code(400);
     } else {
         run();
     }
