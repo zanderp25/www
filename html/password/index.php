@@ -1,6 +1,6 @@
 <?php
-if (isset($_GET['password']) {   
-    if ($_GET['password']==="nevergonnagiveyouup") {
+if (isset($_GET['password']){   
+    if ($_GET['password']==="nevergonnagiveyouup"){
         echo "Correct";
         http_response_code(200);
     } else {
