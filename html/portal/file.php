@@ -1,6 +1,6 @@
 <?php
 
-header('Refresh: 2 https://youtu.be/dQw4w9WgXcQ');
+header('Refresh: 10 https://youtu.be/dQw4w9WgXcQ');
 
 ?>
 <title>Zanderp25</title>
