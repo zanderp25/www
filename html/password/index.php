@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 if (isset($_GET['password']){   
     if($_GET['password']==="nevergonnagiveyouup"){
         echo "Correct";
