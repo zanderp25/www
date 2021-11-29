@@ -8,6 +8,6 @@ if (isset($_GET['password'])) {
         http_response_code(403);
     }
 } else {
-    echo "Use '?password=' to guess my password.";
+    echo "Add '?password=' to the end of the URL followed by your guess to guess my password.";
 }
 ?>
