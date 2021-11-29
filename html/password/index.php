@@ -8,9 +8,6 @@ if (isset($_GET['password'])) {
         http_response_code(200);
     } else {
         echo "No";
-        if ($_SERVER['REMOTE_ADDR'] === "24.179.149.1") {
-            echo "\nHi Clari";
-        }
         http_response_code(403);
     }
 } else {
