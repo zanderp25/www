@@ -36,6 +36,16 @@ body {
 	margin-right:0;
 }
 
+body a{
+  color: var(--link-1);
+}
+body a:visited{
+  color: var(--link-1);
+}
+body a:hover{
+  color: var(--link-2);
+}
+
 ::selection {
   background-color: #ED7D3A40;
 }
@@ -48,6 +58,98 @@ h1 {
   margin-top: 10.0vw;
   margin-right: 5.0vw;
   margin-bottom: 0.0vw;
+}
+
+.down-arrow {
+  margin-left: 48.8vw;
+  margin-top: 17vw;
+  margin-right: 0.0vw;
+  margin-bottom: 0.0vw;
+}
+
+.down-arrow img {
+  width: 2.0vw;
+  height: auto;
+}
+
+@keyframes bounce { 
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50px); }
+}
+
+.bounce {
+  animation: bounce 2s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+/* Socials */
+
+.socials {
+  margin-top: 0.0vw;
+  margin-left: 5.75vw;
+  margin-right: 5.5vw;
+  margin-bottom: 0.0vw;
+  display: inline-block;
+  z-index: 1;
+  position: relative;
+  top: -4.0vw;
+}
+
+.socials div{
+  display: inline-block;
+  margin-right: 2.0vw;
+}
+
+.socials a {
+  text-decoration: none;
+  font-size: 2.0vw;
+  font-weight: bold;
+}
+
+.socials a:hover {
+  opacity: 0.75;
+}
+
+.socials img {
+  height: 1.6vw;
+  width: auto;
+}
+
+.discord a, .discord a:hover, .discord a:visited {
+  color: #5165F6;
+}
+
+.twitter a, .twitter a:hover, .twitter a:visited {
+  color: #1DABDD;
+}
+
+.github a, .github a:hover, .github a:visited {
+  color: #000000;
+}
+
+.github img {
+  height: 1.8vw;
+  width: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  .github {
+    color: #FFFFFF;
+    filter: invert(100%);
+  }
+}
+
+.youtube a, .youtube a:hover, .youtube a:visited {
+  color: #FF0000;
+}
+
+.twitch {
+  margin-left: 2.0vw;
+}
+
+.twitch a, .twitch a:hover, .twitch a:visited {
+  color: #6444A3;
 }
 
 /* Navbar */
@@ -111,8 +213,12 @@ h1 {
   margin-right: 10px;
 }
 
+.navbar a:visited{
+  color: white;
+}
+
 .navbar a:hover, .navbar img:hover {
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
 /* Share Button */
