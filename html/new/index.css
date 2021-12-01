@@ -269,7 +269,6 @@ h1 {
     text-align: center;
     padding: 10px;
     border-radius: 7px;
-    z-index: 3;
   }
   
   #menu-button:checked ~ .navbar-links{
