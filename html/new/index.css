@@ -59,11 +59,12 @@ h1 {
   margin-right: 5.0vw;
   margin-bottom: 0.0vw;
   z-index: -1;
+  transition: 250ms;
 }
 
 .down-arrow {
   margin-left: 48.8vw;
-  margin-top: 17vw;
+  margin-top: 30vh;
   margin-right: 0.0vw;
   margin-bottom: 0.0vw;
 }
@@ -94,17 +95,20 @@ h1 {
   display: inline-block;
   position: relative;
   top: -4.0vw;
+  transition: 250ms;
 }
 
 .socials div{
   display: inline-block;
   margin-right: 2.0vw;
+  transition: 250ms;
 }
 
 .socials a {
   text-decoration: none;
   font-size: 2.0vw;
   font-weight: bold;
+  transition: 250ms;
 }
 
 .socials a:hover {
@@ -114,6 +118,7 @@ h1 {
 .socials img {
   height: 1.6vw;
   width: auto;
+  transition: 250ms;
 }
 
 .discord a, .discord a:hover, .discord a:visited {
@@ -274,6 +279,43 @@ h1 {
     display: inline-block;
     opacity: 1;
     top: 75px;
-    transition: 500ms;
+    transition: 250ms;
+  }
+  
+  h1 {
+    font-weight: bold;
+    margin-top: 10vh;
+    margin-bottom: 5vh;
+  }
+  
+  .socials {
+    top: 0.0vw;
+    margin-bottom: 5.0vw;
+  }
+  
+  .socials div{
+    display: inline-block;
+    margin-top: 0.0vw;
+    margin-bottom: 3.0vw;
+    margin-right: 2.0vw;
+    margin-left: 2.0vw;
+  }
+  
+  .socials a {
+    text-decoration: none;
+    font-size: 7.0vw;
+    font-weight: normal;
+  }
+  
+  .socials img {
+    height: 6.0vw;
+  }
+  
+  .down-arrow{
+    margin-left: 46vw;
+  }
+
+  .down-arrow img {
+    width: 8.0vw;
   }
 }
