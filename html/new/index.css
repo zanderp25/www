@@ -344,6 +344,7 @@ p {
 }
 
 .navbar a:hover, .navbar img:hover {
+  color: white;
   opacity: 0.75;
 }
 
