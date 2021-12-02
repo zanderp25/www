@@ -38,6 +38,7 @@ body {
 
 body a{
   color: var(--link-1);
+  text-decoration: none;
 }
 body a:visited{
   color: var(--link-1);
@@ -62,6 +63,69 @@ h1 {
   transition: 250ms;
 }
 
+h2 {
+  font-weight: lighter;
+  color: var(--accent-2);
+  width: 100%;
+  text-align: center;
+  font-size: 5.0vw;
+  z-index: -1;
+  transition: 250ms;
+}
+
+h3 {
+  font-weight: lighter;
+  color: var(--accent-2);
+  font-size: 3.0vw;
+  margin-left: 5.0vw;
+  margin-top: 0.0vw;
+  margin-right: 5.0vw;
+  margin-bottom: 0.0vw;
+  z-index: -1;
+  transition: 250ms;
+}
+
+p {
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+.projects {
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+.project {
+  margin-bottom: 5vw;
+}
+
+.project-image {
+  float: left;
+  width: 40vw;
+  height: auto;
+  margin-bottom: 5vw;
+  left:0;
+}
+
+.project-image img {
+  width: 100%;
+  height: auto;
+}
+
+.project-info {
+  float: right;
+  width: 50vw;
+  right: 0;
+  margin-top: 4vw;
+}
+
+.project-info h3, .project-info p {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* UI Elements */
+
 .down-arrow {
   margin-left: 48.8vw;
   margin-top: 30vh;
@@ -83,6 +147,62 @@ h1 {
   animation: bounce 2s;
   animation-direction: alternate;
   animation-iteration-count: infinite;
+}
+
+/* Alert Message:
+  <div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
+  </div> 
+  thanks w3schools
+*/
+
+.alert {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.alert.success {
+  background-color: #04AA6D;
+}
+
+.alert.info {
+  background-color: #2196F3;
+}
+
+.alert.warning {
+  background-color: #ff9800;
+}
+
+.alert a {
+  color: white;
+  text-decoration: underline;
+}
+
+.alert a:visited {
+  color: white;
+}
+
+.alert a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
 }
 
 /* Socials */

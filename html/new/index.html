@@ -28,13 +28,17 @@
       </a>
       <input type="checkbox" id="menu-button"></input>
       <div class="navbar-links">
-        <a href="#">About</a>
-        <a href="#">Projects</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
         <a href="index/">Downloads</a>
-        <a href="#">こんにちは</a>
+        <a href="https://youtu.be/dQw4w9WgXcQ">こんにちは</a>
       </div>
     </div>
     <div class=content>
+      <div class="alert info">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        <strong>Hey you!</strong> Go look at my <a href="https://zanderp25.com/christmas">Christmas Countdown</a> as we count down the days until Christmas!
+      </div>
       <h1>Zanderp25</h1>
       <div class="socials">
         <div class="discord">
@@ -71,6 +75,29 @@
       <div class="down-arrow bounce" alt="Down Arrow">
         <img src="img/down_arrow.png">
       </div>
+      <div class="about" id="about">
+        <h2>About</h2>
+        <p>
+          I'm Zanderp25, a independent developer and graphic designer. 
+          I'm going to put more stuff here, but I don't feel like doing it right now lol.
+        </p>
+      </div>
+      <div class="projects" id="projects">
+        <h2>Projects</h2>
+        <div class="project" id="question-counter">
+          <div class="project-image">
+            <img src="img/question-counter.png">
+          </div>
+          <div class="project-info">
+            <h3>Question Counter</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+              Donec euismod, nisl eget consectetur consectetur, 
+              nisi nisl aliquam eros, eget consectetur nisi nisl eget consectetur consectetur.
+            </p>
+            <a class="project-link" href="https://question-counter.zanderp25.com/">Learn More ></a>
+          </div>
+        </div>
       <!-- Footer -->
       <div id="share" onclick="share()" hidden alt="Share"></div>
       <!-- <footer>[Footer Placeholder]</footer> -->
