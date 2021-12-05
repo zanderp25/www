@@ -110,14 +110,17 @@ p {
 
 .project-image img {
   width: 100%;
-  height: auto;
+  height: 25vw;
+  object-fit: contain;
 }
 
 .project-info {
   float: right;
   width: 50vw;
+  height: 25vw;
   right: 0;
   margin-top: 4vw;
+  margin-bottom: 2vw;
 }
 
 .project-info h3, .project-info p {
@@ -423,6 +426,10 @@ p {
     width: 100%;
     height: auto;
     margin-bottom: 0;
+  }
+  
+  .project-image img {
+    height: auto;
   }
 
   .project-info {
