@@ -1,3 +1,6 @@
 ErrorDocument 403 /403.html
 ErrorDocument 404 /404.html
 ErrorDocument 500 /500.html
+
+Redirect permanent /link https://link.zanderp25.com/
+
