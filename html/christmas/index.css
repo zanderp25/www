@@ -1,5 +1,7 @@
 body{
-    background-color: darkred;
+    background: #C9FFBF;
+    background: linear-gradient(to right, #FFAFBD, #C9FFBF);
+
     color: white;
 }
 
@@ -15,8 +17,8 @@ body{
     
     padding: 25px;
     margin: auto;
-    background-color: white;
-    color: green;
+    background-color: transparent;
+    color: #471d1d;
     font-family: sans-serif;
 }
 
