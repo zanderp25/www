@@ -31,22 +31,22 @@ function update(){
     if (day == 1){
         dayLabel.innerHTML = "&nbsp;day, ";
     } else {
-        dayLabel.innerHTML == "&nbsp;days, ";
+        dayLabel.innerHTML = "&nbsp;days, ";
     }
     if (hour == 1){
         hourLabel.innerHTML = "&nbsp;hour, ";
     } else {
-        hourLabel.innerHTML == "&nbsp;hours, ";
+        hourLabel.innerHTML = "&nbsp;hours, ";
     }
     if (minute == 1){
         minuteLabel.innerHTML = "&nbsp;minute, ";
     } else {
-        minuteLabel.innerHTML == "&nbsp;minutes, ";
+        minuteLabel.innerHTML = "&nbsp;minutes, ";
     }
     if (second == 1){
         secondLabel.innerHTML = "&nbsp;second";
     } else {
-        secondLabel.innerHTML == "&nbsp;seconds";
+        secondLabel.innerHTML = "&nbsp;seconds";
     }
 
     dayNumber.innerText    = day;
