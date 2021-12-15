@@ -1,7 +1,6 @@
 body{
     background: #C9FFBF;
     background: linear-gradient(to right, #FFAFBD, #C9FFBF);
-
     color: white;
 }
 
@@ -20,6 +19,17 @@ body{
     background-color: transparent;
     color: #471d1d;
     font-family: sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #161620;
+        background: linear-gradient(to right, #955f69, #749c6d);
+        color: white;
+    }
+    .countdown{
+        color: #ffffff;
+    }
 }
 
 .number{
