@@ -22,11 +22,11 @@ function update(){
     console.log(`Next Christmas: ${christmas.toString()}`);
     difference = christmas - now;
     console.log(`Difference = ${difference}`);
-
-    day    = Math.round(difference / 86400000);
-    hour   = Math.round(((difference / 3600000) % 24) - 1);
-    minute = Math.round(((difference / 60000) % 60) - 1);
-    second = Math.round(((difference / 1000) % 60));
+    
+    day    = Math.floor( difference / (1000 * 60 * 60 * 24));
+    hour   = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    minute = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    second = Math.floor((difference % (1000 * 60)) / 1000);
 
     if (day == 1){
         dayLabel.innerHTML = "&nbsp;day, ";
