@@ -1,3 +1,10 @@
+/*
+    Christmas Countdown
+    ©2021 Zanderp25
+*/
+
+christmas = new Date(0); // Will be set later
+
 function init(){
     setInterval(function(){
         update();
@@ -12,13 +19,19 @@ function update(){
         minuteNumber = document.getElementById("minuteNumber");
         secondNumber = document.getElementById("secondNumber");
 
-        dayLabel    = document.getElementById("dayLabel")
-        hourLabel   = document.getElementById("hourLabel")
-        minuteLabel = document.getElementById("minuteLabel")
-        secondLabel = document.getElementById("secondLabel")
+        dayLabel     = document.getElementById("dayLabel");
+        hourLabel    = document.getElementById("hourLabel");
+        minuteLabel  = document.getElementById("minuteLabel");
+        secondLabel  = document.getElementById("secondLabel");
     }
-    now = new Date(Date.now());
-    christmas = getChristmas(now);
+    now = new Date();
+    if (christmas.getTime() < now.getTime()){
+        if (christmas.getTime() != 0) {
+            console.log("WOOOOOOOOOOO!!!!!!!!  MERRY CHRISTMAS!!!!!");
+        }
+        christmas = getChristmas(now);
+    }
+
     console.log(`Next Christmas: ${christmas.toString()}`);
     difference = christmas - now;
     console.log(`Difference = ${difference}`);
@@ -48,11 +61,37 @@ function update(){
     } else {
         secondLabel.innerHTML = "&nbsp;seconds";
     }
-
+    
     dayNumber.innerText    = day;
     hourNumber.innerText   = hour;
     minuteNumber.innerText = minute;
     secondNumber.innerText = second;
+    
+    if (day == 0){
+        dayLabel.style.display  = "none";
+        dayNumber.style.display = "none";
+        if (hour == 0){
+            hourLabel.style.display  = "none";
+            hourNumber.style.display = "none";
+            if (minute == 0){
+                minuteLabel.style.display  = "none";
+                minuteNumber.style.display = "none";
+            } else {
+                minuteLabel.style.display  = "inline-block";
+                minuteNumber.style.display = "inline-block";
+            }
+        } else {
+            hourLabel.style.display  = "inline-block";
+            hourNumber.style.display = "inline-block";
+        }
+    } else {
+        dayLabel.style.display     = "inline-block";
+        dayNumber.style.display    = "inline-block";
+        hourLabel.style.display    = "inline-block";
+        hourNumber.style.display   = "inline-block";
+        minuteLabel.style.display  = "inline-block";
+        minuteNumber.style.display = "inline-block";
+    }
 }
 
 function getChristmas(now){
