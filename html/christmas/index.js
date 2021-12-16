@@ -74,8 +74,10 @@ function update(){
             hourLabel.style.display  = "none";
             hourNumber.style.display = "none";
             if (minute == 0){
-                minuteLabel.style.display  = "none";
-                minuteNumber.style.display = "none";
+                minuteLabel.style.display    = "none";
+                minuteNumber.style.display   = "none";
+                secondLabel.style.display    = "none";
+                secondNumber.className = "big";
             } else {
                 minuteLabel.style.display  = "inline-block";
                 minuteNumber.style.display = "inline-block";
@@ -91,6 +93,8 @@ function update(){
         hourNumber.style.display   = "inline-block";
         minuteLabel.style.display  = "inline-block";
         minuteNumber.style.display = "inline-block";
+        secondLabel.style.display  = "inline-block";
+        secondNumber.className     = "number";
     }
 }
 

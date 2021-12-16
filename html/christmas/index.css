@@ -18,7 +18,7 @@ body{
     margin: auto;
     background-color: transparent;
     color: #471d1d;
-    font-family: sans-serif;
+    font-family: "Avenir", "Helvetica Neue", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,9 +35,16 @@ body{
 .number{
     display: inline-block;
     font-size: 72pt;
+    font-weight: lighter;
 }
 
 .label{
     display: inline-block;
     font-size: 36pt;
+}
+
+.big{
+    display: inline-block;
+    font-size: 40vw;
+    font-weight: lighter;
 }
