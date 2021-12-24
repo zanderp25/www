@@ -50,18 +50,18 @@ body a:hover{
 }
 
 footer {
-  width: 90%;
+  width: 100%;
   margin: 0;
   padding: 5vw;
   background-color: var(--accent-1);
   opacity: 0.8;
   color: white;
   overflow: auto;
+  box-sizing: border-box;
 }
 
 @media (max-width: 767px) {
   footer {
-    width: 80%;
     padding: 10vw;
   }
 }
