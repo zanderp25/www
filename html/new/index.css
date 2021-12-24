@@ -49,8 +49,9 @@ footer {
   width: 100%;
   margin: 0;
   padding: 10vw;
-  background-color: var(--accent-2);
-  color: var(--main-color);
+  background-color: var(--accent-1);
+  opacity: 0.8;
+  color: white;
 }
 
 footer .info {
