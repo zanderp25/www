@@ -26,11 +26,15 @@ body {
 }
 
 /* Main Formatting */
+@font-face {
+  font-family: "font";
+  src: url(/img/Avenir.otf);
+}
 
 body {
   background-color: var(--main-color);
   color: var(--font-color);
-	font-family:"Avenir", "Helvetica Neue", sans-serif;
+	font-family:"Avenir", "font", sans-serif;
 	margin: 0;
 }
 
