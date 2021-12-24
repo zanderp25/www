@@ -47,6 +47,24 @@ body a:hover{
   color: var(--link-2);
 }
 
+footer {
+  width: 100%;
+  margin: 0;
+  padding: 10vw;
+  background-color: var(--accent-2);
+  color: var(--main-color);
+}
+
+footer .info {
+  float: left;
+  width: 50%;
+}
+
+footer .links {
+  float:right;
+  width: 50%;
+}
+
 ::selection {
   background-color: #ED7D3A40;
 }
