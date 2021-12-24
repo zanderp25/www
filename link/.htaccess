@@ -1,3 +1,5 @@
 Redirect gone /nevergonnagiveyouup
 Redirect permanent /test https://youtu.be/dQw4w9WgXcQ
+Redirect permanent /status https://zanderp25.statuspage.io/
+
 Redirect /treehouse https://bit.ly/3En7WmV
