@@ -46,7 +46,7 @@ body a:hover{
 }
 
 footer {
-  width: 80%;
+  width: 100%;
   margin: 0;
   padding: 5vw;
   background-color: var(--accent-1);
