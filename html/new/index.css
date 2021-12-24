@@ -3,6 +3,8 @@
   zoom: 1.0;
 }
 
+@import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/metropolis.min.css");
+
 /* Color Palette */
 
 body {
@@ -26,15 +28,11 @@ body {
 }
 
 /* Main Formatting */
-@font-face {
-  font-family: "font";
-  src: url(/img/Avenir.otf);
-}
 
 body {
   background-color: var(--main-color);
   color: var(--font-color);
-	font-family:"Avenir", "font", sans-serif;
+	font-family:"Avenir", "Metropolis", sans-serif;
 	margin: 0;
 }
 
