@@ -46,12 +46,13 @@ body a:hover{
 }
 
 footer {
-  width: 90%;
+  width: 80%;
   margin: 0;
-  padding: 10vw;
+  padding: 5vw;
   background-color: var(--accent-1);
   opacity: 0.8;
   color: white;
+  overflow: auto;
 }
 
 footer .info {
