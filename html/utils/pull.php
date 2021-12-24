@@ -18,8 +18,9 @@ function run(){
 
 try {
     if (!isset($_POST['payload'])) {
-        echo "Hi";
-        http_response_code(400);
+        http_response_code(403);
+        header("Location: https://zanderp25.com/403.html");
+        die();
     } else {
         run();
     }
