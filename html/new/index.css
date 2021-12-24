@@ -55,6 +55,12 @@ footer {
   overflow: auto;
 }
 
+@media (max-width: 767px) {
+  footer {
+    padding: 10vw;
+  }
+}
+
 footer .info {
   float: left;
   width: 50%;
