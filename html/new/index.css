@@ -32,7 +32,7 @@ body {
 body {
   background-color: var(--main-color);
   color: var(--font-color);
-	font-family:"Avenir", "Avenir Alternate", sans-serif;
+	font-family:"Avenir", "Avenir Alternate", "Helvetica Neue" sans-serif;
 	margin: 0;
 }
 
