@@ -31,9 +31,7 @@ body {
   background-color: var(--main-color);
   color: var(--font-color);
 	font-family:"Avenir", "Helvetica Neue", sans-serif;
-	margin-top:0;
-	margin-left:0;
-	margin-right:0;
+	margin: 0;
 }
 
 body a{
@@ -61,7 +59,7 @@ footer .info {
 }
 
 footer .links {
-  float:right;
+  float: right;
   width: 50%;
 }
 
