@@ -119,6 +119,17 @@ if( !$title ) { $title = clean_title(basename(dirname(__FILE__))); }
 		body.dark .note { color: #fff; }
 		body.dark .block .data { color: #fff; }
 		body.dark .sub { border-left: solid 5px #0e0e0e; }
+		
+		@media (prefers-color-scheme: dark) {
+			body { background: #1d1c1c; color: #fff; }
+			body h1 { color: #fff; }
+			body .wrap { background: #2b2a2a; }
+			body .block { border-top: solid 1px #666; }
+			body .block a:hover, body.dark .block a.open { background: #000; }
+			body .note { color: #fff; }
+			body .block .data { color: #fff; }
+			body .sub { border-left: solid 5px #0e0e0e; }
+		}
 	</style>
 </head>
 <body class="<?php echo $color; ?>">
