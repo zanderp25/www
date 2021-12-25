@@ -101,7 +101,7 @@ function update(){
 function getChristmas(now){
     var year;
     if (now.getMonth() == 11){
-        if (now.getDate() > 25){
+        if (now.getDate() >= 25){
             y = now.getFullYear() + 1;
         } else {
             y = now.getFullYear();
