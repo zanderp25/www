@@ -278,8 +278,15 @@ p {
 /* Discord UI */
 
 body {
-  --mention-color: #dee0fc;
-  --mention-bg-color: #5865F24D;
+  --mention-color: #505cdc;
+  --mention-bg-color: #5865F226;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    --mention-color: #dee0fc;
+    --mention-bg-color: #5865F24D;
+  }
 }
 
 .mention.iconMentionText {
