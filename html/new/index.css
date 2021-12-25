@@ -32,19 +32,58 @@ body {
 body {
   background-color: var(--main-color);
   color: var(--font-color);
-	font-family:"Avenir", "Avenir Alternate", "Helvetica Neue", sans-serif;
+	font-family: "Avenir", "Avenir Alternate", sans-serif;
 	margin: 0;
 }
 
-body a{
+body a {
   color: var(--link-1);
   text-decoration: none;
 }
-body a:visited{
+body a:visited {
   color: var(--link-1);
 }
-body a:hover{
+body a:hover {
   color: var(--link-2);
+}
+
+a .arrow {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+.button {
+  display: block;
+  width: 20%;
+  margin: 20px auto;
+  background: var(--accent-2);
+  padding: 20px;
+  border-radius: 40px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  transition: 250ms;
+}
+
+.button:hover {
+  color: white;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.button:visited {
+  color: white;
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  .button {
+    width: 50%;
+  }
 }
 
 footer {
@@ -234,6 +273,42 @@ p {
 
 .closebtn:hover {
   color: black;
+}
+
+/* Discord UI */
+
+body {
+  --mention-color: #dee0fc;
+  --mention-bg-color: #5865F24D;
+}
+
+.mention.iconMentionText {
+  padding-left: 1.2rem;
+}
+.mention.iconMention {
+  padding-left: 1.3rem;
+}
+/*.theme-dark*/ .wrapper {
+  background: var(--mention-bg-color);
+  color: var(--mention-color);
+}
+.wrapper:hover {
+  color: white;
+  background: #5865f2;
+}
+.mention {
+  border-radius: 3px;
+  padding: 0 2px;
+  position: relative;
+}
+
+.channelIcon {
+  width: 1.05rem;
+  height: 1.3rem;
+  object-fit: contain;
+  position: absolute;
+  left: .125rem;
+  top: 0;
 }
 
 /* Socials */
