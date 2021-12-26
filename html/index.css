@@ -111,6 +111,22 @@ footer .info {
 footer .links {
   float: right;
   width: 50%;
+  text-align: right;
+}
+
+footer .links a {
+  display: block;
+  color: white;
+  text-decoration: none;
+}
+
+footer .links a:visited {
+  color: white;
+}
+
+footer .links a:hover {
+  color: white;
+  opacity: 0.8;
 }
 
 ::selection {
