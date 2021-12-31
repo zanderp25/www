@@ -4,3 +4,4 @@ ErrorDocument 500 /error/500.html
 
 Redirect permanent /link https://link.zanderp25.com/
 Redirect permanent /new /
+Redirect permanent /christmas /countdown/christmas
