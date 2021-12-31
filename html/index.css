@@ -590,10 +590,11 @@ body {
   }
   
   .down-arrow{
-    margin-left: 46vw;
+    /* margin-left: 46vw; */
+    display: none;
   }
 
-  .down-arrow img {
+  /* .down-arrow img {
     width: 8.0vw;
-  }
+  } */
 }
