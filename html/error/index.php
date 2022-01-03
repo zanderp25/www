@@ -77,7 +77,7 @@
       </div>
     </div>
     <div class="content">
-      <div style="display: block; width: auto; margin: 20vw 5vw;">
+      <div style="display: block; width: auto; margin: 5vw 20vw;">
       <img src="/error/img/<?php echo $e; ?>.png" alt="Error <?php echo $e; ?>" style="width: 100%;">
       </div>
       <h2><?php echo $string; ?></h2>
