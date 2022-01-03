@@ -75,7 +75,7 @@
     <div id="navbar" class="navbar">
       <a href="/">
         <div class="logo">
-          <img src="../ico/safari-pinned-tab.svg" alt="Zanderp25">
+          <img src="/ico/safari-pinned-tab.svg" alt="Zanderp25">
         </div>
       </a>
       <input type="checkbox" id="menu-button"/>
