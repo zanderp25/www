@@ -3,7 +3,6 @@ ErrorDocument 403 /error/?e=403
 ErrorDocument 404 /error/?e=404
 ErrorDocument 410 /error/?e=410
 ErrorDocument 414 /error/?e=414
-ErrorDocument 420 /error/?e=420
 ErrorDocument 497 /error/?e=497
 ErrorDocument 500 /error/?e=500
 ErrorDocument 501 /error/?e=501

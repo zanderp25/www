@@ -61,8 +61,6 @@
     <meta name="theme-color" content="#ED7D3A" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#666666" media="(prefers-color-scheme: dark)">
     <title><?php echo $string?></title>
-    <meta name="description" content="Super awesome description goes here!">
-    <meta name="author" content="Zanderp25">
   </head>
   <body>
     <div id="navbar" class="navbar">
