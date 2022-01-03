@@ -60,6 +60,16 @@
     <meta name="theme-color" content="#ED7D3A" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#666666" media="(prefers-color-scheme: dark)">
     <title><?php echo $string?></title>
+    <style>
+      .auto-dark {
+        opacity: 1;
+      }
+      @media (prefers-color-scheme: dark) {
+        .auto-dark {
+          opacity: 0.8;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="navbar" class="navbar">
@@ -77,7 +87,7 @@
       </div>
     </div>
     <div class="content">
-      <div style="display: block; width: auto; margin: 5vw 20vw;">
+      <div style="display: block; width: auto; margin: 5vw 20vw;" class="auto-dark">
       <img src="/error/img/<?php echo $e; ?>.png" alt="Error <?php echo $e; ?>" style="width: 100%;">
       </div>
       <h2><?php echo $string; ?></h2>
