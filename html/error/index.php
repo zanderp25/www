@@ -1,5 +1,9 @@
 <?php
-  $e = $_GET['e'];
+  if (!isset($_GET['e'])) {
+    $e = '404';
+  } else {
+    $e = $_GET['e'];
+  }
   $string = $e." - Unknown Error";
   $info = "The server encountered an unexpected condition which prevented it from fulfilling your request.";
   
@@ -73,8 +77,8 @@
       </div>
     </div>
     <div class="content">
-      <div style="display:block;width:auto;margin:20vw;">
-      <img src="/error/img/<?php echo $e; ?>.png" alt="Error <?php echo $e; ?>">
+      <div style="display: block; width: auto; margin: 20vw 5vw;">
+      <img src="/error/img/<?php echo $e; ?>.png" alt="Error <?php echo $e; ?>" style="width: 100px;">
       </div>
       <h2><?php echo $string; ?></h2>
       <p><?php echo $info; ?></p>
