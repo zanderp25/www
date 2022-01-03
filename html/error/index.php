@@ -1,10 +1,5 @@
 <?php
-  if (!isset($_POST['e'])) {
-    http_response_code(404);
-    header("Location: https://zanderp25.com/error/?e=404");
-    die();
-  }
-  $e = $_POST['e'];
+  $e = $_GET['e'];
   $string = $e." - Unknown Error";
   $info = "The server encountered an unexpected condition which prevented it from fulfilling your request.";
   
@@ -78,7 +73,9 @@
       </div>
     </div>
     <div class="content">
-      <img src="img/<?php echo $code; ?>.png" alt="Error <?php echo $code; ?>" style="display:block;width:auto;margin:20vw;">
+      <div style="display:block;width:auto;margin:20vw;">
+      <img src="img/<?php echo $e; ?>.png" alt="Error <?php echo $e; ?>">
+      </div>
       <h2><?php echo $string; ?></h2>
       <p><?php echo $info; ?></p>
       <a href="#" onclick="window.history.back();" class="button">Go Back</a>
