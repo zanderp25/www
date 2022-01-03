@@ -1,3 +1,19 @@
+ErrorDocument 401 /error/?e=401
+ErrorDocument 403 /error/?e=403
+ErrorDocument 404 /error/?e=404
+ErrorDocument 410 /error/?e=410
+ErrorDocument 414 /error/?e=414
+ErrorDocument 497 /error/?e=497
+ErrorDocument 500 /error/?e=500
+ErrorDocument 501 /error/?e=501
+ErrorDocument 502 /error/?e=502
+ErrorDocument 503 /error/?e=503
+ErrorDocument 504 /error/?e=504
+ErrorDocument 507 /error/?e=507
+ErrorDocument 509 /error/?e=509
+
+Options -Indexes
+
 Redirect gone /nevergonnagiveyouup
 Redirect permanent /test https://youtu.be/dQw4w9WgXcQ
 Redirect permanent /status https://zanderp25.statuspage.io/
