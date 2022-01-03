@@ -34,7 +34,7 @@
       break;
     case "497":
       $string = "497 - HTTP Request Sent to HTTPS Port";
-      $info = "The request was sent to a port on a server that requires the use of SSL.";
+      $info = "The request was sent to a port on a server that requires the use of SSL. It's like a trying to push a square object through a triangle hole.";
       break;
     case "500":
       $string = "500 - Internal Server Error";
