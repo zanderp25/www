@@ -71,7 +71,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="/index.css">
     <meta name="theme-color" content="#ED7D3A" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#666666" media="(prefers-color-scheme: dark)">
     <title><?php echo $string?></title>
