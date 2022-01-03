@@ -1,6 +1,17 @@
-ErrorDocument 403 /error/403/
-ErrorDocument 404 /error/404/
-ErrorDocument 500 /error/500/
+ErrorDocument 401 /error/?code=401
+ErrorDocument 403 /error/?code=403
+ErrorDocument 404 /error/?code=404
+ErrorDocument 410 /error/?code=410
+ErrorDocument 414 /error/?code=414
+ErrorDocument 420 /error/?code=420
+ErrorDocument 497 /error/?code=497
+ErrorDocument 500 /error/?code=500
+ErrorDocument 501 /error/?code=501
+ErrorDocument 502 /error/?code=502
+ErrorDocument 503 /error/?code=503
+ErrorDocument 504 /error/?code=504
+ErrorDocument 507 /error/?code=507
+ErrorDocument 509 /error/?code=509
 
 Redirect permanent /link https://link.zanderp25.com/
 Redirect permanent /new /
