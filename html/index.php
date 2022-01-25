@@ -26,6 +26,8 @@
     <meta name="description" content="<?php
       if ($lang == "es") {
         echo "El sitio web oficial de Zanderp25.";
+      } else if ($lang == "ja") {
+        echo "Zanderp25のオフィシャルサイト。";
       } else {
         echo "The official website of Zanderp25.";
       }
@@ -41,7 +43,7 @@
       </a>
       <input type="checkbox" id="menu-button"/>
       <div class="navbar-links">
-        <a href="/#about">
+        <a href="#about">
           <?php
             if ($lang == "es") {
               echo "Acerca de Mí";
@@ -50,7 +52,7 @@
             }
           ?>
         </a>
-        <a href="/#projects">
+        <a href="#projects">
           <?php
             if ($lang == "es") {
               echo "Proyectos";
@@ -59,7 +61,7 @@
             }
           ?>
         </a>
-        <a href="/index/">
+        <a href="index/">
           <?php
             if ($lang == "es") {
               echo "Descargas";
@@ -86,6 +88,8 @@
         <?php
           if ($lang == "es") {
             echo "¡Mira mi";
+          } else if ($lang == "ja") {
+            echo "私の";
           } else {
             echo "Check out my ";
           }
@@ -95,6 +99,8 @@
           <?php
             if ($lang == "es") {
               echo "cuenta regresiva de Navidad";
+            } else if ($lang == "ja") {
+              echo "クリスマスカウントダウン";
             } else {
               echo "Christmas Countdown";
             }
@@ -103,6 +109,8 @@
         <?php
           if ($lang == "es") {
             echo " mientras contamos los días hasta Navidad!";
+          } else if ($lang == "ja") {
+            echo "をチェックしてください。クリスマスまでの日数をカウントダウンします！";
           } else {
             echo " as we count down the days until Christmas!";
           }
@@ -151,6 +159,8 @@
           <?php
             if ($lang == "es") {
               echo "Acerca de Mí";
+            } else if ($lang == "ja") {
+              echo "私について";
             } else {
               echo "About Me";
             }
@@ -166,6 +176,8 @@
           <?php
             if ($lang == "es") {
               echo "Proyectos";
+            } else if ($lang == "ja") {
+              echo "プロジェクト";
             } else {
               echo "Projects";
             }
@@ -181,6 +193,8 @@
               <?php
                 if ($lang == "es") {
                   echo "Una aplicación para ayudar a mantenerte motivado y contar preguntas.";
+                } else if ($lang == "ja") {
+                  echo "質問カウンターは、質問をカウントするためのアプリです。";
                 } else {
                   echo "A simple desktop app to help keep you motivated and count questions.";
                 }
@@ -190,6 +204,8 @@
               <?php
                 if ($lang == "es") {
                   echo "Más información >";
+                } else if ($lang == "ja") {
+                  echo "詳細情報 >";
                 } else {
                   echo "Learn More >";
                 }
@@ -207,6 +223,8 @@
               <?php
                 if ($lang == "es") {
                   echo "Cuentas Regresivas";
+                } else if ($lang == "ja") {
+                  echo "カウントダウン";
                 } else {
                   echo "Countdowns";
                 }
@@ -216,6 +234,8 @@
               <?php
                 if ($lang == "es") {
                   echo "Cuentas regresivas para Navidad, año nuevo, y mucho más.";
+                } else if ($lang == "ja") {
+                  echo "クリスマスカウントダウン、年末年始、そしてそれ以降のカウントダウンを作成しました。";
                 } else {
                   echo "Countdowns for Christmas, New Year's, and more.";
                 }
@@ -225,6 +245,8 @@
               <?php
                 if ($lang == "es") {
                   echo "Abrir >";
+                } else if ($lang == "ja") {
+                  echo "開く >";
                 } else {
                   echo "Open >";
                 }
@@ -242,6 +264,8 @@
               <?php
                 if ($lang == "es") {
                   echo "Servidor de Minecraft";
+                } else if ($lang == "ja") {
+                  echo "Minecraftサーバー";
                 } else {
                   echo "Minecraft Server";
                 }
@@ -251,6 +275,8 @@
               <?php
                 if ($lang == "es") {
                   echo "Un servidor de Minecraft que tengo y mantengo para Minecraft: Java Edition.";
+                } else if ($lang == "ja") {
+                  echo "Minecraft: Java Editionのためのサーバーを作成しました。";
                 } else {
                   echo "A Minecraft Server I run and maintain for Minecraft: Java Edition.";
                 }
@@ -260,6 +286,8 @@
               <?php
                 if ($lang == "es") {
                   echo "Más información >";
+                } else if ($lang == "ja") {
+                  echo "詳細情報 >";
                 } else {
                   echo "Learn More >";
                 }
