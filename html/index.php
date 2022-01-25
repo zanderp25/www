@@ -47,6 +47,8 @@
           <?php
             if ($lang == "es") {
               echo "Acerca de Mí";
+            } else if ($lang == "ja") {
+              echo "私について";
             } else {
               echo "About Me";
             }
@@ -56,6 +58,8 @@
           <?php
             if ($lang == "es") {
               echo "Proyectos";
+            } else if ($lang == "ja") {
+              echo "プロジェクト";
             } else {
               echo "Projects";
             }
@@ -65,6 +69,8 @@
           <?php
             if ($lang == "es") {
               echo "Descargas";
+            } else if ($lang == "ja") {
+              echo "ダウンロード";
             } else {
               echo "Downloads";
             }
