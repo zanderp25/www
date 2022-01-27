@@ -9,7 +9,7 @@ function load() {
   $('a[href^="#"]').click(function() {
     let href = $.attr(this, 'href');
     $root.animate({
-      scrollTop: $(href).offset().top - 50
+      scrollTop: $(href).offset().top
     }, 500, function() {
       window.location.hash = href;
     });
