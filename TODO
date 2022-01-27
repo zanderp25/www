@@ -3,3 +3,4 @@
 - Fix dark mode bug in html/error.php
 - Write bio
 - Add a landing page for html/countdowns/
+- Fix font scaling on mobile
