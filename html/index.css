@@ -81,6 +81,10 @@ a .arrow {
   text-decoration: none;
 }
 
+div {
+  scroll-margin-top: 60px;
+}
+
 @media (max-width: 767px) {
   .button {
     width: 50%;
@@ -154,7 +158,6 @@ h2 {
   text-align: center;
   font-size: 5.0vw;
   margin-top: 5.0vw;
-  scroll-margin-top: 60px;
   z-index: -1;
   transition: 250ms;
 }
