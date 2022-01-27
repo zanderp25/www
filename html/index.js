@@ -1,4 +1,4 @@
-import("https://code.jquery.com/jquery-3.5.0.min.js")
+import "https://code.jquery.com/jquery-3.5.0.min.js";
 
 function load() {
   if ((getChristmas(new Date()) - new Date()) <= 2160000000) {
