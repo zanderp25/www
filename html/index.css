@@ -520,9 +520,11 @@ body {
 #menu-button::after {
   content: '\2261';
   font-size: 60px;
-  position: absolute;
-  top: -16px;
-  left: 0px;
+  position:  fixed;
+  
+  height: 35px;
+  top: -15px;
+  right: 5px;
 }
 
 #menu-button:checked:after {

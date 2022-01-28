@@ -86,6 +86,8 @@
           <?php
             if ($lang == "es") {
               echo "¡Hola!";
+            } else if ($lang == "ja") {
+              echo "こんにちは！";
             } else {
               echo "Hey, You!";
             }
