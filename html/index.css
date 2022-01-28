@@ -504,6 +504,10 @@ body {
 /* Mobile */
 
 #menu-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 35px;
   display: none;
   position: absolute;
   top: 4px;
@@ -511,6 +515,18 @@ body {
   width: 35px;
   height: 35px;
   color: #fff;
+}
+
+#menu-button::after {
+  content: '\2261';
+  font-size: 60px;
+  position: absolute;
+  top: -16px;
+  left: 0px;
+}
+
+#menu-button:checked:after {
+  content: '\00D7';
 }
 
 @media (max-width: 767px) {
