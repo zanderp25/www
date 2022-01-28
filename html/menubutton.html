@@ -1,0 +1,33 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  .menu-button {
+	-webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 30px;
+  }
+
+.menu-button::after {
+  content: '\2261';
+  font-size: 50px;
+  position: absolute;
+  top: -5px;
+  left: 3px;
+  color: #292929;
+}
+
+.menu-button:checked:after {
+  content: '\00D7';
+}
+
+.menu-button:checked ~ .checked::after {
+  content: "Yes";
+}
+
+.menu-button ~ .checked::after {
+  content: "No";
+}
+</style>
+
+<input type="checkbox" class="menu-button"/><label for="chk-1"></label>
+<p class="checked">Checked? </p>
