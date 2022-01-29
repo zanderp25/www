@@ -3,7 +3,7 @@ function run(){
     $output = null;
     $value = null;
   
-    exec("cd /home/zanderp25/www; git pull", $output, $value);
+    exec("cd /home/zanderp25/www; git pull -v", $output, $value);
     echo "Returned with code: $value\n";
     echo "Output: \n";
     print_r($output);
