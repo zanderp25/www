@@ -11,6 +11,11 @@ function init(){
     }, 200);
 }
 
+lang = navigator.language.substring(0,2);
+if (window.location.search.startsWith("?lang=")){
+    lang = window.location.search.substring(6,8);
+}
+
 function update(){
     console.log("** New Update **")
     {
@@ -42,24 +47,72 @@ function update(){
     second = Math.floor((difference % (1000 * 60)) / 1000);
 
     if (day == 1){
-        dayLabel.innerHTML = "&nbsp;day, ";
+        if (lang == "es"){
+            dayLabel.innerHTML = "&nbsp;día, ";
+        } else if (lang == "ja"){
+            dayLabel.innerHTML = "&nbsp;日 ";
+        } else {
+            dayLabel.innerHTML = "&nbsp;day, ";
+        }
     } else {
-        dayLabel.innerHTML = "&nbsp;days, ";
+        if (lang == "es"){
+            dayLabel.innerHTML = "&nbsp;días, ";
+        } else if (lang == "ja"){
+            dayLabel.innerHTML = "&nbsp;日 ";
+        } else {
+            dayLabel.innerHTML = "&nbsp;days, ";
+        }
     }
     if (hour == 1){
-        hourLabel.innerHTML = "&nbsp;hour, ";
+        if (lang == "es"){
+            hourLabel.innerHTML = "&nbsp;hora, ";
+        } else if (lang == "ja"){
+            hourLabel.innerHTML = "&nbsp;時間 ";
+        } else {
+            hourLabel.innerHTML = "&nbsp;hour, ";
+        }
     } else {
-        hourLabel.innerHTML = "&nbsp;hours, ";
+        if (lang == "es"){
+            hourLabel.innerHTML = "&nbsp;horas, ";
+        } else if (lang == "ja"){
+            hourLabel.innerHTML = "&nbsp;時間 ";
+        } else {
+            hourLabel.innerHTML = "&nbsp;hours, ";
+        }
     }
     if (minute == 1){
-        minuteLabel.innerHTML = "&nbsp;minute, ";
+        if (lang == "es"){
+            minuteLabel.innerHTML = "&nbsp;minuto, ";
+        } else if (lang == "ja"){
+            minuteLabel.innerHTML = "&nbsp;分 ";
+        } else {
+            minuteLabel.innerHTML = "&nbsp;minute, ";
+        }
     } else {
-        minuteLabel.innerHTML = "&nbsp;minutes, ";
+        if (lang == "es"){
+            minuteLabel.innerHTML = "&nbsp;minutos, ";
+        } else if (lang == "ja"){
+            minuteLabel.innerHTML = "&nbsp;分 ";
+        } else {
+            minuteLabel.innerHTML = "&nbsp;minutes, ";
+        }
     }
     if (second == 1){
-        secondLabel.innerHTML = "&nbsp;second";
+        if (lang == "es"){
+            secondLabel.innerHTML = "&nbsp;segundo";
+        } else if (lang == "ja"){
+            secondLabel.innerHTML = "&nbsp;秒";
+        } else {
+            secondLabel.innerHTML = "&nbsp;second";
+        }
     } else {
-        secondLabel.innerHTML = "&nbsp;seconds";
+        if (lang == "es"){
+            secondLabel.innerHTML = "&nbsp;segundos";
+        } else if (lang == "ja"){
+            secondLabel.innerHTML = "&nbsp;秒";
+        } else {
+            secondLabel.innerHTML = "&nbsp;seconds";
+        }
     }
     
     dayNumber.innerText    = day;
