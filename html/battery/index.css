@@ -9,8 +9,9 @@ body {
   bottom: 0;
   width: 100%;
   background-color: #6fff6f;
-  height: 50vh;
+  height: 0;
   transform-origin: 50%;
+  transition: 500ms;
 }
 .center {
   width: 100%;
