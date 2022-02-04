@@ -9,6 +9,8 @@ async function update() {
     percent = parseInt(battery.level * 100);
     document.getElementById("percentage").innerHTML = percent;
     document.getElementById("level").style.height = percent + "%";
+    document.title = `${percent}% - Battery`;
+    document.querySelector("link[rel*='icon']").href = `icons/${Math.ceil(percent / 20) * 20}.png`;
     if (percent <= 20) {
         document.getElementById("level").style.backgroundColor = "#ff6a6a";
     } else {

@@ -3,6 +3,7 @@ body {
   font-size: 12px;
   margin: 0;
 }
+
 #level {
   position: fixed;
   z-index: -1;
@@ -13,25 +14,28 @@ body {
   transform-origin: 50%;
   transition: 500ms;
 }
+
 .center {
   width: 100%;
   text-align: center;
-  box-align: center;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 #percentage {
   font-size: 20vw;
   font-weight: bold;
   display: inline-block;
 }
+
 #percent {
   font-size: 10vw;
   font-weight: bold;
   display: inline-block;
 }
+
 #charging {
   font-size: 5vw;
   font-weight: bold;
