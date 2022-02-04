@@ -16,7 +16,40 @@ async function update() {
     }
     if (battery.charging) {
         document.getElementById("charging").style.display = "block";
+        document.getElementById("chargeStatus").innerHTML = "Time to 100%: " + formatTime(battery.chargingTime);
     } else {
         document.getElementById("charging").style.display = "none";
+        document.getElementById("chargeStatus").innerHTML = "Time to 0%: " + formatTime(battery.dischargingTime);
+    }
+    if (battery.chargingTime == Infinity && battery.dischargingTime == Infinity) {
+        document.getElementById("chargeStatus").innerHTML = "";
+    }
+}
+
+function formatTime(time) {
+    if (time == Infinity) {
+        return `${time.toLocaleString()}s`
+    } else if (time <= 60) {
+        return `${time}s`
+    } else if (time <= 3600) {
+        if (time % 60 != 0) {
+            return `${Math.floor(time / 60)}m ${time % 60}s`
+        } else {
+            return `${time / 60}m`
+        }
+    } else {
+        if (time % 60 != 0) {
+            return `${Math.floor(time / 3600)}h ${Math.floor(time % 3600 / 60)}m ${time % 60}s`
+        } else {
+            return `${Math.floor(time / 3600)}h ${Math.floor(time % 3600 / 60)}m`
+        }
+    }
+}
+
+function hidestatus() {
+    if (document.getElementById("chargeStatus").style.display == "none") {
+        document.getElementById("chargeStatus").style.display = "block"
+    } else {
+        document.getElementById("chargeStatus").style.display = "none"
     }
 }

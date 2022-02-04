@@ -35,5 +35,13 @@ body {
 #charging {
   font-size: 5vw;
   font-weight: bold;
-  display: inline-block;
+  display: block;
+}
+
+#chargeStatus {
+  position: relative;
+  top: -5vw;
+  font-size: 5vw;
+  font-weight: bold;
+  display: block;
 }
