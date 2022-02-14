@@ -5,16 +5,19 @@ function load() {
     document.getElementById("christmasAlert").style.display = "block";
   }
   // For smooth scrolling
-  let $root = $('html, body');
-  $('a[href^="#"]').click(function() {
-    let href = $.attr(this, 'href');
-    $root.animate({
-      scrollTop: $(href).offset().top - 60
-    }, 500, function() {
-      window.location.hash = href;
+  const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (!mediaQuery.matches) {
+    let $root = $('html, body');
+    $('a[href^="#"]').click(function() {
+      let href = $.attr(this, 'href');
+      $root.animate({
+        scrollTop: $(href).offset().top - 60
+      }, 500, function() {
+        window.location.hash = href;
+      });
+      return false;
     });
-    return false;
-  });
+  }
 }
 
 function getChristmas(now){
