@@ -80,6 +80,7 @@
       </div>
     </div>
     <div class="content">
+      <p class="printonly">Why do you want to print this, anyways??</p>
       <div class="alert info" id="christmasAlert" style="display: none;">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
         <strong>

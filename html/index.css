@@ -241,6 +241,10 @@ p {
   animation-iteration-count: infinite;
 }
 
+.printonly {
+  display: none;
+}
+
 /* Alert Message:
   
   <div class="alert">
@@ -622,4 +626,101 @@ body {
   /* .down-arrow img {
     width: 8.0vw;
   } */
+}
+
+/* A11y Options */
+
+@media (prefers-reduced-motion: reduce) {
+  .button, h1, h2, h3, .closebtn, .socials, .socials a, .socials div, .socials img, .navbar a {
+    transition: none;
+  }
+  #menu-button:checked ~ .navbar-links{
+    transition: none;
+  }
+  .bounce {
+    animation: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  body {
+    background-color: #000;
+  }
+  .button, h1, h2, h3, .closebtn, .socials, .socials a, .socials div, .socials img, .navbar a, p {
+    color: #fff;
+  }
+  .github {
+    color: #fff;
+    filter: invert(100%);
+  }
+  .navbar {
+    background-color: #000;
+    outline: var(--link-1) solid 1px;
+  }
+  @media (max-width: 767px) {
+    .navbar-links {
+      background-color: #000;
+      outline: var(--link-1) solid 1px;
+    }
+  }
+  footer {
+    background-color: #000;
+    outline: var(--link-1) solid 1px;
+  }
+}
+
+@media (forced-colors: active) and (prefers-color-scheme: dark) {
+  .github {
+    color: #fff;
+    filter: invert(100%);
+  }
+}
+
+@media print {
+  body {
+    background-color: #fff;
+  }
+  .button, h1, h2, h3, .closebtn, .socials, .socials a, .socials div, .socials img, .navbar a, p {
+    color: #000;
+  }
+  .github {
+    color: #000;
+    filter: invert(0%);
+  }
+  .navbar {
+    background-color: #fff;
+    outline: #000 solid 1px;
+  }
+  @media (max-width: 767px) {
+    .navbar-links {
+      background-color: #fff;
+      outline: #000 solid 1px;
+    }
+  }
+  footer {
+    background-color: #fff;
+    outline: #000 solid 1px;
+  }
+  .navbar img {
+    filter: invert(0%);
+  }
+  #menu-button:checked {
+    display: none;
+  }
+  .socials a {
+    font-size: 3vw;
+    font-weight: bold;
+  }
+  .socials img {
+    height: 2.0vw;
+  }
+  h2 {
+    font-size: 5.0vw;
+  }
+  .project-image {
+    display: none;
+  }
+  .printonly {
+    display: block;
+  }
 }
