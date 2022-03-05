@@ -9,6 +9,15 @@
 		margin: 0;
         line-height: .5em;
 	}
+<<<<<<< HEAD
+=======
+        --unchecked-bg: #fff;
+        --checked-bg: #000;
+        @media (prefers-color-scheme: dark) {
+            --unchecked-bg: #000;
+            --checked-bg: #fff;
+        
+>>>>>>> 08abc927b8a38ad231826379744631f3d721e4d4
 	input[type=checkbox] {
 		appearance: none;
 		margin: 0;
@@ -19,11 +28,19 @@
 		width: 20px;
 		height: 20px;
 		border: .5px solid #ccc;
+<<<<<<< HEAD
 		background-color: #fff;
 		cursor: pointer;
 	}
 	input[type=checkbox]:checked::after {
 		background-color: #000;
+=======
+	  	background-color: var(--unchecked-bg);
+		cursor: pointer;
+	}
+	input[type=checkbox]:checked::after {
+		background-color: var(--checked-bg);
+>>>>>>> 08abc927b8a38ad231826379744631f3d721e4d4
 	}
 </style>
 
