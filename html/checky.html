@@ -1,37 +1,43 @@
 <!DOCTYPE html>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-	@viewport {
-		width: device-width;
-		zoom: 1.0;
+	body{
+	--unchecked-bg: #fff;
+	--border-color: #ccc;
+	--checked-bg: #000;
 	}
-	body {
-		margin: 0;
-        line-height: .5em;
-	}
+
+	@media (prefers-color-scheme: dark) {
 		body{
-        --unchecked-bg: #fff;
-        --checked-bg: #000;
+			--unchecked-bg: #000;
+			--border-color: #555;
+			--checked-bg: #fff;
 		}
-        @media (prefers-color-scheme: dark) {
-			body{
-				--unchecked-bg: #000;
-				--checked-bg: #fff;
-			}
-		}
+	}
+
+	body {
+		background-color: var(--unchecked-bg);
+		margin: 0;
+		line-height: .5em;
+	}
+
 	input[type=checkbox] {
 		appearance: none;
 		margin: 0;
 	}
+
 	input[type=checkbox]::after {
 		content: "";
 		display: block;
-		width: 20px;
-		height: 20px;
-		border: .5px solid #ccc;
+		width: 40px;
+		height: 40px;
+		border: .5px solid var(--border-color);
 		background-color: var(--unchecked-bg);
 		cursor: pointer;
 	}
+
 	input[type=checkbox]:checked::after {
 		background-color: var(--checked-bg);
 	}
