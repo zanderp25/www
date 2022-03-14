@@ -18,6 +18,7 @@
     <link rel="manifest" href="/ico/site.webmanifest?v=gAXAjeL9Ro">
     <link rel="mask-icon" href="/ico/safari-pinned-tab.svg?v=gAXAjeL9Ro" color="#ED7D3A">
     <link rel="shortcut icon" href="/ico/favicon.ico?v=gAXAjeL9Ro">
+    <meta property="og:image" content="https://zanderp25.com/apple-touch-icon.png">
     <meta name="msapplication-TileColor" content="#ED7D3A">
     <meta name="msapplication-config" content="/ico/browserconfig.xml?v=gAXAjeL9Ro">
     <meta name="theme-color" content="#ED7D3A" media="(prefers-color-scheme: light)">
