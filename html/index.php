@@ -1,6 +1,9 @@
 <?php
-  $lang = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
-  $lang = substr($lang, 0, 2);
+  $lang = "en";
+  if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])){
+    $lang = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+    $lang = substr($lang, 0, 2);
+  }
   if (isset($_GET['lang'])) {
     $lang = $_GET['lang'];
   }
