@@ -7,7 +7,6 @@
 	--unchecked-bg: #fff;
 	--border-color: #ccc;
 	--checked-bg: #000;
-
 	--boxsize: 40px;
 	}
 
@@ -22,6 +21,7 @@
 	body {
 		background-color: var(--unchecked-bg);
 		margin: 0;
+		line-height: 0;
 	}
 	
 	input[type=checkbox] {
@@ -29,7 +29,7 @@
 		margin: 0;
 		height: var(--boxsize);
 		width: var(--boxsize);
-		line-height: var(--boxsize);
+		line-height: calc(var(--boxsize)/2);
 	}
 
 	input[type=checkbox]::after {
@@ -40,6 +40,8 @@
 		border: .5px solid var(--border-color);
 		background-color: var(--unchecked-bg);
 		cursor: pointer;
+		text-align: center;
+		
 	}
 
 	input[type=checkbox]:checked::after {
