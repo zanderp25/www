@@ -181,7 +181,7 @@ function requestTypeChange(){
             $("request-data-div").style.display = "flex";
             $("request-data").disabled = false;
             break;
-            case "DELETE":
+        case "DELETE":
             $("request-data-div").style.display = "none";
             $("request-data").disabled = true;
             break;
