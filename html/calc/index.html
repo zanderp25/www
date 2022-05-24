@@ -3,19 +3,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple web-based programmer's calculator made by Zanderp25">
+    <meta name="author" content="Zanderp25">
+    <link rel="stylesheet" href="index.css">
     <title>Document</title>
+    <script src="index.js"></script>
 </head>
-<body>
+<body onload="setType()">
     <div class="main-frame">
         <div class="type-selection">
-            <select name="int-type" id="int-type">
+            <label for="int-type">Integer Type:</label>
+            <select name="int-type" id="int-type" onchange="setType()">
                 <option value="sbyte">sbyte</option>
+                <option value="byte" selected>byte</option>
                 <option value="short">short</option>
-                <option value="int">int</option>
-                <option value="long">long</option>
-                <option value="byte">byte</option>
                 <option value="ushort">ushort</option>
+                <option value="int">int</option>
                 <option value="uint">uint</option>
+                <option value="long">long</option>
                 <option value="ulong">ulong</option>
             </select>
         </div>
@@ -24,7 +29,15 @@
             <span id="type-range"></span>
             <span id="type-description"></span>
         </div>
-        <div class="number-input"></div>
+        <div class="number-input">
+            <div id="bin-input"></div>
+            <div id="dec-input">
+                <input type="text" name="dec" id="dec" placeholder="Decimal">
+            </div>
+            <div id="hex-input">
+                <input type="text" name="hex" id="hex" placeholder="Hex">
+            </div>
+        </div>
     </div>
 </body>
 </html>
