@@ -3,43 +3,69 @@ var $ = function(id) { return document.getElementById(id); };
 type = "";
 signed = false;
 
-function update(type){
+function update(base){
     unsetEvents();
 
     value = 0;
-    if(type == "bin"){
+    if(base == "bin"){
         value = getBinValue();
-        $("dec").value = value;
-        $("hex").value = value.toString(16);
-    } else if(type == "dec"){
+    } else if(base == "dec"){
         if($("dec").value.match(/[^0-9-]/)){
             $("dec").value = $("dec").value.replace(/[^0-9-]/g, "");
         }
-        $("dec").value = $("dec").value.replace(/^0+/, "");
+        if ($("dec").value.match(/^0+[1-9]/, "")){
+            $("dec").value = $("dec").value.replace(/^0+/, "");
+        }
         value = parseInt($("dec").value);
-        setBinValue(value);
-        $("hex").value = value.toString(16);
-    } else if(type == "hex"){
+    } else if(base == "hex"){
         if($("hex").value.match(/[^0-9a-fA-F]/)){
             $("hex").value = $("hex").value.replace(/[^0-9A-Fa-f-]/g, "");
         }
         $("hex").value = $("hex").value.replace(/^0+/, "");
         value = parseInt($("hex").value, 16);
-        setBinValue(value);
-        $("dec").value = value;
     }
     
-    // if(isNaN(value)){
-    //     setBinValue(0);
-    //     $("dec").value = 0;
-    //     $("hex").value = 0;
-    // }
+    // constrain the values to the int type
+    if(type == "sbyte"){
+        value = Math.min(value, 127);
+        value = Math.max(value, -128);
+    } else if(type == "byte"){
+        value = Math.min(value, 255);
+        value = Math.max(value, 0);
+    } else if(type == "short"){
+        value = Math.min(value, 32767);
+        value = Math.max(value, -32768);
+    } else if(type == "ushort"){
+        value = Math.min(value, 65535);
+        value = Math.max(value, 0);
+    } else if(type == "int"){
+        value = Math.min(value, 2147483647);
+        value = Math.max(value, -2147483648);
+    } else if(type == "uint"){
+        value = Math.min(value, 4294967295);
+        value = Math.max(value, 0);
+    } else if(type == "long"){
+        value = Math.min(value, 9223372036854775807);
+        value = Math.max(value, -9223372036854775808);
+    } else if(type == "ulong"){
+        value = Math.min(value, 18446744073709551615);
+        value = Math.max(value, 0);
+    } 
+
+    setBinValue(value);
+    $("dec").value = value;
+    $("hex").value = value.toString(16);
+
+    if($("dec").value == "NaN"){
+        setBinValue(0);
+        $("dec").value = 0;
+        $("hex").value = 0;
+    }
 
     setEvents();
 }
 
-// TODO: add constraints for dec and hex
-// TODO: signed long is broken
+// TODO: long is broken
 
 function getBinValue(){
     value = 0;
@@ -107,6 +133,7 @@ function setType(){
         binParent.appendChild(div);
     }
 
+    updateInfo();
     update("dec");
 }
 
@@ -130,4 +157,53 @@ function unsetEvents(){
     }
     $('dec').oninput = null;
     $('hex').oninput = null;
+}
+
+function updateInfo(){
+    switch(type){
+        case "sbyte":
+            $("type-name").innerHTML = "Signed Byte";
+            $("type-range").innerHTML = "-2<sup>7</sup> to 2<sup>7</sup> - 1";
+            $("type-description").innerHTML = "8-bit signed integer";
+            break;
+        case "byte":
+            $("type-name").innerHTML = "Unsigned Byte";
+            $("type-range").innerHTML = "0 to 2<sup>8</sup> - 1";
+            $("type-description").innerHTML = "8-bit unsigned integer";
+            break;
+        case "short":
+            $("type-name").innerHTML = "Signed Short";
+            $("type-range").innerHTML = "-2<sup>15</sup> to 2<sup>15</sup> - 1";
+            $("type-description").innerHTML = "16-bit signed integer";
+            break;
+        case "ushort":
+            $("type-name").innerHTML = "Unsigned Short";
+            $("type-range").innerHTML = "0 to 2<sup>16</sup> - 1";
+            $("type-description").innerHTML = "16-bit unsigned integer";
+            break;
+        case "int":
+            $("type-name").innerHTML = "Signed Int";
+            $("type-range").innerHTML = "-2<sup>31</sup> to 2<sup>31</sup> - 1";
+            $("type-description").innerHTML = "32-bit signed integer";
+            break;
+        case "uint":
+            $("type-name").innerHTML = "Unsigned Int";
+            $("type-range").innerHTML = "0 to 2<sup>32</sup> - 1";
+            $("type-description").innerHTML = "32-bit unsigned integer";
+            break;
+        case "long":
+            $("type-name").innerHTML = "Signed Long";
+            $("type-range").innerHTML = "-2<sup>63</sup> to 2<sup>63</sup> - 1";
+            $("type-description").innerHTML = "64-bit signed integer";
+            break;
+        case "ulong":
+            $("type-name").innerHTML = "Unsigned Long";
+            $("type-range").innerHTML = "0 to 2<sup>64</sup> - 1";
+            $("type-description").innerHTML = "64-bit unsigned integer";
+            break;
+        default:
+            $("type-name").innerHTML = "";
+            $("type-range").innerHTML = "";
+            $("type-description").innerHTML = "";
+    }
 }
