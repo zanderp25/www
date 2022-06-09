@@ -6,7 +6,7 @@ signed = false;
 function update(base){
     unsetEvents();
 
-    value = 0;
+    value = 0n;
     if(base == "bin"){
         value = getBinValue();
     } else if(base == "dec"){
@@ -16,7 +16,11 @@ function update(base){
         if ($("dec").value.match(/^0+[1-9]/, "")){
             $("dec").value = $("dec").value.replace(/^0+/, "");
         }
-        value = parseInt($("dec").value);
+        if(type!="long" && type!="ulong"){
+            value = parseInt($("dec").value);
+        } else {
+            value = BigInt($("dec").value);
+        }
     } else if(base == "hex"){
         if($("hex").value.match(/[^0-9a-fA-F]/)){
             $("hex").value = $("hex").value.replace(/[^0-9A-Fa-f-]/g, "");
@@ -45,11 +49,11 @@ function update(base){
         value = Math.min(value, 4294967295);
         value = Math.max(value, 0);
     } else if(type == "long"){
-        value = Math.min(value, 9223372036854775807);
-        value = Math.max(value, -9223372036854775808);
+        value = 9223372036854775807n > value ? value : 9223372036854775807n;
+        value = -9223372036854775808n < value ? value : -9223372036854775808n;
     } else if(type == "ulong"){
-        value = Math.min(value, 18446744073709551615);
-        value = Math.max(value, 0);
+        value = 18446744073709551615n > value ? value : 18446744073709551615n;
+        value = 0n < value ? value : 0n;
     } 
 
     setBinValue(value);
@@ -68,7 +72,8 @@ function update(base){
 // TODO: long is broken
 
 function getBinValue(){
-    value = 0;
+    if(type == "long" || type == "ulong") value = 0n;
+    else value = 0;
     invert = false;
     if(signed) invert = document.getElementsByName(-1)[0].checked
     binParent = $("bin-input");
@@ -76,22 +81,39 @@ function getBinValue(){
         for(elem of div.children){
             if(elem.checked){
                 if(elem.name == '-1') break;
-                value += parseInt(elem.name);
+                if (type != "long" && type != "ulong") value += parseInt(elem.name);
+                else value += BigInt(elem.name);
             }
         }
     }
-    if(invert) value = value ^ -(2**(8*binParent.children.length-1));
+    if(invert){
+        if (type != "long" && type != "ulong") 
+            value = value ^ -(2**(8*binParent.children.length-1));
+        else value = value ^ BigInt(-(2**(8*binParent.children.length-1)));
+    }
     return value;
 }
 
 function setBinValue(value){
     binParent = $("bin-input");
-    for(div of binParent.children){
-        for(elem of div.children){
-            if(elem.name == '-1'){
-                elem.checked = (value < 0);
-            } else {
-                elem.checked = (value & elem.name) != 0;
+    if (type != "long" && type != "ulong"){
+        for(div of binParent.children){
+            for(elem of div.children){
+                if(elem.name == '-1'){
+                    elem.checked = (value < 0);
+                } else {
+                    elem.checked = (value & elem.name) != 0;
+                }
+            }
+        }
+    } else {
+        for(div of binParent.children){
+            for(elem of div.children){
+                if(elem.name == '-1'){
+                    elem.checked = (value < 0);
+                } else {
+                    elem.checked = (value & BigInt(elem.name)) != 0;
+                }
             }
         }
     }
@@ -164,17 +186,17 @@ function updateInfo(){
         case "sbyte":
             $("type-name").innerHTML = "Signed Byte";
             $("type-range").innerHTML = "-2<sup>7</sup> to 2<sup>7</sup> - 1";
-            $("type-description").innerHTML = "8-bit signed integer";
+            $("type-description").innerHTML = "8-bit integer<br/>signed: can be negative";
             break;
         case "byte":
             $("type-name").innerHTML = "Unsigned Byte";
             $("type-range").innerHTML = "0 to 2<sup>8</sup> - 1";
-            $("type-description").innerHTML = "8-bit unsigned integer";
+            $("type-description").innerHTML = "8-bit integer<br/>unsigned: can't be negative";
             break;
         case "short":
             $("type-name").innerHTML = "Signed Short";
             $("type-range").innerHTML = "-2<sup>15</sup> to 2<sup>15</sup> - 1";
-            $("type-description").innerHTML = "16-bit signed integer";
+            $("type-description").innerHTML = "16-bit integer<br/>signed: can be negative";
             break;
         case "ushort":
             $("type-name").innerHTML = "Unsigned Short";
@@ -184,22 +206,22 @@ function updateInfo(){
         case "int":
             $("type-name").innerHTML = "Signed Int";
             $("type-range").innerHTML = "-2<sup>31</sup> to 2<sup>31</sup> - 1";
-            $("type-description").innerHTML = "32-bit signed integer";
+            $("type-description").innerHTML = "32-bit integer<br/>signed: can be negative";
             break;
         case "uint":
             $("type-name").innerHTML = "Unsigned Int";
             $("type-range").innerHTML = "0 to 2<sup>32</sup> - 1";
-            $("type-description").innerHTML = "32-bit unsigned integer";
+            $("type-description").innerHTML = "32-bit integer<br/>unsigned: can't be negative";
             break;
         case "long":
             $("type-name").innerHTML = "Signed Long";
             $("type-range").innerHTML = "-2<sup>63</sup> to 2<sup>63</sup> - 1";
-            $("type-description").innerHTML = "64-bit signed integer";
+            $("type-description").innerHTML = "64-bit integer<br/>signed: can be negative";
             break;
         case "ulong":
             $("type-name").innerHTML = "Unsigned Long";
             $("type-range").innerHTML = "0 to 2<sup>64</sup> - 1";
-            $("type-description").innerHTML = "64-bit unsigned integer";
+            $("type-description").innerHTML = "64-bit integer<br/>unsigned: can't be negative";
             break;
         default:
             $("type-name").innerHTML = "";
