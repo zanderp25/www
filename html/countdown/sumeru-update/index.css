@@ -1,0 +1,41 @@
+body{
+    background: #fff;
+    background: url(Sumeru_City.webp);
+    color: white;
+}
+
+.countdown{
+    box-align: center;
+    text-align: center;
+    width: max-content;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: 300pt;
+
+    padding: 25px;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.35);
+    color: #FFF;
+    font-family: "Avenir", "Helvetica Neue", sans-serif;
+}
+
+.number{
+    display: inline-block;
+    font-size: 72pt;
+    font-weight: lighter;
+}
+
+.label{
+    display: inline-block;
+    font-size: 36pt;
+}
+
+.big{
+    display: inline-block;
+    font-size: 40vw;
+    font-weight: lighter;
+}
