@@ -65,6 +65,7 @@
       $info = "The server terminated an operation because it encountered an infinite loop while processing.";
       break;
   }
+  http_response_code($e);
 ?>
 <!DOCTYPE html>
 <html>
