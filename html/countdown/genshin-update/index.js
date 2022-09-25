@@ -3,7 +3,7 @@
     ©2022 Zanderp25
 */
 
-christmas = new Date(0); // Will be set later
+date = new Date("September 28, 2022 03:00:00 GMT");
 
 function init(){
     setInterval(function(){
@@ -30,22 +30,16 @@ function update(){
         secondLabel  = document.getElementById("secondLabel");
     }
     now = new Date();
-    if (christmas.getTime() < now.getTime()){
-        if (christmas.getTime() != 0) {
-            console.log("SUMERU UPDATE!!! LETSGOOOOOOOOOOO!!!!!!!!!");
-        }
-        christmas = new Date("August 24, 2022 04:00:00 EDT");
-    }
-
-    console.log(`Next Christmas: ${christmas.toString()}`);
-    difference = christmas - now;
+    console.log(`Update: ${date.toString()}`);
+    console.log(`Now: ${now.toString()}`);
+    difference = date - now;
     console.log(`Difference = ${difference}`);
-    
+
     day    = Math.floor( difference / (1000 * 60 * 60 * 24));
     hour   = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     minute = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
     second = Math.floor((difference % (1000 * 60)) / 1000);
-    
+
     if (day == 1){
         if (lang == "es"){
             dayLabel.innerHTML = "&nbsp;día, ";

@@ -1,7 +1,10 @@
 body{
     background: #fff;
-    background: url(Sumeru_City.webp);
-    color: white;
+    background: url(pyramid.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-position: right bottom; */
+    background-position: center;
 }
 
 .countdown{
@@ -15,10 +18,13 @@ body{
     transform: translate(-50%, -50%);
     
     width: 300pt;
-
     padding: 25px;
     margin: auto;
     background-color: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6px) saturate(110%);
+    -webkit-backdrop-filter: blur(6px) saturate(110%);
+    border-radius: 25pt;
+    
     color: #FFF;
     font-family: "Avenir", "Helvetica Neue", sans-serif;
 }

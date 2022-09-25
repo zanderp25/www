@@ -13,3 +13,5 @@ ErrorDocument 507 /error/?e=507
 Redirect permanent /link https://link.zanderp25.com/
 Redirect permanent /new /
 Redirect permanent /christmas /countdown/christmas
+Redirect temp /sumeru /countdown/genshin-update
+Redirect temp /genshin /countdown/genshin-update
