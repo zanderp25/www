@@ -1,6 +1,6 @@
 .DS_Store
 ._*
 .vscode
-node_modules
-.next
-old
+/node_modules
+/.next
+/old
