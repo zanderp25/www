@@ -1,0 +1,120 @@
+<html><head><title>Zander's Online</title><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<link rel="shortcut icon" type="image/png" href="/z.png"/><style>
+body {
+	margin-top:0;
+	margin-left:0;
+	margin-right:0;
+	background-image:url("mainbg.png");
+}
+.menu {
+	position:absolute;
+    top:50px;
+    left:0px;
+    z-index:1;
+	display:none;
+}
+p.taskbar {
+	background-image:url('taskbar.png');
+	height:50px;
+	width:100%;
+}
+input.zbtn {
+	display:block; 
+	width:50px; 
+	height:50px; 
+	overflow:hidden;
+    background-image:url('zmenu.png');
+}
+input.zbtn:hover {
+	border:0px;
+    background-image:url('zmenuHover.png');
+}
+
+img.usrpic {
+	width:100px;
+	height:100px;
+	position: absolute;
+	top: 15px;
+	left: 590px;
+	margin-top: 0px;
+	margin-left: 0px;
+}
+input.close {
+	width:50px;
+	height:50px;
+	position: absolute;
+	top: 540px;
+	left: 725px;
+	margin-top: 0px;
+	margin-left: 0px;
+}
+div.fullscreen{
+	position:absolute;
+	top:115px;
+	left:595px;
+}
+</style>
+<script>
+function toggleMe(a){
+    var e=document.getElementById(a);
+    if(!e)return true;
+    if(e.style.display=="none"){
+        e.style.display="block"
+    }
+    else{
+        e.style.display="none"
+    }
+    return true;
+}
+</script></head><body>
+<p class=taskbar>
+<input type=image src=zmenu.png class="zbtn" 
+title="      App Menu
+-------------------
+All of the programs
+are shown here" 
+onclick="return toggleMe('menu')"/>
+</p>
+<div id=menu class="menu">
+<img src='menubg.png'/>
+<img src="zusrpic.png" class="usrpic"/>
+<div class="fullscreen"><input type=checkbox id="fullscreen" onclick="toggle(this.checked)"><label>Fullscreen<label></div>
+<!-- onclick="window.close()"? -->
+≈<input type=image src="close.png" class="close" onclick="location='../'"/>
+</div>
+<br>
+
+<script>
+var elem = document.documentElement;
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
+  }
+}
+function toggle(checked){
+	if (checked == true){
+    	openFullscreen();
+    }else{
+    	closeFullscreen();
+    }
+}
+</script>
+</body></html>
