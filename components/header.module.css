@@ -15,9 +15,10 @@
     justify-content: space-between;
 
     position: sticky;
-    top: 0;
+    top: 10pt;
     z-index: 100;
-    margin-bottom: 10pt;
+    margin: 10pt;
+    margin-bottom: 15pt;
     padding: 5pt 15pt;
     border-radius: 25pt;
 

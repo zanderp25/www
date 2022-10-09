@@ -7,21 +7,20 @@ export function Footer() {
         "© 2022 Zanderp25",
     ]
     let socials = [
-        {name: 'GitHub', href: 'https://github.com/zanderp25', icon: '/assets/icons/GitHub.png'}, 
-        {name: 'Discord', href: 'https://discord.gg/672yY5v', icon: '/assets/icons/Discord.png'},
-        {name: 'Twitter', href: 'https://twitter.com/zanderp25', icon: '/assets/icons/Twitter.png'}, 
-        {name: 'YouTube', href: 'https://www.youtube.com/channel/UCJn-rMYM0CRURAa8TUhwuPQ', icon: '/assets/icons/YouTube.png'},
-        {name: 'Twitch', href: 'https://www.twitch.tv/zanderp25', icon: '/assets/icons/Twitch.png'},
+        {name: 'GitHub', href: 'https://github.com/zanderp25', icon: '/assets/icons/github.png'}, 
+        {name: 'Discord', href: 'https://discord.gg/672yY5v', icon: '/assets/icons/discord.png'},
+        {name: 'Twitter', href: 'https://twitter.com/zanderp25', icon: '/assets/icons/twitter.png'}, 
+        {name: 'YouTube', href: 'https://youtube.com/channel/UCJn-rMYM0CRURAa8TUhwuPQ', icon: '/assets/icons/youTube.png'},
+        {name: 'Twitch', href: 'https://twitch.tv/zanderp25', icon: '/assets/icons/twitch.png'},
     ]
     return (
         <footer className={styles.footer}>
-        <nav>
-            <ul>
+            <ul className={styles.info}>
                 {infoLines.map((line) => (
                     <li>{line}</li>
                 ))}
             </ul>
-            <ul>
+            <ul className={styles.socials}>
             {socials.map((link) => (
                 <li key={link.href}>
                     <a href={link.href}>
@@ -31,7 +30,6 @@ export function Footer() {
                 </li>
             ))}
             </ul>
-        </nav>
         </footer>
     );
-    }
+}

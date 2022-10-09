@@ -19,8 +19,12 @@ export function Header({ title, description, icon, links }) {
         <meta property="og:image" content={"https://zanderp25.com" + icon} />
       </Head>
       <div className={styles.navbar_brand}>
-        <img alt='Logo' width={40} height={40} />
-        <span>Zanderp25</span>
+        <Link href="/">
+          <>
+            <img alt='Logo' width={40} height={40} />
+            <span>Zanderp25</span>
+          </>
+        </Link>
       </div>
       <nav>
         <ul>

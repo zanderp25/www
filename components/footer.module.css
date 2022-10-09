@@ -1,0 +1,83 @@
+.footer{
+    background-color: #fceed3;
+    --text-color: #000;
+    color: black;
+    border-top: #d0d0d0 2px solid;
+}
+
+@media (prefers-color-scheme: dark) {
+    .footer {
+        background-color: #464653;
+        --text-color: #ccc;
+        color: #ccc;
+        border-top: #aaa 2px solid;
+    }
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+    margin-top: 25pt;
+    padding: 15pt 0;
+    padding-right: 35pt;
+}
+
+.footer a, .footer a:visited, .footer a:active, .footer a:hover {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    opacity: 0.8;
+}
+
+.footer ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+}
+
+.info {
+    align-items: left;
+    flex-direction: column;
+}
+
+.info li {
+    padding: 2px 0;
+}
+
+.info li:nth-child(1){
+    font-size: 16pt;
+}
+
+.socials {
+    align-items: center;
+    flex-direction: row;
+    font-size: 16px;
+}
+
+.socials li {
+    padding: 0 10px;
+}
+
+.socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.socials a img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    margin-right: 5px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .socials a img[src="/assets/icons/github.png"] {
+        content: url("/assets/icons/github-white.png");
+    }
+}
