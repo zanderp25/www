@@ -3,7 +3,7 @@
     ©2022 Zanderp25
 */
 
-date = new Date("September 28, 2022 03:00:00 GMT");
+date = new Date("November 2, 2022 03:00:00 GMT");
 
 function init(){
     setInterval(function(){
