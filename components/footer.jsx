@@ -17,12 +17,12 @@ export function Footer() {
         <footer className={styles.footer}>
             <ul className={styles.info}>
                 {infoLines.map((line) => (
-                    <li>{line}</li>
+                    <li key={line}>{line}</li>
                 ))}
             </ul>
             <ul className={styles.socials}>
             {socials.map((link) => (
-                <li key={link.href}>
+                <li key={link.name}>
                     <a href={link.href}>
                         <img src={link.icon} />
                         {link.name}

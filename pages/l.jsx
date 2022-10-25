@@ -1,3 +1,5 @@
+import { Redirect } from "next";
+
 export default function RickRoll(){
   return (
     <>

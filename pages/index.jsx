@@ -1,11 +1,7 @@
-import { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import Head from 'next/head';
-
-import { Header } from '../components/header';
-import { Footer } from '../components/footer';
 import { Theater } from '../components/theater';
+import DefaultLayout from '../components/defaultLayout';
+import { CardSection } from '../components/section';
+import { Button } from '../components/button';
 
 function Title({ title }) {
   return <h1>{title ? title : 'Lorem Ipsum'}</h1>;
@@ -13,13 +9,15 @@ function Title({ title }) {
 
 export default function HomePage() {
   return (
-    <div>
-      <Header />
-      <Theater media="/assets/New Logo.mp4" height={512} behind_header />
-      <Image src="/assets/icons/Zanderp25.png" width={256} height={256} />
-      <Title title="Zanderp25" />
-      <Link href="/about">About</Link>
-      <Footer />
-    </div>
+    <DefaultLayout>
+      <Theater media="/assets/New Logo.mp4" height={512} behind_header noLoop />
+      <CardSection overlap>
+        <h1>Zanderp25</h1>
+        <p>
+          Welcome to my all-new website! This website is made almost entirely by me in Next.js.
+        </p>
+        <Button href="/projects">Projects</Button>
+      </CardSection>
+    </DefaultLayout>
   );
 }

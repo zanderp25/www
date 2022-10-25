@@ -5,12 +5,12 @@ body {
     line-height: 1.42857143;
     color: #333;
     margin: 0;
-    scrollbar-color: #cccccc #f0f0f0;
+    overflow-x: hidden;
 }
 
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: #2a2a32;
+        background-color: #000000;
         color: #fff;
     }
 }

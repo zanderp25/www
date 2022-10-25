@@ -7,10 +7,10 @@
 
 @media (prefers-color-scheme: dark) {
     .footer {
-        background-color: #464653;
+        background-color: #101010;
         --text-color: #ccc;
         color: #ccc;
-        border-top: #aaa 2px solid;
+        border-top: #555555 2px solid;
     }
 }
 
@@ -79,5 +79,17 @@
 @media (prefers-color-scheme: dark) {
     .socials a img[src="/assets/icons/github.png"] {
         content: url("/assets/icons/github-white.png");
+    }
+}
+
+@media (max-width: 800px) {
+    .socials {
+        flex-direction: column;
+    }
+    .socials li {
+        margin: 5pt;
+    }
+    .footer {
+        justify-content: space-around;
     }
 }
