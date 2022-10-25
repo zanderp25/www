@@ -10,7 +10,7 @@ export function Footer() {
         {name: 'GitHub', href: 'https://github.com/zanderp25', icon: '/assets/icons/github.png'}, 
         {name: 'Discord', href: 'https://discord.gg/672yY5v', icon: '/assets/icons/discord.png'},
         {name: 'Twitter', href: 'https://twitter.com/zanderp25', icon: '/assets/icons/twitter.png'}, 
-        {name: 'YouTube', href: 'https://youtube.com/channel/UCJn-rMYM0CRURAa8TUhwuPQ', icon: '/assets/icons/YouTube.png'},
+        {name: 'YouTube', href: 'https://youtube.com/channel/UCJn-rMYM0CRURAa8TUhwuPQ', icon: '/assets/icons/youtube.png'},
         {name: 'Twitch', href: 'https://twitch.tv/zanderp25', icon: '/assets/icons/twitch.png'},
     ]
     return (
