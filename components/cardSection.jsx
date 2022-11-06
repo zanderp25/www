@@ -1,6 +1,6 @@
-import styles from './section.module.css';
+import styles from '../styles/Components/cardSection.module.css';
 
-export function CardSection({ overlap, children }) {
+export default function CardSection({ overlap, children }) {
   let className = overlap? styles.cardSectionOverlap : styles.cardSection;
 
   return (

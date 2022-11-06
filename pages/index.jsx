@@ -1,23 +1,44 @@
-import { Theater } from '../components/theater';
 import DefaultLayout from '../components/defaultLayout';
-import { CardSection } from '../components/section';
 import { Button } from '../components/button';
+import TitleSection from '../components/titleSection';
+import { useState } from 'react';
+import splashTextList from './splashTexts.json';
 
-function Title({ title }) {
-  return <h1>{title ? title : 'Lorem Ipsum'}</h1>;
+function randomChoice(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+let infoButton = {
+  display: "inline-block",
+  opacity: "60%",
+  background: "#fff",
+  borderRadius: "50%",
+  fontSize: "8pt",
+  margin: "5px",
+  height: "15px",
+  width: "15px",
+  textAlign: "center",
 }
 
 export default function HomePage() {
+  let splashTexts = splashTextList.map((text) => {
+    return text.text;
+  });
+  splashTexts.push(`There is a 1 in ${splashTexts.length+1} chance of seeing this message.`);
+  let [splashText, setSplashText] = useState(randomChoice(splashTexts));
+  let newSplashText = () => {
+    setSplashText(randomChoice(splashTexts));
+  };
+  
   return (
     <DefaultLayout>
-      <Theater media="/assets/New Logo.mp4" height={512} behind_header noLoop />
-      <CardSection overlap>
+      <TitleSection>
         <h1>Zanderp25</h1>
-        <p>
-          Welcome to my all-new website! This website is made almost entirely by me in Next.js.
+        <p onClick={newSplashText}>{splashText}
+          <a href='/website/splashTexts' className="infoIcon">?</a>
         </p>
         <Button href="/projects">Projects</Button>
-      </CardSection>
+      </TitleSection>
     </DefaultLayout>
   );
 }

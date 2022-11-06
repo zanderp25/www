@@ -1,0 +1,285 @@
+.container{
+    position: relative;
+    top: -64pt;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.container h1{
+    font-size: 60px;
+    font-weight: bold;
+    text-align: left;
+    margin: 0;
+    cursor: default;
+}
+
+.container p{
+    font-size: 25px;
+    text-align: left;
+    font-weight: 800;
+    opacity: 80%;
+    margin-top: 0;
+    margin-bottom: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: all;
+}
+
+@media (max-width: 800px) {
+    .container h1{
+        font-size: 10vw;
+    }
+    .container p{
+        font-size: 4vw;
+    }
+}
+
+.background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(255, 172, 124, 0.5) 0%,rgba(255, 255, 255, 0.5) 100%);
+}
+
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    user-select: none;
+}
+
+.bigLogo{
+    position: absolute;
+    right: 2vw;
+    bottom: -10pt;
+    height: 50vh;
+    width: auto;
+    object-fit: cover;
+    opacity: 20%;
+    content: url("/assets/icons/ZP25%20Black.svg");
+    animation: floating 2s ease-in-out infinite;
+}
+
+.smallLogo{
+    position: absolute;
+    left: 15vw;
+    bottom: 15vh;
+    width: 40pt;
+    opacity: 50%;
+    content: url("/assets/icons/ZP25%20Black.svg");
+    animation: floating 2s ease-in-out 250ms infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+    .bigLogo, .smallLogo{
+        content: url("/assets/icons/ZP25%20White.svg");
+    }
+}
+
+.questionBlock{
+    position: absolute;
+    bottom: 25pt;
+    left: 45pt;
+    height: 50px;
+    width: 50px;
+    z-index: 1;
+    animation: floating 2s ease-in-out infinite;
+}
+
+.questionBlock:hover{
+    cursor: pointer;
+}
+
+.coin, .floatingCoin {
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    image-rendering: optimizeSpeed;
+    image-rendering: pixelated;
+}
+
+.coin{
+    animation: coin 1s ease-out 1;
+}
+
+.coinContainer{
+    position: absolute;
+    bottom: 35pt;
+    left: 57pt;
+    height: 30px;
+    width: 20px;
+    z-index: 1;
+    animation: floating 2s ease-in-out infinite;
+}
+
+.floatingCoin{
+    left: 17vw;
+    top: 15vh;
+    animation: floating 2s ease-in-out 500ms infinite;
+}
+
+.questIcon{
+    position: absolute;
+    top: 17vh;
+    left: 23vw;
+    height: 40px;
+    width: 40px;
+    animation: floating 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+}
+
+.newIcon{
+    position: absolute;
+    bottom: 20vh;
+    right: 10vw;
+    width: 50px;
+    animation: floating 2s ease-in-out 250ms infinite;
+}
+
+.paimonIcon{
+    position: absolute;
+    top: 12vh;
+    left: 5vw;
+    width: 50px;
+    animation: floating 2s ease-in-out 750ms infinite;
+}
+
+.mario, .mushroom {
+    position: absolute;
+    width: 50px;
+    image-rendering: optimizeSpeed;
+    image-rendering: pixelated;
+}
+
+.mario {
+    top: 20vh;
+    right: 15vw;
+    animation: floating 2s ease-in-out 750ms infinite;
+}
+
+.mushroom {
+    bottom: 12vh;
+    right: 12vw;
+    animation: floating 2s ease-in-out 750ms infinite;
+}
+
+.cpp {
+    position: absolute;
+    bottom: 25vh;
+    left: 5vw;
+    width: 75px;
+    animation: floating 2s ease-in-out 0ms infinite;
+}
+
+.python {
+    position: absolute;
+    bottom: 7vh;
+    right: 20vw;
+    width: 75px;
+    animation: floating 2s ease-in-out 250ms infinite;
+}
+
+.js {
+    position: absolute;
+    top: 15vh;
+    right: 5vw;
+    width: 75px;
+    animation: floating 2s ease-in-out 500ms infinite;
+}
+
+.triforce {
+    position: absolute;
+    top: 23vh;
+    left: 10vw;
+    width: 75px;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3)) saturate(80%);
+    animation: floating 2s ease-in-out 250ms infinite;
+}
+
+.rupee {
+    position: absolute;
+    top: 15vh;
+    right: 22vw;
+    width: 20px;
+    animation: floating 2s ease-in-out infinite;
+}
+
+@media (max-width: 800px) {
+    .floatingCoin{
+        left: 40vw;
+        top: 25vh;
+    }
+    .questIcon{
+        top: 15vh;
+        left: 30vw;
+    }
+    .triforce{
+        top: 20vh;
+        left: 15vw;
+    }
+    .rupee{
+        top: 15vh;
+        right: 25vw;
+    }
+    .mario{
+        top: 22vh;
+        right: 30vw;
+    }
+    .cpp{
+        bottom: 15vh;
+        left: 15vw;
+    }
+    .smallLogo{
+        display: none;
+    }
+    .python{
+        bottom: 5vh;
+        right: 35vw;
+    }
+}
+
+@keyframes floating{
+    0%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(-1vh);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
+@keyframes coin{
+    0%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(-60px);
+    }
+    67%{
+        opacity: 100%;
+    }
+    100%{
+        transform: translateY(-75px);
+        opacity: 0%;
+    }
+}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./button.module.css";
+import styles from "../styles/Components/button.module.css";
 
 export function Button({href, disabled, children}){
   return (

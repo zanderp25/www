@@ -1,0 +1,146 @@
+[
+    {
+        "text":"Hello! I have a new website!",
+        "explanation":"I completely remade my website (and logo) from the ground up. I made it with Next.js, if you know what that means."
+    },
+    {
+        "text":"Welcome to my website!",
+        "explanation":"You are looking at my website so im just saying hi."
+    },
+    {
+        "text":"こんにちは！",
+        "explanation":"Hello, but Japanese. (I'm learning Japanese)"
+    },
+    {
+        "text":"Bienvenido a mi sitio web!",
+        "explanation":"\"Welcome to my website!\" but in Spanish."
+    },
+    {
+        "text":"Never gonna give you up!",
+        "explanation":"The 1987 hit song by Rick Astley with this title is a meme. It is used to trick people into clicking on a link that leads to a Rick Astley music video. I am not going to do that to you. I promise. (Or will I...?)"
+    },
+    {
+        "text":"Some creative text here.",
+        "explanation":"Placeholder text because i think it is funny."
+    },
+    {
+        "text":"// Delete this comment before publishing!",
+        "explanation":"This is a comment, or non-executable code, used as a note for the developer. This is a joke referring to the fact that I am a developer."
+    },
+    {
+        "text":"I'm a software developer, if you didn't know.",
+        "explanation":"Self explanatory."
+    },
+    {
+        "text":"uhh...",
+        "explanation":"A quote from my friend Clari when asked for an idea for a splash text."
+    },
+    {
+        "text":"It's here!",
+        "explanation":"My website I have been working on for a while is finally here!"
+    },
+    {
+        "text":"12345 is a bad password!",
+        "explanation":"I don't recommend using this password. It is really easy to guess. (Copied from Minecraft's splash text)"
+    },
+    {
+        "text":"Lives in a pineapple under the sea!",
+        "explanation":"Spongebob Squarepants! ~ This is a quote from the opening song of the Spongebob Squarepants TV show. (Copied from Minecraft's splash text)"
+    },
+    {
+        "text":"Woah.",
+        "explanation":"Impressive, isn't it? (Copied from Minecraft's splash text)"
+    },
+    {
+        "text":"umop-apisdn!",
+        "explanation":"\"Upside-down!\" but upside-down. (Copied from Minecraft's splash text)"
+    },
+    {
+        "text":"NERRRDDDD",
+        "explanation":"I don't know why but my friend Clari wanted me to add this."
+    },
+    {
+        "text":"Supercalifragilisticexpialidocious!",
+        "explanation":"[ˌso͞opərˌkaləˌfrajəˌlistikˌekspēˌaləˈdōSHəs] Adj. Informal. extraordinarily good; wonderful (Copied from Minecraft's splash text)"
+    },
+    {
+        "text":"woooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo!",
+        "explanation":"I find it funny that the entirety of this text doesn't fit on most screens."
+    },
+    {
+        "text":"Hello, world!",
+        "explanation":"This is a traditional first program for learning a new programming language. It is a simple program that outputs the text \"Hello, world!\" to the screen."
+    },
+    {
+        "text":"¡Hola!",
+        "explanation":"Hello, but Spanish (I know some Spanish)"
+    },
+    {
+        "text":"Lorem ipsum dolor sit amet.",
+        "explanation":"This is filler text in Latin that is commonly used to demonstrate the graphic elements of a document or visual presentation."
+    },
+    {
+        "text":"Paimon's not emergency food!",
+        "explanation":"This is a reference from Genshin Impact. Paimon is friends with the main character and there is an ongoing joke about the main character introducing Paimon as emergency food, and this is Paimon's response."
+    },
+    {
+        "text":"Beep boop.",
+        "explanation":"I. AM. A. ROBOT. (Stereotypical robot noises)"
+    },
+    {
+        "text":"Ehe te nandayō?!?",
+        "explanation":"This is a meme from the Japanese voice over of the game Genshin Impact where Paimon says \"「えへ」て何だよう！？\" (pronounced \"Ehe te nandayō?!?\") which translates to \"What do you mean 'hehe'?\" when another character says \"hehe\"."
+    },
+    {
+        "text":"https://youtu.be/dQw4w9WgXcQ",
+        "explanation":"This is a link to the 1987 hit song by Rick Astley titled \"Never Gonna Give You Up\". It is used to trick people into clicking on a link that leads to a Rick Astley music video."
+    },
+    {
+        "text":"PineappleFan Appreciation Society",
+        "explanation":"I was trying to say \"PineappleFan Approved\" but GitHub Copilot suggested this. My friend PineappleFan is a really nice person though."
+    },
+    {
+        "text":"PineappleFan Approved",
+        "explanation":"My friend PineappleFan approved of my website."
+    },
+    {
+        "text":"uwu",
+        "explanation":"This is an emoticon that is commonly used to express cuteness."
+    },
+    {
+        "text":"¯\\_(ツ)_/¯",
+        "explanation":"A shrug emoticon."
+    },
+    {
+        "text":"(╯°□°）╯︵ ┻━┻",
+        "explanation":"A table flip emoticon that is commonly used to express anger."
+    },
+    {
+        "text":"(＾▽＾)ノ",
+        "explanation":"A happy waving emoticon."
+    },
+    {
+        "text":"<p>Expert in web development</p>",
+        "explanation":"PineappleFan suggested this as a joke... I mean, i think i'm pretty good at web development. I made this website after all."
+    },
+    {
+        "text":"0 days since our last nonsense",
+        "explanation":"This is a meme from the show \"The Office\". It refers to an image of Jim from The Office holding a sign next to Dwight's head that reads either 5 or 6 \"days since our last nonsense.\" (Suggested by PineappleFan)"
+    },
+    {
+        "text":"Doscord goot™️",
+        "explanation":"This is a typo I made a few years ago while trying to type \"Discord good™️\" when something on Discord didn't work as intended. It quickly became a meme with my friends."
+    },
+    {
+        "text":"Also try Minecraft!",
+        "explanation":"This is a reference to Minecraft's splash text \"Also try Terraria!\" and Terraria's splash text \"Also try Minecraft!\""
+    },
+    {
+        "text":"Also try Genshin Impact!",
+        "explanation":"This is a reference to Minecraft's splash text \"Also try Terraria!\", but this time referring to Genshin Impact instead of Terraria. Genshin Impact is a good game."
+    },
+    {
+        "text":"Adventure Rank 54",
+        "explanation":"This is my current Adventure Rank in Genshin Impact. I have been playing the game for quite a while now. (Since April 2021) The highest Adventure Rank is 60 at the moment."
+    }
+]

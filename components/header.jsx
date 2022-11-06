@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { useState } from 'react';
 
-import styles from './header.module.css';
+import styles from '../styles/Components/header.module.css';
 
 export function Header({ title, description, icon, links }) {
   title = title ? `${title} - Zanderp25` : 'Zanderp25';
@@ -25,12 +25,10 @@ export function Header({ title, description, icon, links }) {
         <meta property="og:image" content={"https://zanderp25.com" + icon} />
       </Head>
       <div className={styles.navbar_brand}>
-        <Link href="/">
-          <>
-            <img alt='Logo' width={40} height={40} />
+          <a href='/'>
+            <div alt='Logo'/>
             <span>Zanderp25</span>
-          </>
-        </Link>
+          </a>
       </div>
       <nav>
         <ul className={!navbar?styles.hideNavbar:styles.showNavbar}>

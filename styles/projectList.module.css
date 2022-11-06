@@ -1,0 +1,50 @@
+.projectList {
+    display: flex;
+    flex-direction: column;
+    margin: 3em;
+}
+
+.card {
+    display: flex;
+}
+
+.card img{
+    width: 8em;
+    height: 8em;
+    padding: 15px;
+}
+
+.card h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+    margin-left: 5px;
+    padding: 0;
+}
+
+.card p {
+    font-size: 1em;
+    margin: 0;
+    padding: 5px;
+}
+
+.card div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.card a {
+    font-size: 1em;
+    margin: 0;
+    padding: 5px;
+    color: #777;
+    text-decoration: none;
+}
+
+.card a::after {
+    content: "ᐅ";
+    margin-left: 5px;
+}

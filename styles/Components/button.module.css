@@ -1,5 +1,5 @@
 .button{
-    background-color: #FEA96B;
+    background-color: #e4955d;
     color: white;
     border: none;
     border-radius: 4px;
@@ -12,11 +12,12 @@
 }
 
 .button:hover{
-    background-color: #e4955d;
+    background-color: #c98351;
+    cursor: pointer;
 }
 
 .button:active{
-    background-color: #e4955d;
+    background-color: #c98351;
     box-shadow: none;
     transform: translateY(1px);
 }

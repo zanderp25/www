@@ -77,8 +77,8 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    .socials a img[src="/assets/icons/github.png"] {
-        content: url("/assets/icons/github-white.png");
+    .socials a img[src="/assets/icons/socials/github.png"] {
+        content: url("/assets/icons/socials/github-white.png");
     }
 }
 
@@ -91,5 +91,12 @@
     }
     .footer {
         justify-content: space-around;
+    }
+}
+
+@media (max-width: 350px) {
+    .footer {
+        flex-direction: column;
+        gap: 15pt;
     }
 }

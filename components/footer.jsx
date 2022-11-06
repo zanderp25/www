@@ -1,4 +1,4 @@
-import styles from './footer.module.css';
+import styles from '../styles/Components/footer.module.css';
 
 export function Footer() {
     let infoLines = [
@@ -7,11 +7,11 @@ export function Footer() {
         "© 2022 Zanderp25",
     ]
     let socials = [
-        {name: 'GitHub', href: 'https://github.com/zanderp25', icon: '/assets/icons/github.png'}, 
-        {name: 'Discord', href: 'https://discord.gg/672yY5v', icon: '/assets/icons/discord.png'},
-        {name: 'Twitter', href: 'https://twitter.com/zanderp25', icon: '/assets/icons/twitter.png'}, 
-        {name: 'YouTube', href: 'https://youtube.com/channel/UCJn-rMYM0CRURAa8TUhwuPQ', icon: '/assets/icons/youtube.png'},
-        {name: 'Twitch', href: 'https://twitch.tv/zanderp25', icon: '/assets/icons/twitch.png'},
+        {name: 'GitHub', href: 'https://github.com/zanderp25', icon: '/assets/icons/socials/github.png'}, 
+        {name: 'Discord', href: 'https://discord.gg/672yY5v', icon: '/assets/icons/socials/discord.png'},
+        {name: 'Twitter', href: 'https://twitter.com/zanderp25', icon: '/assets/icons/socials/twitter.png'}, 
+        {name: 'YouTube', href: 'https://youtube.com/@zanderp25', icon: '/assets/icons/socials/youtube.png'},
+        {name: 'Twitch', href: 'https://twitch.tv/zanderp25', icon: '/assets/icons/socials/twitch.png'},
     ]
     return (
         <footer className={styles.footer}>

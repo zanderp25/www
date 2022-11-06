@@ -1,7 +1,7 @@
-import styles from  "./theater.module.css";
+import styles from  "../styles/Components/theater.module.css";
 import Image from "next/image";
 
-export function Theater({ media, height, behind_header, noLoop }) {
+export default function Theater({ media, height, behind_header, noLoop }) {
     height = height || "256px";
     behind_header = !!behind_header;
 

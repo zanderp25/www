@@ -1,14 +1,14 @@
 - Everything
-- Homepage: eliminate the theater and make a component with floating objects 
+- Homepage: add more floating objects and optimize for different screen sizes
 - Homepage: gradient/color that changes as you scroll
-- Homepage: Mario question block as one of the objects 
+- Homepage: question block combo
+- Homepage: recolor coin to match block
+- Homepage: slow down question block gif
 - remake countdowns / https://vincentgarreau.com/particles.js/#snow
 - https://github.com/herrethan/react-confetti-explosion#readme
-- updated project page
 - sign in page (maybe stytch integration)
 - website history (as far back as possible)
 - updated download page
 - docs page
 - today page
-- something with hcaptcha maybe?
 - remove Herobrine
