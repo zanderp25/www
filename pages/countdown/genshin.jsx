@@ -4,7 +4,8 @@ import { useState } from 'react';
 import Countdown from '../../components/countdown';
 
 let dates = [
-    {name: "3.3 Update", date: "2022-12-07T11:00:00+08:00", image: "/assets/genshin/3.3.webp"},
+    {name: "3.2 Second Banner", date: "2022-11-18T00:00:00+08:00", image: "/assets/genshin/layla.png", light: true},
+    {name: "3.3 Update", date: "2022-12-07T11:00:00+08:00", image: "/assets/genshin/3.3.webp", light: false},
 ];
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
             <img src={date.image} 
                 style={{width: "100%",height: "100%",objectFit: "cover",position: "absolute",top: "0",left: "0",zIndex: "-1"}}
             />
-            <Countdown date={date.date} />
+            <Countdown date={date.date} light={date.light} />
         </>
     }
     

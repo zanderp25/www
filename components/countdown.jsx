@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import styles from "../styles/Components/countdown.module.css";
 
-export default function Countdown({ date }){
+export default function Countdown({ date, light }){
+    light = !!light;
+
     let [days, setDays] = useState(0);
     let [hours, setHours] = useState(0);
     let [minutes, setMinutes] = useState(0);
@@ -40,7 +42,9 @@ export default function Countdown({ date }){
 
     return (
         <div className={styles.countdown}>
-            <div id="countdownContainer" className={styles.countdownContainer}>
+            <div id="countdownContainer" className={styles.countdownContainer}
+                style={{background: light ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.2)"}}
+            >
                 <div id="daysContainer" className={styles.countdownItem} 
                     style={{display: days==0?"none":"flex"}}
                 >

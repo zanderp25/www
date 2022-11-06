@@ -35,8 +35,8 @@ function App() {
                 <meta name="description" content="Countdown to the next Christmas." />
                 <link rel="icon" href="/assets/icons/ZP25 Circle.png" />
             </Head>
-            <Particles options={{preset:"snow",background:{color:"#500"}}} init={particlesInit}/>
-            <Countdown date={christmas} />
+            <Particles options={{preset:"snow",background:{color:"#500"}}} init={particlesInit} />
+            <Countdown date={christmas} light />
         </>
     );
 }
