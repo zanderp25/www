@@ -16,6 +16,8 @@
 
 	position: sticky;
 	top: 10pt;
+  right: 0;
+  left: 0;
 	z-index: 100;
 	margin: 10pt;
 	margin-bottom: 15pt;

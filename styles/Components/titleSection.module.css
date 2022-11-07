@@ -60,7 +60,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     z-index: 1;
     user-select: none;
@@ -148,7 +148,7 @@
 
 .newIcon{
     position: absolute;
-    bottom: 20vh;
+    bottom: 30vh;
     right: 10vw;
     width: 50px;
     animation: floating 2s ease-in-out 250ms infinite;
@@ -186,7 +186,7 @@
     bottom: 25vh;
     left: 5vw;
     width: 75px;
-    animation: floating 2s ease-in-out 0ms infinite;
+    animation: floating 2s ease-in-out 500ms infinite;
 }
 
 .python {
@@ -219,39 +219,72 @@
     top: 15vh;
     right: 22vw;
     width: 20px;
+    image-rendering: optimizeSpeed;
+    image-rendering: pixelated;
     animation: floating 2s ease-in-out infinite;
+}
+
+.questionBlock, .coinContainer, .questIcon, .newIcon, .paimonIcon, .floatingCoin, .mario, .mushroom, .cpp, .python, .js, .triforce, .rupee {
+    transition: all 250ms ease-in-out;
 }
 
 @media (max-width: 800px) {
     .floatingCoin{
-        left: 40vw;
-        top: 25vh;
+        left: 35vw;
+        top: 80vh;
     }
     .questIcon{
         top: 15vh;
-        left: 30vw;
+        left: 45vw;
     }
     .triforce{
         top: 20vh;
-        left: 15vw;
+        left: 25vw;
     }
     .rupee{
-        top: 15vh;
-        right: 25vw;
+        top: 85vh;
+        right: 15vw;
     }
     .mario{
         top: 22vh;
         right: 30vw;
     }
     .cpp{
-        bottom: 15vh;
-        left: 15vw;
+        bottom: 20vh;
+        left: 5vw;
     }
     .smallLogo{
         display: none;
     }
     .python{
         bottom: 5vh;
+        right: 35vw;
+    }
+    .mushroom{
+        bottom: 25vh;
+        right: 30vw;
+    }
+}
+
+@media (max-width: 350px) {
+    .paimonIcon, .questIcon, .triforce, .mario, .mushroom, .cpp, .js, .python, .floatingCoin, .rupee{
+        scale: 0.8;
+    }
+    .mushroom{
+        bottom: 15vh;
+        right: 25vw;
+    }
+    .python{
+        bottom: 25vh;
+        right: 35vw;
+    }
+    .triforce{
+        left: 15vw;
+    }
+    .questIcon{
+        left: 40vw;
+    }
+    .mario{
         right: 35vw;
     }
 }
