@@ -10,9 +10,16 @@ export default function TitleSection({ children }){
         let coin = document.createElement("img");
         coin.src = "/assets/icons/mario/coin.png";
         coin.className = styles.coin;
+        let sound = document.createElement("audio");
+        sound.src = "/assets/sounds/coin.aac";
+        sound.controls = false;
+        sound.autoplay = true;
+        sound.volume = 0.25;
         container.appendChild(coin);
+        container.appendChild(sound);
         setTimeout(() => {
             container.removeChild(coin);
+            container.removeChild(sound);
         }, 1000);
     }
 

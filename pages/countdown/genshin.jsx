@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Countdown from '../../components/countdown';
 
 let dates = [
-    {name: "3.2 Second Banner", date: "2022-11-18T00:00:00+08:00", image: "/assets/genshin/layla.png", light: true},
+    {name: "3.2 Second Banner", date: "2022-11-20T06:59:00+08:00", image: "/assets/genshin/layla.png", light: false},
     {name: "3.3 Update", date: "2022-12-07T11:00:00+08:00", image: "/assets/genshin/3.3.webp", light: false},
 ];
 
@@ -32,7 +32,7 @@ function App() {
             </Head>
             {body}
             <select name="date" value={dates.indexOf(date)} onChange={(e) => {setDate(dates[e.target.value]);return true;}}
-                style={{position: "absolute",bottom: "5px",left: "5px",zIndex: "1",
+                style={{position: "absolute",bottom: "5px",left: "5px",zIndex: "10",
                 background: "rgba(0,0,0,0.5)",color: "#fff",border: "none",padding: "5px",fontSize: "12pt"}}
             >
                 {dates.map((date, i) => {
