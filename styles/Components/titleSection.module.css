@@ -130,6 +130,22 @@
     animation: floating 2s ease-in-out infinite;
 }
 
+@font-face {
+    font-family: pixelFont;
+    src: url("/assets/fonts/pixelFont.ttf");
+}
+
+.scoreContainer{
+    position: absolute;
+    bottom: 35pt;
+    left: 85pt;
+    height: 90px;
+    font-size: 16pt;
+    font-family: pixelFont, courier, monospace;
+    z-index: 1;
+    animation: floating 2s ease-in-out infinite;
+}
+
 .floatingCoin{
     left: 17vw;
     top: 15vh;

@@ -3,7 +3,7 @@ import styles from '../styles/Components/footer.module.css';
 export function Footer() {
     let infoLines = [
         "Zanderp25",
-        <a href='mailto:zander@zanderp25.com'>zander@zanderp25.com</a>,
+        <a key="email" href='mailto:zander@zanderp25.com'>zander@zanderp25.com</a>,
         "© 2022 Zanderp25",
     ]
     let socials = [

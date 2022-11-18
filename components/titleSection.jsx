@@ -5,21 +5,39 @@ function randomChoice(arr) {
 }
 
 export default function TitleSection({ children }){
+    let score = 0;
+
     let summonCoin = () => {
         let container = document.getElementById("coinContainer");
+
         let coin = document.createElement("img");
         coin.src = "/assets/icons/mario/coin.png";
         coin.className = styles.coin;
+
         let sound = document.createElement("audio");
         sound.src = "/assets/sounds/coin.aac";
         sound.controls = false;
         sound.autoplay = true;
         sound.volume = 0.25;
+
         container.appendChild(coin);
         container.appendChild(sound);
+
+        score += 100;
+        if(score >= 2000) {
+            let count = container.getElementsByClassName(styles.coin).length;
+            document.getElementById("scoreContainer").innerHTML = `${score}<br/>${count} cps`;
+        } else {
+            document.getElementById("scoreContainer").innerHTML = score;
+        }
+
         setTimeout(() => {
             container.removeChild(coin);
             container.removeChild(sound);
+            if(container.children.length == 0){
+                score = 0;
+                document.getElementById("scoreContainer").innerHTML = "";
+            }
         }, 1000);
     }
 
@@ -38,6 +56,7 @@ export default function TitleSection({ children }){
                 <img className={styles.bigLogo} />
                 <img className={styles.smallLogo} />
                 <div id="coinContainer" className={styles.coinContainer}></div>
+                <span id="scoreContainer" className={styles.scoreContainer}>100</span>
                 <img src="/assets/icons/mario/questionBlock.gif" className={styles.questionBlock} onClick={summonCoin} />
                 <img src="/assets/icons/mario/coin.gif" className={styles.floatingCoin} />
                 <img src={questIcon} className={styles.questIcon} />

@@ -8,7 +8,7 @@ export default function websiteInfo() {
             <p>This website is built with Next.js and self-hosted.</p>
             <p>
                 The homepage has <a href="https://minecraft-archive.fandom.com/wiki/Splash_Texts">splash texts</a> similar
-                to Minecraft's which are all <a href="/website/splashTexts">listed here</a>.
+                to Minecraft&apos;s which are all <a href="/website/splashTexts">listed here</a>.
             </p>
             <p>
                 I also have a page dedicated to the <a href="/website/history">history of this website</a>.

@@ -22,7 +22,7 @@ export default function splashTexts() {
         <tbody>
           {splashTextList.map((text) => {
             return (
-              <tr>
+              <tr key={text.text}>
                 <td>{text.text}</td>
                 <td>{text.explanation}</td>
               </tr>

@@ -15,7 +15,7 @@ export default function countdownIndex() {
             <h2>These countdowns are best viewed in full screen.</h2>
             <ul className="linkList">
                 {countdowns.map((countdown) => {
-                    return <li><a href={"/countdown/" + countdown.path}>{countdown.name}</a></li>
+                    return <li key={countdown.name}><a href={"/countdown/" + countdown.path}>{countdown.name}</a></li>
                 })}
             </ul>
         </DefaultLayout>

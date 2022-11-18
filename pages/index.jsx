@@ -3,21 +3,10 @@ import { Button } from '../components/button';
 import TitleSection from '../components/titleSection';
 import { useState } from 'react';
 import splashTextList from './splashTexts.json';
+import AlertBanner from '../components/alertBanner';
 
 function randomChoice(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
-}
-
-let infoButton = {
-  display: "inline-block",
-  opacity: "60%",
-  background: "#fff",
-  borderRadius: "50%",
-  fontSize: "8pt",
-  margin: "5px",
-  height: "15px",
-  width: "15px",
-  textAlign: "center",
 }
 
 export default function HomePage() {
@@ -32,6 +21,7 @@ export default function HomePage() {
   
   return (
     <DefaultLayout>
+      <AlertBanner title="Attention!" message="This is a test of the emergency alert system. No action is required." type="danger" />
       <TitleSection>
         <h1>Zanderp25</h1>
         <p onClick={newSplashText}>{splashText}

@@ -36,7 +36,7 @@ function App() {
                 background: "rgba(0,0,0,0.5)",color: "#fff",border: "none",padding: "5px",fontSize: "12pt"}}
             >
                 {dates.map((date, i) => {
-                    return <option value={i}>{date.name}</option>
+                    return <option key={i} value={i}>{date.name}</option>
                 })}
             </select>
         </>

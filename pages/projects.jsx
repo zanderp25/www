@@ -45,7 +45,7 @@ let projects = [
     description: "An app that allows you to run iOS apps and games on an Apple Silicon Mac.",
     link: "https://playcover.io",
     buttonText: "Go to website",
-    image: "https://github.com/PlayCover/PlayCover/raw/stable/images/logo.png",
+    image: "https://raw.githubusercontent.com/PlayCover/PlayCover/stable/images/logo.png",
   },
   {
     name: "Discord Bots",
