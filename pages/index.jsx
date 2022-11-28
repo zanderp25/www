@@ -3,7 +3,7 @@ import { Button } from '../components/button';
 import TitleSection from '../components/titleSection';
 import { useState } from 'react';
 import splashTextList from './splashTexts.json';
-import AlertBanner from '../components/alertBanner';
+// import AlertBanner from '../components/alertBanner';
 
 function randomChoice(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -21,7 +21,7 @@ export default function HomePage() {
   
   return (
     <DefaultLayout>
-      <AlertBanner title="Attention!" message="This is a test of the emergency alert system. No action is required." type="danger" />
+      {/* <AlertBanner title="Attention!" message="This is a test of the emergency alert system. No action is required." type="danger" /> */}
       <TitleSection>
         <h1>Zanderp25</h1>
         <p onClick={newSplashText}>{splashText}
