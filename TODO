@@ -2,7 +2,7 @@
 - remake /battery, /calc, /color, /propresenter, backgrounds maybe
 - /propresenter
 - today page
-- docs page
+- docs (use some sort of markdown parser)
 - sign in page (maybe stytch integration)
 - Homepage: gradient/color that changes as you scroll
 - change header image url before deployment (components/header.jsx:25)
