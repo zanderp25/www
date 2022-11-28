@@ -22,7 +22,8 @@ export function Header({ title, description, icon, links }) {
         <link rel="icon" href={icon} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={"https://zanderp25.com" + icon} />
+        <meta property="og:image" content={"https://dev.zanderp25.com" + icon} />
+        {/* TODO: change this to zanderp25.com */}
       </Head>
       <div className={styles.navbar_brand}>
           <a href='/'>
