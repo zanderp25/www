@@ -1,7 +1,7 @@
 import styles from "../styles/Components/titleSection.module.css";
 
 function randomChoice(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
+    return arr[Math.floor(Math.random() * arr.length)];
 }
 
 export default function TitleSection({ children }){
@@ -56,7 +56,7 @@ export default function TitleSection({ children }){
                 <img className={styles.bigLogo} />
                 <img className={styles.smallLogo} />
                 <div id="coinContainer" className={styles.coinContainer}></div>
-                <span id="scoreContainer" className={styles.scoreContainer}>100</span>
+                <span id="scoreContainer" className={styles.scoreContainer}></span>
                 <img src="/assets/icons/mario/questionBlock.gif" className={styles.questionBlock} onClick={summonCoin} />
                 <img src="/assets/icons/mario/coin.gif" className={styles.floatingCoin} />
                 <img src={questIcon} className={styles.questIcon} />
