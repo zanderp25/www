@@ -33,7 +33,8 @@ function App() {
             <Head>
                 <title>Christmas Countdown - Zanderp25</title>
                 <meta name="description" content="Countdown to the next Christmas." />
-                <link rel="icon" href="/assets/icons/ZP25 Circle.png" />
+                <link rel="icon" href="/assets/icons/christmas.png" />
+                <meta name="og:image" content="https://zanderp25.com/assets/icons/christmas.png" />
             </Head>
             <Particles options={{preset:"snow",background:{color:"#500"}}} init={particlesInit} />
             <Countdown date={christmas} light />

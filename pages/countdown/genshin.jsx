@@ -26,9 +26,10 @@ function App() {
     return (
         <>
             <Head>
-                    <title>Genshin Impact Countdown</title>
-                    <meta name="description" content="Countdown to the next Genshin Impact update." />
-                    <link rel="icon" href="/assets/icons/ZP25 Circle.png" />
+                <title>Genshin Impact Countdown</title>
+                <meta name="description" content="Countdown to the next Genshin Impact update or banner." />
+                <link rel="icon" href="/assets/icons/genshin.png" />
+                <meta name="og:image" content="https://zanderp25.com/assets/icons/genshin.png" />
             </Head>
             {body}
             <select name="date" value={dates.indexOf(date)} onChange={(e) => {setDate(dates[e.target.value]);return true;}}

@@ -22,7 +22,8 @@ function App() {
             <Head>
                 <title>New Years Countdown - Zanderp25</title>
                 <meta name="description" content="Countdown to the next year." />
-                <link rel="icon" href="/assets/icons/ZP25 Circle.png" />
+                <link rel="icon" href="/assets/icons/newyears.png" />
+                <meta name="og:image" content="https://zanderp25.com/assets/icons/newyears.png" />
             </Head>
             <Particles options={{preset: "fireworks"}} init={particlesInit}/>
             <Countdown date={newyears} />
