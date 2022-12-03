@@ -8,10 +8,11 @@
     display: flex;
 }
 
-.card img{
+.card img, .card .img {
+    position: relative;
     width: 8em;
     height: 8em;
-    padding: 15px;
+    margin: 15px;
 }
 
 .card h3 {

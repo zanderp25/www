@@ -1,16 +1,19 @@
 import DefaultLayout from "../components/defaultLayout";
 import styles from '../styles/projectList.module.css';
+import Image from "next/image";
 
 function ProjectCard(props) {
   const { project } = props;
   return (
     <div className={styles.card}>
-        <img src={project.image} alt={project.name}/>
-        <div>
-          <h3>{project.name}</h3>
-          <p>{project.description}</p>
-          <a href={project.link}>{project.buttonText}</a>
-        </div>
+      <div className={styles.img}>
+        <Image src={project.image} layout="fill" objectFit="contain" />
+      </div>
+      <div>
+        <h3>{project.name}</h3>
+        <p>{project.description}</p>
+        <a href={project.link}>{project.buttonText}</a>
+      </div>
     </div>
   );
 }
@@ -68,7 +71,7 @@ export default function projectsPage(){
     <DefaultLayout title="Projects">
       <h1>Projects</h1>
       <h2>
-        Here are some of my biggest projects that i have worked on over the past few years.
+        Here are some of my biggest projects that I have worked on over the past few years.
       </h2>
       <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
         <ProjectList projects={projects} />

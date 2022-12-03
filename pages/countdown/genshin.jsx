@@ -1,11 +1,12 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import { useState } from 'react';
 
 import Countdown from '../../components/countdown';
 
 let dates = [
-    {name: "3.2 Second Banner", date: "2022-11-20T06:59:00+08:00", image: "/assets/genshin/layla.png", light: false},
-    {name: "3.3 Update", date: "2022-12-07T11:00:00+08:00", image: "/assets/genshin/3.3.webp", light: false},
+    {name: "3.3 Update", date: "2022-12-07T11:00:00+08:00", image: "/assets/genshin/wanderer.jpg", light: false},
+    {name: "3.3 Second Banner", date: "2022-12-28T11:00:00+08:00", image: "/assets/genshin/raiden.jpg", light: false},
 ];
 
 function App() {
@@ -16,9 +17,9 @@ function App() {
         body = <h1>This update has already passed.</h1>
     } else {
         body = <>
-            <img src={date.image} 
-                style={{width: "100%",height: "100%",objectFit: "cover",position: "absolute",top: "0",left: "0",zIndex: "-1"}}
-            />
+            <div style={{width: "100%",height: "100%",objectFit: "cover",position: "absolute",top: "0",left: "0",zIndex: "-1"}}>
+                <Image src={date.image} layout="fill" objectFit="cover" />
+            </div>
             <Countdown date={date.date} light={date.light} />
         </>
     }

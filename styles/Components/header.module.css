@@ -85,6 +85,7 @@
   border-radius: 9pt;
 	color: var(--text-color);
 	text-decoration: none;
+  font-weight: 500;
 }
 
 .navbar li a:hover {

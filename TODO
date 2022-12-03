@@ -1,12 +1,14 @@
 - Everything
+- change img to Image
 - remake /battery, /calc, /color, /propresenter, backgrounds maybe
-- /propresenter
-- today page
+- style /website
+- make /cookies info page
+- authentication / sign in page (maybe stytch integration)
+- website history (as far back as possible)
 - docs (use some sort of markdown parser)
-- sign in page (maybe stytch integration)
+- today page
 - Homepage: gradient/color that changes as you scroll
 - change header image url before deployment (components/header.jsx:25)
 - https://github.com/herrethan/react-confetti-explosion#readme
-- website history (as far back as possible)
 - updated download page
 - remove Herobrine
