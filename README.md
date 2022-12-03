@@ -1,2 +1,4 @@
 # Zanderp25.com
-This is the official code for https://zanderp25.com/
+Rewrite of https://zanderp25.com/
+
+*this is already better than my previous one lol*

@@ -1,0 +1,60 @@
+.alertBanner {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  z-index: 99;
+
+  background-color: #f8f8f8;
+  color: #000;
+  border-radius: 3em;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  margin-top: 2rem;
+
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.alertBannerContent {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.alertBannerContent h3 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.alertBannerContent p {
+  font-size: 1rem;
+  margin: 0;
+  margin-left: 1rem;
+}
+
+.alertBanner button {
+  background: transparent;
+  color: inherit;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.info {
+  background: #1e88e5;
+  color: #fff;
+}
+
+.warning {
+  background: #ff9900;
+  color: #fff;
+}
+
+.danger {
+  background: #dc5046;
+  color: #fff;
+}
+

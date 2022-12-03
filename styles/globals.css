@@ -1,0 +1,110 @@
+body {
+    background-color: #f0f0f0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000000;
+        color: #fff;
+    }
+}
+
+h1{
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+h2{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: normal;
+    margin: 0 15pt 40pt 15pt;
+}
+
+p {
+    text-align: left;
+    font-size: 1rem;
+    margin: 15px;
+}
+
+table {
+    border-collapse: collapse;
+    width: auto;
+    word-break: break-word;
+    margin: 20px;
+}
+
+table td, table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.infoIcon, .infoIcon:hover, .infoIcon:active, .infoIcon:visited {
+    position: relative;
+    left: 5px;
+    margin-left: -15px;
+    display: inline-block;
+    opacity: 60%;
+    background: #fff;
+    border-radius: 50%;
+    font-size: 8pt;
+    margin: 5px;
+    height: 15px;
+    width: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+}
+
+.linkList {
+    list-style: none;
+    margin: 3rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.linkList li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.linkList li a, .linkList li a:visited, .linkList li a:active, .linkList li a:hover {
+    text-decoration: none;
+    color: #0000ba;
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.linkList li a:hover {
+    opacity: 60%;
+}
+
+@media (prefers-color-scheme: dark) {
+    .linkList li a, .linkList li a:visited, .linkList li a:active, .linkList li a:hover {
+        color: #00a2ff;
+    }
+}
+
+#tsparticles {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
