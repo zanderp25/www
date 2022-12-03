@@ -36,7 +36,7 @@ let countdowns = [
 		name: "New Years",
 		description: "January 1st annually",
 		link: "/countdown/newYears",
-		image: "/assets/icons/newYears.png",
+		image: "/assets/icons/newyears.png",
 	},
 	{
 		name: "Genshin Impact",
