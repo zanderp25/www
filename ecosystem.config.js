@@ -1,58 +1,7 @@
-{
-    "apps":[
-        {
-            "name":"Zander's Bot",
-            "cwd":"/home/zanderp25/bots/Zanders-Bot",
-            "script":"/home/zanderp25/bots/Zanders-Bot/bot.py",
-            "exec_interpreter":"python3",
-            "exec_mode":"fork"
-        },
-        {
-            "name":"Minecraft",
-            "cwd":"/home/zanderp25/Minecraft/Bukkit",
-            "script":"/usr/bin/java",
-            "args":[
-                "-jar",
-                "paper.jar"
-            ],
-            "exec_interpreter":"",
-            "exec_mode":"fork",
-            "autorestart":false
-        },
-        {
-            "name":"BigBrainBot",
-            "cwd":"/home/zanderp25/bots/Project-Zulu",
-            "script":"/home/zanderp25/bots/Project-Zulu/bot.py",
-            "exec_interpreter":"python3",
-            "exec_mode":"fork"
-        },
-        {
-            "name":"VAN",
-            "cwd":"/home/zanderp25/bots/VsauceAutoNamer",
-            "script":"/home/zanderp25/bots/VsauceAutoNamer/bot.py",
-            "exec_interpreter":"python3",
-            "exec_mode":"fork"
-        },
-        {
-            "name":"Ohio Bot",
-            "cwd":"/home/zanderp25/bots/OhioBot",
-            "script":"/home/zanderp25/bots/OhioBot/bot.py",
-            "exec_interpreter":"python3",
-            "exec_mode":"fork"
-        },
-        {
-            "name":"ttt-online",
-            "cwd":"/home/zanderp25/Clari/ttt-online",
-            "script":"/home/zanderp25/Clari/ttt-online/app.py",
-            "exec_interpreter":"python3",
-            "exec_mode":"fork"
-        },
-        {
-            "name":"Media Server",
-            "cwd":"/home/zanderp25/media",
-            "script":"/home/zanderp25/media/main.py",
-            "exec_interpreter":"python3",
-            "exec_mode":"fork"
-        }
-    ]
+module.exports = {
+    apps : [{
+        name   : "Website",
+        script : "./node_modules/next/dist/bin/next",
+        args   : "start -p 2999"
+    }]
 }
