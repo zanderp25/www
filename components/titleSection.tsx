@@ -28,7 +28,7 @@ export default function TitleSection({ children }){
             let count = container.getElementsByClassName(styles.coin).length;
             document.getElementById("scoreContainer").innerHTML = `${score}<br/>${count} cps`;
         } else {
-            document.getElementById("scoreContainer").innerHTML = score;
+            document.getElementById("scoreContainer").innerHTML = `${score}`;
         }
 
         setTimeout(() => {

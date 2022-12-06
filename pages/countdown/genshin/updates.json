@@ -1,0 +1,16 @@
+[
+    {
+        "name": "3.3 Update",
+        "date": "2022-12-07T11:00:00+08:00",
+        "image": "/assets/genshin/wanderer.jpg",
+        "image_credits": "HOYOVERSE",
+        "light": false
+    },
+    {
+        "name": "3.3 Second Banner",
+        "date": "2022-12-28T11:00:00+08:00",
+        "image": "/assets/genshin/ffluvy-raiden.jpg",
+        "image_credits": "@ffluvy on Twitter",
+        "light": false
+    }
+]
