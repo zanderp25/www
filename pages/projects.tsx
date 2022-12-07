@@ -1,6 +1,7 @@
 import DefaultLayout from "../components/defaultLayout";
 import styles from '../styles/projectList.module.css';
 import Image from "next/image";
+import Link from "next/link";
 
 function ProjectCard(props) {
   const { project } = props;
@@ -12,7 +13,9 @@ function ProjectCard(props) {
       <div>
         <h3>{project.name}</h3>
         <p>{project.description}</p>
-        <a href={project.link}>{project.buttonText}</a>
+        <Link href={project.link} >
+          <a>{project.buttonText}</a>
+        </Link>
       </div>
     </div>
   );

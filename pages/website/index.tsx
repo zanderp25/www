@@ -1,3 +1,4 @@
+import Link from "next/link";
 import DefaultLayout from "../../components/defaultLayout";
 
 export default function websiteInfo() {
@@ -7,11 +8,11 @@ export default function websiteInfo() {
             <h2>Here is some info about this website.</h2>
             <p>This website is built with Next.js and self-hosted.</p>
             <p>
-                The homepage has <a href="https://minecraft-archive.fandom.com/wiki/Splash_Texts">splash texts</a> similar
-                to Minecraft&apos;s which are all <a href="/website/splashTexts">listed here</a>.
+                The homepage has <Link href="https://minecraft-archive.fandom.com/wiki/Splash_Texts">splash texts</Link> similar
+                to Minecraft&apos;s which are all <Link href="/website/splashTexts">listed here</Link>.
             </p>
             <p>
-                I also have a page dedicated to the <a href="/website/history">history of this website</a>.
+                I also have a page dedicated to the <Link href="/website/history">history of this website</Link>.
             </p>
         </DefaultLayout>
     );

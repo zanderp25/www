@@ -1,9 +1,11 @@
 import styles from '../styles/Components/footer.module.css';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export function Footer() {
     let infoLines = [
         "Zanderp25",
-        <a key="email" href='mailto:zander@zanderp25.com'>zander@zanderp25.com</a>,
+        <Link key="email" href='mailto:zander@zanderp25.com'>zander@zanderp25.com</Link>,
         "© 2022 Zanderp25",
     ]
     let socials = [
@@ -23,10 +25,14 @@ export function Footer() {
             <ul className={styles.socials}>
             {socials.map((link) => (
                 <li key={link.name}>
-                    <a href={link.href}>
-                        <img src={link.icon} />
-                        {link.name}
-                    </a>
+                    <Link href={link.href}>
+                        <a>
+                            <Image src={link.icon} height={30} width={30} objectFit="contain" />
+                            <span>
+                                {link.name}
+                            </span>
+                        </a>
+                    </Link>
                 </li>
             ))}
             </ul>
