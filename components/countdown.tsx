@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import styles from "../styles/Components/countdown.module.css";
 
-export default function Countdown({ date }){
-    let light = !!date.light;
+export default function Countdown({ date, light }: { date: Date|string, light?: boolean }): JSX.Element {
+    light = !!light;
 
     let [days, setDays] = useState(0);
     let [hours, setHours] = useState(0);

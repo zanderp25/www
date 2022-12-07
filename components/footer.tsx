@@ -17,7 +17,7 @@ export function Footer() {
         <footer className={styles.footer}>
             <ul className={styles.info}>
                 {infoLines.map((line) => (
-                    <li key={line}>{line}</li>
+                    <li key={infoLines.indexOf(line)}>{line}</li>
                 ))}
             </ul>
             <ul className={styles.socials}>

@@ -15,7 +15,7 @@ export default function splashTexts() {
       <table>
         <thead>
           <tr>
-            <th width="30%">Text</th>
+            <th style={{width:"30%"}}>Text</th>
             <th>Description</th>
           </tr>
         </thead>

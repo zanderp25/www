@@ -23,7 +23,7 @@ function App() {
                     padding: "1rem", backgroundColor: "rgba(0,0,0,0.5)", 
                     borderRadius: "1rem 0 0 0", backdropFilter: "blur(5px)"}}
             >📸 : {date.image_credits}</span>
-            <Countdown date={date.date} />
+            <Countdown date={date.date} light={date.light} />
         </>
     }
     

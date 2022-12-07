@@ -7,7 +7,7 @@ import Countdown from '../../components/countdown';
 
 
 function getChristmas(now){
-    var year;
+    let year;
     if (now.getMonth() == 11){
         if (now.getDate() >= 25){
             year = now.getFullYear() + 1;

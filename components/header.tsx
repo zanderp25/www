@@ -4,7 +4,11 @@ import { useState } from 'react';
 
 import styles from '../styles/Components/header.module.css';
 
-export function Header({ title, description, icon, links }) {
+export function Header(
+  { title, description, icon, links }: 
+  { title: string, description: string, icon: string, links: Array<{href:string, label:string}> }
+  ): JSX.Element
+{
   title = title ? `${title} - Zanderp25` : 'Zanderp25';
   description = description ? description : 'Zanderp25\'s website';
   icon = icon ? icon : '/assets/icons/ZP25 Circle.png';
@@ -27,7 +31,7 @@ export function Header({ title, description, icon, links }) {
       <div className={styles.navbar_brand}>
         <Link href="/">
           <a>
-            <div alt='Logo'/>
+            <div/>
             <span>Zanderp25</span>
           </a>
         </Link>
