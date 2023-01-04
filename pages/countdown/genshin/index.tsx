@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 
 import Countdown from '../../../components/countdown';
@@ -12,6 +13,16 @@ function App() {
     if (new Date(date.date) < new Date()){
         body = <h1>This update has already passed.</h1>
     } else {
+        let credits;
+        if (date.image_credits_url != null){
+            credits = <Link href={date.image_credits_url}>
+                <a style={{color:"white"}}>
+                    {date.image_credits}
+                </a>
+            </Link>
+        } else {
+            credits = date.image_credits;
+        }
         body = <>
             <div style={{width: "100%",height: "100%",objectFit: "cover",position: "absolute",top: "0",left: "0",zIndex: "-1"}}>
                 <Image src={date.image} layout="fill" objectFit="cover" />
@@ -22,7 +33,7 @@ function App() {
                     zIndex: "1",color: "white",fontSize: "1rem",
                     padding: "1rem", backgroundColor: "rgba(0,0,0,0.5)", 
                     borderRadius: "1rem 0 0 0", backdropFilter: "blur(5px)"}}
-            >📸 : {date.image_credits}</span>
+            >📸 : {credits}</span>
             <Countdown date={date.date} light={date.light} />
         </>
     }
