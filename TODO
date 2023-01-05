@@ -2,18 +2,17 @@
 - elements that fade in on scroll (about different things I do) for the homepage or something like that idk it seems cool and it's late and I'm tired and it seems like a good idea
 - Show that I edit videos
 - photography portfolio
+- Battery remake: stopwatch that starts when unplugged, mode switch (percent only / stopwatch and percent)
 - change all img to Image
 - christmas countdown popup before christmas
 - add ttt.zanderp25.com somewhere
 - remake /battery, /calc, /color, /propresenter, backgrounds maybe
 - style /website
 - make /cookies info page
-- authentication / sign in page (maybe stytch integration)
+- authentication / sign in page (maybe stytch integration) # wth will i need that for tho
 - website history (as far back as possible)
 - docs (use some sort of markdown parser)
 - today page
 - Homepage: gradient/color that changes as you scroll
-- change header image url before deployment (components/header.jsx:25)
 - https://github.com/herrethan/react-confetti-explosion#readme
-- updated download page
 - remove Herobrine
