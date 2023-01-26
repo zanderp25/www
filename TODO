@@ -1,12 +1,15 @@
 - Everything
 - elements that fade in on scroll (about different things I do) for the homepage or something like that idk it seems cool and it's late and I'm tired and it seems like a good idea
+    - https://michalsnik.github.io/aos/
+- Show a banner when a countdown is near expiration
+- Set the expired genshin countdowns to not load
 - Show that I edit videos
 - photography portfolio
+- remake /battery, /calc, /color, /propresenter, backgrounds maybe
 - Battery remake: stopwatch that starts when unplugged, mode switch (percent only / stopwatch and percent)
 - change all img to Image
 - christmas countdown popup before christmas
 - add ttt.zanderp25.com somewhere
-- remake /battery, /calc, /color, /propresenter, backgrounds maybe
 - style /website
 - make /cookies info page
 - authentication / sign in page (maybe stytch integration) # wth will i need that for tho

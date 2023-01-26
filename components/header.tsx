@@ -26,7 +26,7 @@ export function Header(
         <link rel="icon" href={icon} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={"https://zanderp25.com" + icon} />
+        <meta property="og:image" content={"https://zanderp25.com" + icon.replaceAll(' ',"%20")} />
       </Head>
       <div className={styles.navbar_brand}>
         <Link href="/">
@@ -46,7 +46,7 @@ export function Header(
             </li>
           ))}
         </ul>
-        <button className={styles.menuButton} onClick={toggleNavbar}><img/></button>
+        <button className={styles.menuButton} onClick={toggleNavbar}><img alt="Menu Button"/></button>
       </nav>
     </header>
   );

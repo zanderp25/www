@@ -62,7 +62,7 @@ let projects = [
   },
   {
     name: "Minecraft Server",
-    description: "Join my Minecraft server to play with me and other players! (Currently offline.)",
+    description: "Join my Minecraft server to play with me and other players!",
     link: "https://discord.gg/672yY5v",
     buttonText: "Join my Discord",
     image: "/assets/icons/minecraft.png",

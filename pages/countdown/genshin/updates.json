@@ -1,10 +1,9 @@
 [
     {
-        "name": "3.4 Update",
-        "date": "2023-01-18T11:00:00+08:00",
-        "image": "/assets/genshin/alhaitham.jpg",
-        "image_credits": "@dailyalhaitham via Twitter",
-        "image_credits_url": "https://twitter.com/dailyalhaitham/status/1550940984405643267",
+        "name": "3.4 Banner 2",
+        "date": "2023-02-08T11:00:00+08:00",
+        "image": "/assets/genshin/hutao.png",
+        "image_credits": "HOYOVERSE",
         "light": false
     }
 ]
