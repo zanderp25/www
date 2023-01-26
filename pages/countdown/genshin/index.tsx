@@ -14,7 +14,7 @@ function App() {
         body = <h1>This update has already passed.</h1>
     } else {
         let credits;
-        if (date.image_credits_url != null){
+        if (date.image_credits_url != ""){
             credits = <Link href={date.image_credits_url}>
                 <a style={{color:"white"}}>
                     {date.image_credits}
