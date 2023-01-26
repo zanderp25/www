@@ -14,7 +14,7 @@ export default function BlankLayout(
         <link rel="icon" href={icon} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={"https://zanderp25.com" + icon} />
+        <meta property="og:image" content={"https://zanderp25.com" + icon.replaceAll(' ',"%20")} />
       </Head>
       {children}
     </div>
