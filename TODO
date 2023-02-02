@@ -1,4 +1,6 @@
 - Everything
+- loading background message for countdown
+- landscape mobile height restrictions for countdown (max height css thingy)
 - elements that fade in on scroll (about different things I do) for the homepage or something like that idk it seems cool and it's late and I'm tired and it seems like a good idea
     - https://michalsnik.github.io/aos/
 - Show a banner when a countdown is near expiration
