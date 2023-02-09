@@ -68,14 +68,17 @@ export default function BatteryPage(): JSX.Element {
           <span className={styles.percent}>%</span>
         </span>
         <span className={styles.charging}>{charging ? "Charging" : "Discharging"}</span>
-        <span className={styles.time}>
+        <span className={styles.time} style={{display: (percentage >= 100) && charging? "none": "flex"}}>
           Time to {charging ? "full" : "empty"}:
           <span className={styles.timeValue}>{time}</span>
         </span>
+        <span className={styles.time} style={{display: (percentage >= 100) && charging? "flex": "none"}}>{":)"}</span>
       </div>
       <div className={styles.settings} hidden>
         <input type="checkbox" id="enableStopwatch"/>
         <label htmlFor="enableStopwatch">When the battery is full, disconnect the charger to start a stopwatch.</label>
+        <input type="checkbox" id="disableScreenTimeout"/>
+        <label htmlFor="disableScreenTimeout">Disable screen timeout when stopwatch is running.</label>
       </div>
       <pre hidden>{JSON.stringify(battery, null, 2)}</pre>
     </BlankLayout>
