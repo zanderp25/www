@@ -43,7 +43,10 @@ export default function Countdown({ date, light }: { date: Date|string, light?: 
     return (
         <div className={styles.countdown}>
             <div id="countdownContainer" className={styles.countdownContainer}
-                style={{background: light ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.2)"}}
+                style={{
+                    background: light ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.2)",
+                    color: light ? "black" : "white"
+                }}
             >
                 <div id="daysContainer" className={styles.countdownItem} 
                     style={{display: days==0?"none":"flex"}}

@@ -6,7 +6,7 @@ export function Footer() {
     let infoLines = [
         "Zanderp25",
         <Link key="email" href='mailto:zander@zanderp25.com'>zander@zanderp25.com</Link>,
-        "© 2022 Zanderp25",
+        "© 2023 Zanderp25",
     ]
     let socials = [
         {name: 'GitHub', href: 'https://github.com/zanderp25', icon: '/assets/icons/socials/github.png'}, 
