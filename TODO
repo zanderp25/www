@@ -1,18 +1,22 @@
 - Everything
-- copyright 2023 in footer
+- Battery remake: stopwatch that starts when unplugged, mode switch (percent only / stopwatch and percent)
 - web utilities page
 - utility that makes an iPhone act like a stream deck with an api or something
+- QR generator
 - userinfo.zanderp25.com
 - loading background message for countdown
 - landscape mobile height restrictions for countdown (max height css thingy)
 - elements that fade in on scroll (about different things I do) for the homepage or something like that idk it seems cool and it's late and I'm tired and it seems like a good idea
     - https://michalsnik.github.io/aos/
-- Show a banner when a countdown is near expiration
+- use /public/Apple Devices/ somehow
+- Show a banner on the homepage when a countdown is near expiration
 - Set the expired genshin countdowns to not load
+- Résumé
+    - qr code or something to show more stuff
 - Show that I edit videos
 - photography portfolio
+- move this todo to github projects or something maybe?
 - remake /battery, /calc, /color, /propresenter, backgrounds maybe
-- Battery remake: stopwatch that starts when unplugged, mode switch (percent only / stopwatch and percent)
 - change all img to Image
 - christmas countdown popup before christmas
 - add ttt.zanderp25.com somewhere
