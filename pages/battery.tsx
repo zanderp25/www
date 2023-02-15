@@ -30,7 +30,7 @@ export default function BatteryPage(): JSX.Element {
     if (battery) {
       if(battery.isSupported === true && battery.fetched === true){
         setSupported(true);
-        setPercentage(battery.level * 100);
+        setPercentage(Math.round(battery.level * 100));
         setCharging(battery.charging);
         setIcon(`/assets/battery/${Math.ceil(battery.level/.2)*20}.png`);
         setColor(battery.level > .25 ? "#4be34b" : battery.level > .1 ? "#d4d458" : "#e04040");
