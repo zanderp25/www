@@ -2,9 +2,9 @@
     {
         "name": "Version 3.5",
         "date": "2023-03-01T11:00:00+08:00",
-        "image": "",
-        "image_credits": "",
+        "image": "/assets/genshin/dehya.png",
+        "image_credits": "HOYOVERSE",
         "image_credits_url": "",
-        "light": true
+        "light": false
     }
 ]
