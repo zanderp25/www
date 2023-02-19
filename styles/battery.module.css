@@ -32,6 +32,7 @@
     width: 100%;
     background: black;
     user-select: none;
+    transition: height 0.5s;
 }
 
 .colorOverlay{
