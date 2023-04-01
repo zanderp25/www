@@ -1,0 +1,688 @@
+
+
+@font-face {
+  font-family: SF Pro Black;
+  src: url("fonts/SF-Pro-Display-Black.otf");
+}
+
+@font-face {
+  font-family: SF Pro Medium;
+  src: url("fonts/SF-Pro-Display-Medium.otf");
+}
+
+@font-face {
+  font-family: SF Pro;
+  src: url("fonts/SF-Pro.ttf");
+}
+
+* {
+	margin: 0;
+	box-sizing: border-box;
+  font-family: "SF Pro";
+}
+
+*:focus {
+	outline: none;
+	border: none;
+}
+
+html, body {
+	font-family: SF Pro;
+	overflow-x: hidden;
+	font-size: 16px;
+}
+
+.eeee {
+	display: flex;
+	gap: 200px;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 100px 0;
+}
+
+.thingtop {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+h3 {
+	font-size: 32px;
+}
+
+.note {
+	padding: 10px;
+	border-radius: 10px;
+	background: #66666612;
+	border: 1px solid #c7c7c7;
+	color: #666;
+	width: fit-content;
+	margin: 32px;
+}
+
+h1 {
+	font-size: 64px;
+}
+
+.name p {
+	color: #1d1d1f;
+	font-weight: 400;
+}
+
+.name {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.device {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+}
+/* hardware */
+
+.iMac {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;	
+	width: 1280px;
+	/* heihht: 1078px; */
+	margin: 50px;
+}
+
+.iMac .body {
+	border-radius: 23px;
+	box-shadow: 0 3px 20px rgb(0 0 0 / 25%);
+}
+
+.iMac .bezel-top {
+	background: #eeeff1;
+	height: 30px;
+	width: 100%;
+	border-top-right-radius: 23px;
+	border-top-left-radius: 23px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.iMac .bezel-top .container {
+	display: flex;
+	justify-content: center;
+	align-items: center;	
+	height: 100%;
+	width: fit-content;
+	gap: 10px;
+}
+
+.iMac .bezel-top .container .camera {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #0d1b28;
+	box-shadow: inset 0px -3px 2px 0px rgb(45 77 118);
+}
+
+.iMac .bezel-top .container .light {
+	width: 3px;
+	height: 3px;
+	border-radius: 50%;
+	background: #e0e4ec;
+}
+
+.iMac .bezel {
+	width: 1280px;
+	height: 750px;
+	border: 30px solid #eeeff1;
+	border-top: none;
+}
+
+.iMac .screen {
+	border-radius: 2px;
+	background: #000;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background-size: cover;
+	border: 2px solid #3a3b3d;
+}
+
+.iMac .bottom {
+	width: 1280px;
+	height: 130px;
+	background: #a9c8dd;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.iMac .stand {
+	box-shadow: 0 3px 20px rgb(0 0 0 / 25%);
+	width: 307px;
+	height: 202px;
+	display: flex;
+	flex-direction: column;
+	/* justify-content: flex-end; */
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+
+.iMac .chin {
+	background: rgb(146,172,189);
+	background: linear-gradient(180deg, rgba(146,172,189,1) 10%, rgba(159,186,205,1) 20%, rgba(169,196,215,1) 77%, rgba(191,218,235,1) 95%, rgba(81,108,130,1) 105%);
+	height: 100%;
+}
+
+.iMac .stand .foot {
+	width: 307px;
+	height: 15px;
+	background: rgb(137,166,183);
+background: linear-gradient(90deg, rgba(137,166,183,1) 5%, rgba(200,227,241,1) 10%, rgba(175,202,221,1) 15%, rgba(200,227,241,1) 90%, rgba(137,166,183,1) 95%);
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.iMac .stand .pads {
+	width: 307px;
+	height: 2px;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 5px;
+	position: relative;
+	top: 15px;
+}
+
+.iMac .stand .pads .pad {
+	width: 38px;
+	height: 2px;
+	background: #c7e2f0;
+}
+
+.iMac .screen {
+	background-image: url('media/backgrounds/imac.jpg');
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.iPhone {
+	margin: 50px;
+}
+
+.iPhone .phone .wrapper {
+	display: flex;
+}
+
+.iPhone .phone .wrapper .left {
+	display: flex;
+	flex-direction: column;
+	padding-top: 117px;
+	gap: 22px;
+}
+
+.iPhone .phone .wrapper .left .ringer {
+	width: 2px;
+	height: 20px;
+	background: linear-gradient(180deg, #FAF7F7 0%, #39323C 9.38%, #B5A9BB 14.06%, #B5A9BB 86.46%, #39323C 89.58%, #FAF7F7 100%);
+	border: 1px solid #5a515e87;
+	box-sizing: content-box;
+	border-right: none;
+	border-top-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+	z-index: 2;
+}
+
+.iPhone .phone .wrapper .left .volume {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.iPhone .phone .wrapper .left .volume > div {
+	height: 45px;
+	width: 2px;
+	background: linear-gradient(180deg, #FAF7F7 0%, #39323C 9.38%, #C2BAC7 14.06%, #C1B9C6 86.46%, #39323C 89.58%, #FAF7F7 100%);
+	border: 1px solid #5a515e87;
+	box-sizing: content-box;
+	border-right: none;
+	border-top-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+	z-index: 2;
+}
+
+.iPhone .phone .wrapper .right {
+	padding-top: 192px;
+}
+
+.iPhone .phone .wrapper .right .power {
+	height: 71px;
+	width: 2px;
+	background: linear-gradient(180deg, #FAF7F7 0%, #39323C 9.38%, #C2BAC7 14.06%, #C1B9C6 86.46%, #39323C 89.58%, #FAF7F7 100%);
+	border: 1px solid #5a515e87;
+	box-sizing: content-box;
+	border-left: none;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+
+.iPhone .phone .wrapper .case {
+	background: #E0DCD9;
+	padding: 2px;
+	border-radius: 50px;
+	border: 1px solid #28212F;
+	box-shadow: 0 3px 20px 3px rgb(0 0 0 / 60%);
+}
+
+.iPhone .phone .wrapper .case .middle {
+	background: #5C5061;
+	padding: 2px;
+	border-radius: 48px;
+}
+
+.iPhone .phone .wrapper .case .middle .bezel {
+	background: #000;
+	padding: 8px;
+	border-radius: 46px;
+}
+
+.iPhone .phone .wrapper .case .middle .bezel .screen {
+	background: url('media/backgrounds/iphone.png');
+	background-size: cover;
+	width: 321px;
+	height: 694.5px;
+	border-radius: 38px;
+}
+
+.iPhone .phone .wrapper .case .middle .bezel .screen .island {
+	display: flex;
+	background: #050505;
+	width: 85.5px;
+	height: 24.5px;
+	border-radius: 12px;
+	justify-content: flex-end;
+	align-items: center;
+	padding: 6px;
+	position: relative;
+	top: 7px;
+	margin: 0 auto;
+}
+
+.iPhone .phone .wrapper .case .middle .bezel .screen .island .outline {
+	background: #09080D;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	width: 14px;
+	height: 14px;
+}
+
+.iPhone .phone .wrapper .case .middle .bezel .screen .island .outline .inner {
+	background: #141B26;
+	padding: 1px;
+	border-radius: 50%;
+	width: 7px;
+	height: 7px;
+}
+
+.iPhone .phone .wrapper .case .middle .bezel .screen .island .outline .inner .innerest {
+	background: #04051B;
+	padding: 1px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	border-radius: 50%;
+}
+
+.iPhone .phone .wrapper .case .middle .bezel .screen .island .outline .inner .innerest .eye {
+	box-shadow: inset 0px -3px 2px 0px rgb(45 77 118);
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+}
+
+.iPad {
+	margin: 50px;
+}
+
+.iPad .wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.iPad .wrapper .power {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	background: linear-gradient(90deg, #767877 0%, #C5C6C8 11.46%, #CECFD1 48.96%, #C5C6C8 87.5%, #767877 100%);
+	width: 41px;
+	height: 2px;
+	margin-left: auto;
+	margin-right: 44px;
+	z-index: 2;
+	border: 1px solid #5a515e3b;
+	border-bottom: none;
+}
+
+.iPad .wrapper .side {
+	display: flex;
+}
+
+.iPad .wrapper .side .volume {
+	display: flex;
+	flex-direction: column;
+	padding-top: 84px;
+	gap: 6px;
+}
+
+.iPad .wrapper .side .volume > div {
+	width: 2px;
+	height: 35px;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+	border: 1px solid #5a515e3b;
+	border-left: none;
+	background: linear-gradient(180deg, #717171 0%, #C4C5C7 8.85%, #DADBDD 48.44%, #C4C5C7 88.02%, #717171 100%);
+}
+
+.iPad .wrapper .side .case {
+	background: #E1E2E4;
+	border: 1px solid #C9CACC;
+	border-radius: 39px;
+	padding: 3px;
+	box-shadow: 0 3px 20px 3px rgb(0 0 0 / 60%);
+}
+
+.iPad .wrapper .side .case .bezel {
+	background: #121212;
+	border-radius: 35px;
+	padding: 25px;
+	position: relative;
+	display: flex;
+	justify-content: center;
+}
+
+.iPad .wrapper .side .case .bezel .middle {
+	position: absolute;
+	top: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	gap: 11px;
+	align-items: center;
+}
+
+.iPad .wrapper .side .case .bezel .middle .cam {
+	border-radius: 50%;
+	background: #0A0A0A;
+	width: 11px;
+	height: 11px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.iPad .wrapper .side .case .bezel .middle .cam:nth-child(3) {
+	padding: 1px;
+	background: #181818;
+}
+
+.iPad .wrapper .side .case .bezel .middle .cam .eye {
+	width: 50%;
+	height: 50%;
+	background: #181818;
+	box-shadow: inset 0px -3px 2px 0px rgb(45 77 118);
+	border-radius: 50%;
+}
+
+.iPad .wrapper .side .case .bezel .middle .cam.no-bg {
+	background: none;
+}
+
+.iPad .wrapper .side .case .bezel .middle .cam .mic {
+	width: 3px;
+	height: 3px;
+	background: #0a0a0a;
+	border-radius: 50%;
+}
+
+.iPad .wrapper .side .case .bezel .screen {
+	border: 2px solid #161817;
+	border-radius: 10px;
+	background-image: url('media/backgrounds/ipad.jpg');
+	background-size: 150%;
+	width: 607.2px;
+	height: 810px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.mb {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 50px;
+}
+
+.mb .case {
+	padding: 3px;
+	background: #737478;
+	border-radius: 23px;
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	padding-bottom: 0;
+	box-shadow: 0 3px 20px 3px rgb(0 0 0 / 60%);
+}
+
+.mb .case .padding {
+	padding: 3px;
+	background: #222222;
+	border-radius: 20px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	padding-bottom: 0;
+}
+
+.mb .case .padding .bezel {
+	padding: 10px;
+	background: #000;
+	border-radius: 17px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.mb .case .padding .bezel .screen {
+	width: 791px;
+	height: 513px;
+	display: flex;
+	justify-content: center;
+	background-image: url('media/backgrounds/macbook.webp');
+	background-size: cover;
+}
+
+.mb .case .padding .bezel .screen .notch {
+	width: 98px;
+	height: 17px;
+	display: flex;
+	justify-content: center;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	background: #000;
+}
+
+.mb .case .padding .bezel .screen .notch .cam {
+	width: 7px;
+	height: 7px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	background: #10100E;
+}
+
+.mb .case .padding .bezel .screen .notch .cam .eye {
+	width: 2px;
+	height: 2px;
+/* 	box-shadow: inset 0px -3px 2px 0px rgb(45 77 118); */
+	border-radius: 50%;
+	background: radial-gradient(50% 50% at 50% 50%, #123366 0%, #2C4C75 100%);
+}
+
+.mb .case .padding .neck {
+	width: 100%;
+	height: 22px;
+	background: linear-gradient(180deg, #242424 0%, #111111 100%);
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+.mb .bottom {
+	display: flex;
+	flex-direction: column;
+}
+
+.mb .bottom .stand {
+	display: flex;
+	flex-direction: column;
+	width: 996px;
+	height: 36px;
+	box-shadow: 0 3px 20px 3px rgb(0 0 0 / 60%);
+	border-bottom-left-radius: 13px;
+	border-bottom-right-radius: 13px;				
+}
+
+.mb .bottom .stand .top-half {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	background: linear-gradient(90deg, #9D9EA2 0%, #edeef2 1%, #64656975 4%, #B4B5BA 51.56%, #64656975 96%, #edeef2 99%, #9D9EA2 100%);
+	height: 20px;
+	border-top-left-radius: 1px;
+	border-top-right-radius: 1px;
+}
+
+.mb .bottom .stand .top-half .gap {
+	width: 175px;
+	height: 12px;
+		background: linear-gradient(90deg, #2F3035 0%, #C7C8CD 5.21%, #CCCDD2 48.96%, #C7C8CD 94.27%, #2F3035 100%);
+	border-bottom-left-radius: 13px;
+	border-bottom-right-radius: 13px;
+}
+
+.mb .bottom .stand .bottom-half {
+	width: 100%;
+	height: 16px;
+	background: linear-gradient(180deg, #6B6C70 0%, #AEAFB3 85.94%, #86858A 100%);
+	background: linear-gradient(180deg, #6b6c7080 0%, #6b6c70e8 20%, #909191 50%, #afafaf 100%);
+	border-bottom-left-radius: 13px;
+	border-bottom-right-radius: 13px;
+}
+
+.mb .bottom .feets {
+	display: flex;
+	justify-content: space-between;
+	width: 996px;
+	padding: 0 53px;
+}
+
+.mb .bottom .feets .foot {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.mb .bottom .feets .foot .foot-top {
+	width: 66px;
+	height: 3px;
+	background: linear-gradient(90deg, #7C7C7E 0%, #919297 9.9%, #747680 18.75%, #9D9EA3 29.17%, #9D9EA3 68.75%, #747680 79.69%, #919297 89.06%, #7C7C7E 100%);
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+.mb .bottom .feets .foot .foot-bottom {
+	width: 60px;
+	height: 3px;
+	background: linear-gradient(90deg, #5F5F5F 0%, #262626 7.81%, #424242 12.93%, #4D4D4B 50.52%, #424242 81.77%, #262626 94.79%, #5F5F5F 100%);
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+
+
+
+
+@media (max-width: 1700px) {
+	.iMac {
+		transform: scale(0.8);
+	}
+}
+
+@media (max-width: 1000px) {
+	.iMac, .mb {
+		transform: scale(0.6);
+		top: -200px;
+    position: relative;
+	}
+
+	.mb {
+		top: -50px;
+		transform: scale(0.7)
+	}
+}
+@media (max-width: 800px) {
+	.iMac {
+		transform: scale(0.4);
+		top: -350px;
+	}
+
+	.mb {
+		top: -150px;
+		transform: scale(0.5)
+	}
+
+	.iPad {
+		transform: scale(0.8);
+		position: relative;
+		top: -100px;
+	}
+}
+
+@media (max-width: 600px) {
+	.iMac {
+		transform: scale(0.2);
+		top: -450px;
+	}
+
+	.mb {
+		top: -170px;
+		transform: scale(0.4)
+	}
+
+	.iPad {
+		transform: scale(0.6);
+		top: -200px;
+	}
+
+	.eeee {
+		gap: 0;
+	}
+}
+
+@media (max-width: 400px) {
+	.iPad {
+		transform: scale(0.4);
+		top: -300px;
+	}
+
+	.mb {
+		top: -200px;
+		transform: scale(0.3)
+	}
+
+	.iPhone {
+		transform: scale(0.9);
+	}
+}
