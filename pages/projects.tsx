@@ -67,6 +67,13 @@ let projects = [
     buttonText: "Join my Discord",
     image: "/assets/icons/minecraft.png",
   },
+  {
+    name: "Discord User Info",
+    description: "A website that allows you to view all the information an API can give about a Discord user.",
+    link: "https://userinfo.zanderp25.com",
+    buttonText: "Go to website",
+    image: "/assets/icons/discord_logo.png",
+  }
 ];
 
 export default function projectsPage(){
