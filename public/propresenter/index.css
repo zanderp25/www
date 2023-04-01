@@ -1,0 +1,281 @@
+/* © 2022 Zander Picon */
+
+* {
+    --accent-color: #00a8ff;
+    --accent-color-dark: #0090d7;
+    --accent-color-light: #bee9ff;
+    --background: #fafafa;
+    --text-color: #000000;
+}
+
+@media(prefers-color-scheme: dark) {
+    * {
+        --accent-color: #0090d7;
+        --accent-color-dark: #0076b1;
+        --accent-color-light: #81a1b0;
+        --background: #1d1d1d;
+        --text-color: #ffffff;
+    }
+}
+
+
+body {
+    background: var(--background);
+    color: var(--text-color);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: lighter;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    font-weight: lighter;
+    margin: 0;
+}
+
+header {
+    background: var(--background);
+    color: var(--text-color);
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    width: 100vw;
+    height: 3em;
+    box-shadow: 0 0 5px var(--text-color);
+}
+
+header h1 {
+    padding: 0.1em;
+    margin-left: 0.2em;
+}
+
+
+.main-content {
+    padding: 1em;
+    margin-top: 3em;
+}
+
+.prev-next-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.prev-next-buttons button {
+    font-size: 5vh;
+    margin-bottom: 3vh;
+}
+
+#previous-button {
+    width: 100%;
+    height: 10vh;
+}
+
+#next-button {
+    width:100%;
+    height: 30vh;
+}
+
+@media (orientation: landscape) {
+    .prev-next-buttons {
+        flex-direction: row;
+    }
+
+    #previous-button, #next-button {
+        height: 50vh;
+    }
+
+    #previous-button {
+        margin-right: 0.5em;
+    }
+}
+
+.message-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em;
+}
+
+.message-input label {
+    display: block;
+    margin: 0;
+    padding: 0.5em;
+    width: 6em;
+    text-align: right;
+}
+
+.message-input input {
+    display: block;
+    margin: 0;
+    padding: 0.5em;
+    font-size: 1em;
+    width: 100%;
+}
+
+.message-input button {
+    display: block;
+    margin-left: 1em;
+    padding: 0.5em;
+    font-size: 1em;
+    width: 10em;
+}
+
+.slide-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.slide-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 1em;
+    margin: 0.5em 0;
+    text-align: center;
+}
+
+
+#settings {
+    appearance: none;
+    height: 3em;
+    position: fixed;
+    top: 4px;
+    right: 5px;
+    z-index: 3;
+    width: 35px;
+    height: 35px;
+    color: var(--text-color);
+}
+
+#settings::after {
+    content: '\2699';
+    font-size: 4em;
+    position:  fixed;
+    font-family: Helvetica, Arial, sans-serif;
+    top: -9px;
+    right: 5px;
+}
+#settings:checked:after {
+    content: '\00D7';
+    font-size: 5em;
+    top: -0.3em;
+}
+
+.settings-container {
+    display: none;
+    margin-top: 3em;
+    padding: 0.5em;
+    background: var(--background);
+    overflow-x: hidden;
+}
+
+#settings:checked ~ .settings-container{
+    display: block;
+    opacity: 1;
+    top: 0;
+    left: 0;
+}
+
+#settings:checked ~ .main-content {
+    display: none;
+}
+
+.settings-container h2 {
+    text-align: center;
+    width: 100%;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+    margin-top: 1em;
+}
+
+.settings-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em;
+}
+
+.settings-item label {
+    display: block;
+    margin: 0;
+    padding: 0.5em;
+    width: 6em;
+    text-align: right;
+}
+
+.settings-item input, .settings-item select {
+    display: block;
+    margin: 0;
+    padding: 0.5em;
+    font-size: 1em;
+    width: 100%;
+}
+
+.settings-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    left: -.5em;
+    padding: 0.5em;
+    width: 97vw;
+    height: auto;
+    margin: 0 auto; 
+}
+
+.settings-buttons button {
+    display: block;
+    margin: 0.5em;
+    padding: 0.5em;
+    font-size: 1em;
+    width: 100%;
+}
+
+.settings-info {
+    text-align: center;
+}
+
+.settings-info span {
+    display: block;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.status-disconnected {
+    color: red;
+}
+
+.status-disconnected::before {
+    content: '\26A0\0020';
+}
+
+.status-connected {
+    color: green;
+}
+
+.status-connected::before {
+    content: '\2714\0020';
+}
+
+#request-data-div {
+    display: none;
+}
+
+#request-response {
+    flex-direction: column;
+}
