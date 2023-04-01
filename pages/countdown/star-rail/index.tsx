@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import Countdown from '../../../components/countdown';
+import FullscreenButton from '../../../components/fullscreenButton';
 import dates from './updates.json';
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
                     return <option key={i} value={i}>{date.name}</option>
                 })}
             </select>
+            <FullscreenButton />
         </>
     );
 }

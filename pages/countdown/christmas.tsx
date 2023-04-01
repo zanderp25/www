@@ -4,7 +4,7 @@ import Particles from "react-tsparticles";
 import { loadSnowPreset } from "tsparticles-preset-snow";
 
 import Countdown from '../../components/countdown';
-
+import FullscreenButton from '../../components/fullscreenButton';
 
 function getChristmas(now){
     let year;
@@ -38,6 +38,7 @@ function App() {
             </Head>
             <Particles options={{preset:"snow",background:{color:"#500"}}} init={particlesInit} />
             <Countdown date={christmas} light />
+            <FullscreenButton />
         </>
     );
 }
