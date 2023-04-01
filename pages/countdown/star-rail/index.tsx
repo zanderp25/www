@@ -41,9 +41,9 @@ function App() {
     return (
         <>
             <Head>
-                <title>Genshin Impact Countdown</title>
-                <meta name="description" content="Countdown to the next Genshin Impact update or banner." />
-                <link rel="icon" href="/assets/icons/genshin.png" />
+                <title>Honkai: Star Rail Countdown</title>
+                <meta name="description" content="Countdown to the next Honkai: Star Rail update or banner." />
+                <link rel="icon" href="/assets/icons/star-rail.png" />
                 <meta name="og:image" content="https://zanderp25.com/assets/icons/star-rail.png" />
             </Head>
             {body}
