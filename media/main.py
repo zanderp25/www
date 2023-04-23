@@ -56,7 +56,7 @@ def save_file(file: datastructures.FileStorage):
     return filename
 
 def get_path(filename):
-    return f"https://media.zanderp25.com/{filename}"
+    return f"https://media.zanderp25.com/{filename}".replace(' ', '%20')
 
 if __name__ == '__main__':
     app.run(port=3500)
