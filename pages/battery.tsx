@@ -2,6 +2,7 @@ import BlankLayout from "../components/blankLayout";
 import { useState, useEffect } from "react";
 import styles from "../styles/battery.module.css";
 import { useBattery } from "react-use";
+import FullscreenButton from "../components/fullscreenButton";
 
 function parseTime(time: number): string {
   if (time === Infinity) return "--";
@@ -69,7 +70,7 @@ export default function BatteryPage(): JSX.Element {
         </span>
         <span className={styles.charging}>{charging ? "Charging" : "Discharging"}</span>
         <span className={styles.time} style={{display: (percentage >= 100) && charging? "none": "flex"}}>
-          Time to {charging ? "full" : "empty"}:
+          Estimated time to {charging ? "full" : "empty"}:
           <span className={styles.timeValue}>{time}</span>
         </span>
         <span className={styles.time} style={{display: (percentage >= 100) && charging? "flex": "none"}}>{":)"}</span>
@@ -81,6 +82,7 @@ export default function BatteryPage(): JSX.Element {
         <label htmlFor="disableScreenTimeout">Disable screen timeout when stopwatch is running.</label>
       </div>
       <pre hidden>{JSON.stringify(battery, null, 2)}</pre>
+      <FullscreenButton />
     </BlankLayout>
   );
 }
