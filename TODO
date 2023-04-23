@@ -3,8 +3,6 @@
 - qr code generator
 - link Genshin and HSR countdowns to a json file provided by media.zanderp25.com
     - create an Apple shortcut (with api) to edit it
-    - countdown popup 10 days before
-    - Set the expired genshin countdowns to not load
 - Battery remake: stopwatch that starts when unplugged, mode switch (percent only / stopwatch and percent)
 - web utilities page
 - utility that makes an iPhone act like a stream deck with an api or something
