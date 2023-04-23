@@ -5,9 +5,15 @@ import { useState } from 'react';
 
 import Countdown from '../../../components/countdown';
 import FullscreenButton from '../../../components/fullscreenButton';
-import dates from './updates.json';
+import updates from './updates.json';
 
 function App() {
+    let dates = updates.filter((date) => {
+        return new Date(date.date) > new Date();
+    });
+    if (dates.length == 0){
+        return <h1>There are no more updates in the system at this moment.</h1>
+    }
     let [date, setDate] = useState(dates[0]);
     let body = <h1>Loading...</h1>;
 

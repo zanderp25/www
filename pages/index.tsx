@@ -4,7 +4,7 @@ import TitleSection from '../components/titleSection';
 import { useState } from 'react';
 import splashTextList from './splashTexts.json';
 import Link from 'next/link';
-// import AlertBanner from '../components/alertBanner';
+import CountdownBanner from '../components/countdownBanner';
 
 function randomChoice(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -22,7 +22,7 @@ export default function HomePage() {
 
   return (
     <DefaultLayout>
-      {/* <AlertBanner title="Attention!" message="This is a test of the emergency alert system. No action is required." type="danger" /> */}
+      <CountdownBanner />
       <TitleSection>
         <h1>Zanderp25</h1>
         <p onClick={newSplashText}>{splashText}
