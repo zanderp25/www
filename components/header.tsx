@@ -46,7 +46,7 @@ export function Header(
             </li>
           ))}
         </ul>
-        <button className={styles.menuButton} onClick={toggleNavbar}><img alt="Menu Button"/></button>
+        <button className={styles.menuButton} onClick={toggleNavbar}><img alt="Menu Button" src="/assets/icons/menu-w.png"/></button>
       </nav>
     </header>
   );
