@@ -41,6 +41,30 @@ def clicks_ani_world():
     os.system('cp -r ../../ClicksAniMC/world .; zip -r world.zip world; rm -rf world')
     return send_file('world.zip', as_attachment=True)
 
+@app.route('/update/<game:game>', methods=['POST'])
+def update_countdown(game: str):
+    token = request.headers.get('Authorization')
+    if token:
+        if not bcrypt.checkpw(token.encode(), token_hash):
+            return 'Unauthorized', 401
+    else:
+        return 'Unauthorized', 401
+    
+    data = request.get_json()
+    if data.keys() != {'name', 'date', 'image','image_credits', 'image_credits_url', 'light'}:
+        return 'Invalid data', 400
+    
+    file = open(f'../public/assets/countdown/{game}/updates.json', '+')
+    updates: list = json.load(file)
+    updates.append(data)
+    file.seek(0)
+    json.dump(updates, file, indent=4)
+    file.truncate()
+    file.close()
+
+    # os.system(f'git reset; git add ../public/assets/countdown/{game}/updates.json; git commit -m "added update for {game}"; git push')
+    return updates, 200
+
 def save_file(file: datastructures.FileStorage):
     '''creates a unique filename and saves the file'''
     media_extensions = ['.mp4', '.webm', '.mkv', '.avi', '.mov', '.mp3', '.wav', '.flac', '.ogg', '.m4a', '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp']
