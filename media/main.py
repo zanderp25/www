@@ -36,6 +36,11 @@ def upload():
     filename = save_file(file)
     return get_path(filename)
 
+@app.route('/clicks-ani-world')
+def clicks_ani_world():
+    os.system('cp -r ../../ClicksAniMC/world .; zip -r world.zip world; rm -rf world')
+    return send_file('world.zip', as_attachment=True)
+
 def save_file(file: datastructures.FileStorage):
     '''creates a unique filename and saves the file'''
     media_extensions = ['.mp4', '.webm', '.mkv', '.avi', '.mov', '.mp3', '.wav', '.flac', '.ogg', '.m4a', '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp']
