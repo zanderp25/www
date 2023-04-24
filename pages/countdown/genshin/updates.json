@@ -1,5 +1,45 @@
 [
     {
+        "name": "3.2 Second Banner", 
+        "date": "2022-11-20T06:59:00+08:00",
+        "image": "/assets/genshin/layla.png",
+        "image_credits": "HOYOVERSE",
+        "image_credits_url": "",
+        "light": false
+    },
+    {
+        "name": "3.3 Update",
+        "date": "2022-12-07T11:00:00+08:00",
+        "image": "/assets/genshin/wanderer.jpg",
+        "image_credits": "HOYOVERSE",
+        "image_credits_url": "",
+        "light": false
+    },
+    {
+        "name": "3.3 Second Banner",
+        "date": "2022-12-28T11:00:00+08:00",
+        "image": "/assets/genshin/ffluvy-raiden.jpg",
+        "image_credits": "@ffluvy on Twitter",
+        "image_credits_url": "https://twitter.com/ffluvy/status/1594956330963722240",
+        "light": false
+    },
+    {
+        "name": "3.4 Update",
+        "date": "2023-01-18T11:00:00+08:00",
+        "image": "/assets/genshin/alhaitham.jpg",
+        "image_credits": "@dailyalhaitham via Twitter",
+        "image_credits_url": "https://twitter.com/dailyalhaitham/status/1550940984405643267",
+        "light": false
+    },
+    {
+        "name": "3.4 Banner 2",
+        "date": "2023-02-08T11:00:00+08:00",
+        "image": "/assets/genshin/hutao.png",
+        "image_credits": "HOYOVERSE",
+        "image_credits_url": "",
+        "light": false
+    },
+    {
         "name": "Version 3.6",
         "date": "2023-04-11T11:00:00+08:00",
         "image": "/assets/genshin/3.6.webp",
