@@ -41,7 +41,7 @@ def clicks_ani_world():
     os.system('cp -r ../../ClicksAniMC/world .; zip -r world.zip world; rm -rf world')
     return send_file('world.zip', as_attachment=True)
 
-@app.route('/update/<game:game>', methods=['POST'])
+@app.route('/update/<game:str>', methods=['POST'])
 def update_countdown(game: str):
     token = request.headers.get('Authorization')
     if token:
