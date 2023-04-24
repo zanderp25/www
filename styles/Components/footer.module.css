@@ -74,8 +74,8 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    .socials a img[src="/assets/icons/socials/github.png"] {
-        content: url("/assets/icons/socials/github-white.png");
+    .socials a img[src="/_next/image?url=%2Fassets%2Ficons%2Fsocials%2Fgithub.png&w=64&q=75"] {
+        content: url("/_next/image?url=%2Fassets%2Ficons%2Fsocials%2Fgithub-white.png&w=64&q=75");
     }
 }
 
