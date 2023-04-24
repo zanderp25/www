@@ -54,7 +54,7 @@ def update_countdown(game: str):
     if data.keys() != {'name', 'date', 'image','image_credits', 'image_credits_url', 'light'}:
         return 'Invalid data', 400
     
-    file = open(f'../public/assets/countdown/{game}/updates.json', '+')
+    file = open(f'../public/assets/countdown/{game}/updates.json', 'w+')
     updates: list = json.load(file)
     updates.append(data)
     file.seek(0)
