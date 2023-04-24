@@ -25,16 +25,26 @@ export default function AlertBanner({ title, message, type, link}:
     //     setShow(false);
     // }
 
-    
+    let linkStyle = {color: "inherit", textDecoration: "none"};
+
     return (
         show && (
         <div className={`${styles.alertBanner} ${styles[type]}`}>
-            <Link href={link}>
-            <div className={styles.alertBannerContent}>
-                <h3>{title}</h3>
-                <p>{message}</p>
-            </div>
-            </Link>
+            {
+                link? (
+                    <Link href={link}><a style={linkStyle}>
+                        <div className={styles.alertBannerContent}>
+                            <h3>{title}</h3>
+                            <p>{message}</p>
+                        </div>
+                    </a></Link>
+                ):(
+                    <div className={styles.alertBannerContent}>
+                        <h3>{title}</h3>
+                        <p>{message}</p>
+                    </div>
+                )
+            }
             {/* {cookieName? (
                 <button className={styles.alertBannerClose} onClick={() => closeBanner(cookieName, maxAge)}>&#10006;</button>
             ) : ( */}
