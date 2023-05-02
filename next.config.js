@@ -18,6 +18,11 @@ const nextConfig = {
         destination: '/api/:slug*',
         permanent: false,
       },
+      {
+        source: '/colour/:slug*',
+        destination: '/color/:slug*',
+        permanent: true,
+      }
     ]
   },
 }

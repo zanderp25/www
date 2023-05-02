@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 export default function BlankLayout(
-  { children, title, description, icon }: 
+  { children, title, description, icon = "/assets/icons/ZP25%20Circle.png" }: 
   { children: JSX.Element|string|Array<JSX.Element>, title?: string, description?: string, icon?: string }
   ): JSX.Element
 {
