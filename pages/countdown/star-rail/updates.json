@@ -6,5 +6,13 @@
         "image_credits": "HOYOVERSE",
         "image_credits_url": "",
         "light": false
+    },
+    {
+        "name":"Version 1.1",
+        "date":"2023-06-07T11:00:00+08:00",
+        "image": "/assets/star-rail/galactic_roaming.png",
+        "image_credits": "HOYOVERSE",
+        "image_credits_url": "",
+        "light": false
     }
 ]
