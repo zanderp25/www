@@ -62,5 +62,21 @@
         "image_credits": "HOYOVERSE",
         "image_credits_url": "",
         "light": false
+    },
+    {
+        "name": "Version 3.7 Banner 2",
+        "date": "2023-06-13T07:00:00+08:00",
+        "image": "/assets/genshin/alhaitham.jpg",
+        "image_credits": "@dailyalhaitham via Twitter",
+        "image_credits_url": "https://twitter.com/dailyalhaitham/status/1550940984405643267",
+        "light": false
+    },
+    {
+        "name": "Version 3.8",
+        "date": "2023-07-04T11:00:00+08:00",
+        "image": "/assets/genshin/MidsummerIslandAdventure.jpg",
+        "image_credits": "HOYOVERSE (from last year, yet to be updated)",
+        "image_credits_url": "",
+        "light": false
     }
 ]
