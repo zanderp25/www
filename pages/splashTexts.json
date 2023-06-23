@@ -92,6 +92,10 @@
         "explanation":"This is a meme from the Japanese voice over of the game Genshin Impact where Paimon says \"「えへ」て何だよう！？\" (pronounced \"Ehe te nandayō?!?\" which translates to \"What do you mean 'hehe'?\") after another character says \"hehe\"."
     },
     {
+        "text":"Kuru kuru~!",
+        "explanation":"This is a meme from the Japanese voice over of the game Honkai: Star Rail where the character Herta says \"くるくる～！\" (pronounced \"Kuru kuru~!\" which translates to \"Round and round~!\") while spinning to attack an enemy. The English voice over says \"Time to twirl~!\" instead."
+    },
+    {
         "text":"https://youtu.be/dQw4w9WgXcQ",
         "explanation":"This is a link to the 1987 hit song by Rick Astley titled \"Never Gonna Give You Up\". It is used to trick people into clicking on a link that leads to a Rick Astley music video."
     },
@@ -140,7 +144,15 @@
         "explanation":"This is a reference to Minecraft's splash text \"Also try Terraria!\", but this time referring to Genshin Impact instead of Terraria. Genshin Impact is a good game."
     },
     {
+        "text":"Also try Honkai: Star Rail!",
+        "explanation":"This is a reference to Minecraft's splash text \"Also try Terraria!\", but this time referring to Honkai: Star Rail instead of Terraria. Honkai: Star Rail is a good game."
+    },
+    {
         "text":"Adventure Rank 55",
         "explanation":"This is my current Adventure Rank in Genshin Impact. I have been playing the game for quite a while now. (Since April 2021) The highest Adventure Rank is 60 at the moment."
+    },
+    {
+        "text":"Trailblaze Level 33",
+        "explanation":"This is my current Trailblaze Level in Honkai: Star Rail. I have been playing the game since launch day and I am one of the Final Closed Beta Testers. The highest Trailblaze Level is 70 at the moment."
     }
 ]
