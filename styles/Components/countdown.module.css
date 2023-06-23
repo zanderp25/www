@@ -27,6 +27,17 @@
   box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.2);
 }
 
+@media (max-height: 500px) {
+  .countdownContainer {
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
+
 .countdownItem {
   display: flex;
   flex-direction: column;

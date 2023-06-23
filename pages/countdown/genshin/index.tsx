@@ -34,14 +34,15 @@ function App() {
             <div style={{width: "100%",height: "100%",objectFit: "cover",position: "absolute",top: "0",left: "0",zIndex: "-1"}}>
                 <Image src={date.image} layout="fill" objectFit="cover" />
             </div>
+            <Countdown date={date.date} light={date.light} />
             <span 
                 style={{
                     position: "absolute",bottom: "0",right: "0",
-                    zIndex: "1",color: "white",fontSize: "1rem",
+                    zIndex: "10",color: "white",fontSize: "1rem",
                     padding: "1rem", backgroundColor: "rgba(0,0,0,0.5)", 
-                    borderRadius: "1rem 0 0 0", backdropFilter: "blur(5px)"}}
+                    borderRadius: "1rem 0 0 0", backdropFilter: "blur(5px)",
+                }}
             >📸 : {credits}</span>
-            <Countdown date={date.date} light={date.light} />
         </>
     }
     
@@ -52,6 +53,7 @@ function App() {
                 <meta name="description" content="Countdown to the next Genshin Impact update or banner." />
                 <link rel="icon" href="/assets/icons/genshin.png" />
                 <meta name="og:image" content="https://zanderp25.com/assets/icons/genshin.png" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
             </Head>
             {body}
             <select name="date" value={dates.indexOf(date)} onChange={(e) => {setDate(dates[e.target.value]);return true;}}

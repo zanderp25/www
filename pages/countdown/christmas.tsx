@@ -35,6 +35,7 @@ function App() {
                 <meta name="description" content="Countdown to the next Christmas." />
                 <link rel="icon" href="/assets/icons/christmas.png" />
                 <meta name="og:image" content="https://zanderp25.com/assets/icons/christmas.png" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
             </Head>
             <Particles options={{preset:"snow",background:{color:"#500"}}} init={particlesInit} />
             <Countdown date={christmas} light />
