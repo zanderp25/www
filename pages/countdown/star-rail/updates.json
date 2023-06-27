@@ -14,5 +14,13 @@
         "image_credits": "HOYOVERSE",
         "image_credits_url": "",
         "light": false
+    },
+    {
+        "name":"1.1 Banner 2",
+        "date":"2023-06-28T12:00:00+04:00",
+        "image": "/assets/star-rail/galactic_roaming.png",
+        "image_credits": "HOYOVERSE",
+        "image_credits_url": "",
+        "light": false
     }
 ]

@@ -43,13 +43,13 @@ let countdowns = [
     },
     {
         name: "Genshin Impact",
-        description: "Announced banner and update dates",
+        description: "Announced banner and update dates (for the North America server)",
         link: "/countdown/genshin",
         image: "/assets/icons/genshin.png",
     },
     {
         name: "Honkai: Star Rail",
-        description: "Announced banner and update dates",
+        description: "Announced banner and update dates (for the North America server)",
         link: "/countdown/star-rail",
         image: "/assets/icons/star-rail.png",
     },
