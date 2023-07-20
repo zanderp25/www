@@ -1,4 +1,3 @@
-from distutils import extension
 import os, uuid, bcrypt
 from flask import *
 from typing import Union
@@ -11,8 +10,12 @@ token_hash = b'$2b$12$qF/uFdUfcS.pjf9NkYSTGupgThqW9qXfVm0FsXGlI3aE25rbCt3A.'
 
 @app.route('/')
 def index():
-    # redirect('https://zanderp25.com')
+    redirect('https://zanderp25.com')
     return "Hi"
+
+@app.route('/robots.txt')
+def robots():
+    return send_file("robots.txt")
 
 @app.route('/<path:path>')
 def media(path):
