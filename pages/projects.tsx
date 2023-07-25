@@ -61,19 +61,19 @@ let projects = [
     image: "/assets/icons/discord_logo.png",
   },
   {
+    name: "Discord User Info",
+    description: "A website that allows you to view all the information an API can give about a Discord user.",
+    link: "https://userinfo.zanderp25.com",
+    buttonText: "Go to website",
+    image: "/assets/icons/discord_logo.png",
+  },
+  {
     name: "Minecraft Server",
     description: "Join my Minecraft server to play with me and other players!",
     link: "https://discord.gg/672yY5v",
     buttonText: "Join my Discord",
     image: "/assets/icons/minecraft.png",
   },
-  {
-    name: "Discord User Info",
-    description: "A website that allows you to view all the information an API can give about a Discord user.",
-    link: "https://userinfo.zanderp25.com",
-    buttonText: "Go to website",
-    image: "/assets/icons/discord_logo.png",
-  }
 ];
 
 export default function projectsPage(){
@@ -85,6 +85,12 @@ export default function projectsPage(){
       </h2>
       <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
         <ProjectList projects={projects} />
+        <br />
+        <iframe 
+          style={{width:"728px",height:"90px",maxWidth:"100%",border:"none",display:"block",margin:"auto"}}
+          src="https://namemc.com/server/zanderp25.com/embed"
+          width="728" height="90"
+        />
       </div>
     </DefaultLayout>
   )
