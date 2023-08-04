@@ -6,8 +6,7 @@ from werkzeug import datastructures
 
 app = Flask(__name__)
 
-token_hash = b'$2b$12$qF/uFdUfcS.pjf9NkYSTGupgThqW9qXfVm0FsXGlI3aE25rbCt3A.'
-
+token_hash = open("token_hash").read()
 @app.route('/')
 def index():
     redirect('https://zanderp25.com')
