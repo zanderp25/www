@@ -7,7 +7,7 @@ import BlankLayout from '../../components/blankLayout';
 export async function getServerSideProps(context) {
     return {
         props: {
-            color: context.params.color || ""
+            color: context.params.color || "0face0"
         }
     }
 }
@@ -23,7 +23,7 @@ function Color({ color }) {
 
     color = color[0];
 
-    if (color === "") color = "0face0";
+    if (color == "0") color = "0face0";
     let [colorText, setColorText] = useState(color);
     console.log(color);
     return (
@@ -39,7 +39,9 @@ function Color({ color }) {
             <div style={{backgroundColor: `#${color}`, width: "100vw", height: "100vh", position: "fixed", top: 0, left: 0}}>
                 <div style={{position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "100vw"}}>
                     <input type="text" value={`#${colorText}`} onChange={(e) => setColor(router, e.target.value.slice(1), setColorText)} 
-                        style={{width: "100%", height: "100px", fontSize: "5em", textAlign: "center", 
+                        style={{
+                            width: "100%", height: "100px", fontSize: "5em", textAlign: "center", 
+                            padding: 0,
                             // color: getTextColor(color as string) || "red",
                             // color: "white", mixBlendMode: "difference",
                             color: "white", filter: "drop-shadow(0 0 2px #000a)",
@@ -55,14 +57,16 @@ function Color({ color }) {
 export default dynamic(() => Promise.resolve(Color), { ssr: false });
 
 function setColor(router: NextRouter, color: string, setColorText: (color: string) => void){
+    if (color === undefined) return true;
+    if(!color.match(/^[0-9a-fA-F]{0,8}$/)) return false;
+
     console.log(`Setting color to "${color}"`);
     setColorText(color);
 
     // validate color
-    if (color === undefined) return;
-    if ([3, 4, 6, 8].indexOf(color.length) === -1) return;
-    if (!color.match(/^[0-9a-fA-F]+$/)) return;
+    if ([3, 4, 6, 8].indexOf(color.length) === -1) return true;
     console.log("Valid color");
 
     router.push(`/color/${color}`);
+    return true;
 }

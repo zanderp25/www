@@ -12,7 +12,12 @@ export function Header(
   title = title ? `${title} - Zanderp25` : 'Zanderp25';
   description = description ? description : 'Zanderp25\'s website';
   icon = icon ? icon : '/assets/icons/ZP25 Circle.png';
-  links = links ? links : [ { href: '/', label: 'Home' }, { href: '/projects', label: 'Projects' }, {href: '/login', label: 'Log In'} ];
+  links = links ? links : [ 
+    { href: '/', label: 'Home' },
+    { href: '/projects', label: 'Projects' },
+    { href: '/tools', label: 'Tools' },
+    // { href: '/login', label: 'Log In' },
+  ];
   
   let [navbar, setNavbar] = useState(false)
   let toggleNavbar = () => setNavbar(!navbar); console.log()
