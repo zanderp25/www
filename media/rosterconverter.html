@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Roster Converter</title>
+    </head>
+    <body>
+        <style>
+            body {
+                font-family: sans-serif;
+                display: flex;
+                width: 100%;
+                justify-content: center;
+            }
+            form {
+                width: 400px;
+                margin: 20px;
+                background-color: #eee;
+                display: flex;
+                flex-direction: column;
+                height: fit-content;
+            }
+            input{
+                margin: 10px;
+            }
+        </style>
+        <form action="/rosterupload" enctype="multipart/form-data" method="post">
+            <input type="file" name="rosterfile">
+            <input type="submit" value="Upload">
+        </form>
+    </body>
+</html>
