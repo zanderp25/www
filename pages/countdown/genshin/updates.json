@@ -78,5 +78,13 @@
         "image_credits": "HOYOVERSE",
         "image_credits_url": "",
         "light": false
+    },
+    {
+        "name": "Version 4.0",
+        "date": "2023-08-16T11:00:00+08:00",
+        "image": "/assets/genshin/Fontaine.jpeg",
+        "image_credits": "HOYOVERSE",
+        "image_credits_url": "",
+        "light": false
     }
 ]

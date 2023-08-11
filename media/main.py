@@ -6,8 +6,7 @@ from werkzeug import datastructures
 
 app = Flask(__name__)
 
-token_hash = b'$2b$12$qF/uFdUfcS.pjf9NkYSTGupgThqW9qXfVm0FsXGlI3aE25rbCt3A.'
-
+token_hash = open("token_hash").read()
 @app.route('/')
 def index():
     redirect('https://zanderp25.com')
@@ -21,9 +20,9 @@ def robots():
 def media(path):
     return send_from_directory('media', path)
 
-@app.route('/favicon.ico')
-def favicon():
-    return send_file("../public/assets/ZP25 Circle.png")
+# @app.route('/favicon.ico')
+# def favicon():
+#     return send_file("../public/assets/ZP25 Circle.png")
 
 @app.route('/upload', methods=['POST'])
 def upload():
@@ -89,6 +88,51 @@ def save_file(file: datastructures.FileStorage):
 
 def get_path(filename):
     return f"https://media.zanderp25.com/{filename}".replace(' ', '%20')
+
+@app.route("/rosterconverter")
+def rosterconverter():
+    return send_file("rosterconverter.html")
+
+@app.route("/rosterupload", methods=["POST"])
+def rosterupload():
+    file = request.files.get("rosterfile")
+    if not file:
+        return "No file", 400
+    
+    # parse the html table
+    html = file.read().decode("utf-8")
+    try: table = html.split("No.")[1].split("Male:")[0]
+    except:
+        return f"""<h1>Error while proccessing file</h1>
+        <p>Contents of file:</p>
+        <pre>{html}</pre>
+        """, 400
+    # print(table)
+    rows = table.split("<tr")[1:-1]
+    print(f"{len(rows)} Students")
+    # print("\n-----------------------------------\n".join(rows))
+    roster = []
+    for row in rows:
+        tempcols = row.split("<td")[1:]
+        columns = []
+        for column in tempcols:
+            column = column.split(">")[1].split("<")[0]
+            columns.append(column)
+        
+        student = {}
+        student["number"] = columns[1]
+        student["firstName"] = columns[2].split(",")[1].strip()
+        student["lastName"] = columns[2].split(",")[0].strip()
+        student["grade"] = columns[3].strip()
+
+        roster.append(student)
+
+    with open("roster.csv", "w") as f:
+        f.write("First,Last,Number\n")
+        for student in roster:
+            f.write(f"{student['firstName']},{student['lastName']},{student['number']}\n")
+
+    return send_file("roster.csv", as_attachment=True)
 
 if __name__ == '__main__':
     app.run(port=3500)
