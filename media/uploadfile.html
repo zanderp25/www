@@ -1,0 +1,81 @@
+<!--
+    form that POSTs to /uploadfile with enctype="multipart/form-data" 
+    parameters are password and file
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>$NAME</title>
+    <style>
+        * {
+            --background-color: #F3F9D2;
+            --primary-color: #391463;
+            --secondary-color: #C0D684;
+            --tertiary-color: #CBEAA6;
+            --text-color: #391463;
+            --text-color-light: #736d79;
+        }
+        body {
+            font-family: sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
+        div.container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            background-color: var(--secondary-color);
+            padding: 40px;
+            border-radius: 10px;
+            width: 400px;
+            margin: 40px;
+        }
+        div.header{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--tertiary-color);
+            width: 100%;
+            border-radius: 25px;
+            padding: 10px;
+        }
+        h1{
+            font-size: 24px;
+            font-weight: bolder;
+            margin: 0px;
+        }
+        p{
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0px;
+        }
+        img.qr{
+            width: 100%;
+            border-radius: 25px;
+            background-color: var(--tertiary-color);
+            aspect-ratio: 1/1;
+            image-rendering: pixelated;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        display:
+        the filename ($NAME for now)
+        the URL, $URL
+        the QR code of $URL
+    -->
+    <div class="container">
+        <div class="header">
+            <h1>$URL</h1>
+            <p>Saved as $NAME</p>
+        </div>
+        <img src="$QRURL" class="qr">
+    </div>
+</body>
+</html>

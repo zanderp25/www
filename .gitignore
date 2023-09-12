@@ -1,10 +1,12 @@
 .DS_Store
 ._*
 .vscode
+__pycache__
 /node_modules
 /.next
 /old
 /media/media/
 /media/world.zip
 /media/token_hash
+/media/hashes.py
 roster.csv

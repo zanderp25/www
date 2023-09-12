@@ -3,6 +3,7 @@ from flask import *
 from typing import Union
 from io import BytesIO
 from werkzeug import datastructures
+from hashes import token_hash, password_hash
 
 app = Flask(__name__)
 
@@ -18,6 +19,17 @@ def robots():
 
 @app.route('/<path:path>')
 def media(path):
+    if os.path.isdir(os.path.join('media', path)):
+        if path.startswith('confidential'):
+            return 'Unauthorized', 401
+        # generate the index
+        files = os.listdir(os.path.join('media', path))
+        files.sort()
+        index = f'<h1>Index of /{path}</h1><hr><pre>'
+        for file in files:
+            index += f'<a href="{path}/{file}">{file}</a><br>'
+        index += '</pre><hr>'
+        return index
     return send_from_directory('media', path)
 
 # @app.route('/favicon.ico')
@@ -37,6 +49,30 @@ def upload():
         return 'No file', 400
     filename = save_file(file)
     return get_path(filename)
+
+@app.route('/upload', methods=['GET'])
+def upload_client():
+    return send_file('upload.html')
+
+@app.route('/uploadfile', methods=['POST'])
+def uploadfile():
+    password = request.form.get('password')
+    if not bcrypt.checkpw(password.encode(), password_hash):
+        return 'Unauthorized', 401
+    file = request.files.get('file')
+    if file is None:
+        return 'No file', 400
+    filename = save_file(file)
+    url = get_path(filename)
+    if not os.path.exists('media/qrgen'):
+        os.mkdir('media/qrgen')
+    os.system(f'qrencode -o media/qrgen/{filename}.png {url}')
+    qr_url = get_path(f'qrgen/{filename}.png')
+    return open('uploadfile.html')\
+        .read()\
+        .replace('$URL', url)\
+        .replace('$QRURL', qr_url)\
+        .replace('$NAME', filename)
 
 @app.route('/clicks-ani-world')
 def clicks_ani_world():
