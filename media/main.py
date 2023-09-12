@@ -6,8 +6,8 @@ from werkzeug import datastructures
 from hashes import token_hash, password_hash
 
 app = Flask(__name__)
+DEV = False
 
-token_hash = open("token_hash").read()
 @app.route('/')
 def index():
     redirect('https://zanderp25.com')
@@ -123,6 +123,7 @@ def save_file(file: datastructures.FileStorage):
     return filename
 
 def get_path(filename):
+    if DEV: return f"http://localhost:3500/{filename}".replace(' ', '%20')
     return f"https://media.zanderp25.com/{filename}".replace(' ', '%20')
 
 @app.route("/rosterconverter")
@@ -171,4 +172,7 @@ def rosterupload():
     return send_file("roster.csv", as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(port=3500)
+    if DEV: app.run(port=3500)
+    else:
+        from waitress import serve
+        serve(app, port=3500)
