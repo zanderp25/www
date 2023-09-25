@@ -32,9 +32,9 @@ def media(path):
         return index
     return send_from_directory('media', path)
 
-# @app.route('/favicon.ico')
-# def favicon():
-#     return send_file("../public/assets/ZP25 Circle.png")
+@app.route('/favicon.ico')
+def favicon():
+    return send_file("ZP25 Circle.png")
 
 @app.route('/upload', methods=['POST'])
 def upload():
@@ -105,7 +105,7 @@ def update_countdown(game: str):
 
 def save_file(file: datastructures.FileStorage):
     '''creates a unique filename and saves the file'''
-    media_extensions = ['.mp4', '.webm', '.mkv', '.avi', '.mov', '.mp3', '.wav', '.flac', '.ogg', '.m4a', '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp']
+    media_extensions = ['.mp4', '.webm', '.mkv', '.avi', '.mov', '.mp3', '.wav', '.flac', '.ogg', '.m4a', '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', '.heic']
     if file:
         name = os.path.splitext(file.filename)[0]
         ext = os.path.splitext(file.filename)[1]
