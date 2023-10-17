@@ -161,7 +161,6 @@ def managelinks():
 
 @app.route('/managelinks', methods=['POST'])
 def managelinks_post():
-    print(request.form)
     password = request.form.get('password')
     action = request.form.get('action')
 
