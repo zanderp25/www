@@ -114,7 +114,7 @@ def uploadlink_post():
         return 'Invalid units', 400
     
     key = str(uuid.uuid4())[:8]
-    keys.append({'key': key, 'max_uses': max_uses, 'max_age': datetime.now() + max_age})
+    keys.append({'key': key, 'max_uses': max_uses, 'max_age': datetime.utcnow() + max_age})
     sync_keys()
     
     domain = 'http://localhost:3500' if DEV else 'https://media.zanderp25.com'
@@ -125,14 +125,14 @@ def uploadlink_post():
     return open('uploadfile.html')\
         .read()\
         .replace('$URL', f'{domain}/upload?k={key}')\
-        .replace('Saved as $NAME', f'Expires {datetime.now() + max_age}, {max_uses} uses left')\
+        .replace('Saved as $NAME', f'Expires {datetime.utcnow() + max_age}, {max_uses} uses left')\
         .replace('$NAME', "New Link")\
         .replace('$QRURL', f'{domain}/qrgen/key-{key}.png')
 
 def key_matches(key: str):
     for i in range(len(keys)):
         if keys[i]['key'] == key:
-            if keys[i]['max_age'] < datetime.now():
+            if keys[i]['max_age'] < datetime.utcnow():
                 keys.pop(i)
                 sync_keys()
                 return False
@@ -196,7 +196,7 @@ def managelinks_post():
             if max_age == "Invalid units":
                 return 'Invalid units', 400
             key = str(uuid.uuid4())[:8]
-            keys.append({'key': key, 'max_uses': max_uses, 'max_age': datetime.now() + max_age})
+            keys.append({'key': key, 'max_uses': max_uses, 'max_age': datetime.utcnow() + max_age})
             return json.dumps(keys), 200
         case 'edit':
             key = request.form.get('key')
@@ -322,11 +322,11 @@ if __name__ == '__main__':
         keys[i]['max_age'] = datetime.fromisoformat(keys[i]['max_age'])
 
     for i in range(len(keys)):
-        if keys[i]['max_age'] < datetime.now():
+        if keys[i]['max_age'] < datetime.utcnow():
             keys.pop(i)
             sync_keys()
 
-    if DEV: app.run(port=3500)
+    if DEV: app.run(port=3500, host='0.0.0.0')
     else:
         from waitress import serve
         serve(app, port=3500)
