@@ -1,11 +1,11 @@
-import os, uuid, bcrypt
+import os, uuid, bcrypt, json
+from datetime import datetime, timedelta
 from flask import *
-from typing import Union
-from io import BytesIO
 from werkzeug import datastructures
 from hashes import token_hash, password_hash
 
 app = Flask(__name__)
+keys = []
 DEV = False
 
 @app.route('/')
@@ -52,12 +52,23 @@ def upload():
 
 @app.route('/upload', methods=['GET'])
 def upload_client():
+    key = request.args.get('k')
+    if key:
+        if not key_matches(key):
+            return 'Unauthorized', 401
+        else:
+            return open('upload.html').read().replace('name="password">', f'name="password" value="{key}">')
     return send_file('upload.html')
 
 @app.route('/uploadfile', methods=['POST'])
 def uploadfile():
     password = request.form.get('password')
-    if not bcrypt.checkpw(password.encode(), password_hash):
+    print(password, keys)
+    if password is None:
+        return 'Unauthorized', 401
+    if key_matches(password):
+        use_key(password)
+    elif not bcrypt.checkpw(password.encode(), password_hash):
         return 'Unauthorized', 401
     file = request.files.get('file')
     if file is None:
@@ -73,6 +84,136 @@ def uploadfile():
         .replace('$URL', url)\
         .replace('$QRURL', qr_url)\
         .replace('$NAME', filename)
+
+@app.route('/uploadlink')
+def uploadlink():
+    return send_file('uploadlink.html')
+
+@app.route('/uploadlink', methods=['POST'])
+def uploadlink_post():
+    max_uses = int(request.form.get('max_uses'))
+    max_age = int(request.form.get('max_age'))
+    units = request.form.get('units')
+    password = request.form.get('password')
+
+    if password is None:
+        return 'Unauthorized', 401
+    if not bcrypt.checkpw(password.encode(), password_hash):
+        return 'Unauthorized', 401
+    
+    switcher = {
+        "minutes": timedelta(minutes=max_age),
+        "hours": timedelta(hours=max_age),
+        "days": timedelta(days=max_age),
+        "weeks": timedelta(weeks=max_age)
+    }
+    
+    max_age = switcher.get(units, "Invalid units")
+    
+    if max_age == "Invalid units":
+        return 'Invalid units', 400
+    
+    key = str(uuid.uuid4())[:8]
+    keys.append({'key': key, 'max_uses': max_uses, 'max_age': datetime.now() + max_age})
+    sync_keys()
+    
+    domain = 'http://localhost:3500' if DEV else 'https://media.zanderp25.com'
+
+    os.system(f'qrencode -o media/qrgen/key-{key}.png {domain}/upload?k={key}')
+    qr_url = get_path(f'qrgen/key-{key}.png')
+
+    return open('uploadfile.html')\
+        .read()\
+        .replace('$URL', f'{domain}/upload?k={key}')\
+        .replace('Saved as $NAME', f'Expires {datetime.now() + max_age}, {max_uses} uses left')\
+        .replace('$NAME', "New Link")\
+        .replace('$QRURL', f'{domain}/qrgen/key-{key}.png')
+
+def key_matches(key: str):
+    for i in range(len(keys)):
+        if keys[i]['key'] == key:
+            if keys[i]['max_age'] < datetime.now():
+                keys.pop(i)
+                sync_keys()
+                return False
+            return True
+    return False
+
+def use_key(key: str):
+    for i in range(len(keys)):
+        if keys[i]['key'] == key:
+            keys[i]['max_uses'] -= 1
+            if keys[i]['max_uses'] <= 0:
+                keys.pop(i)
+            sync_keys()
+            return True
+    return False
+
+def sync_keys():
+    keysData = []
+    for key in keys:
+        keysData += [{'key': key['key'], 'max_uses': key['max_uses'], 'max_age': key['max_age'].isoformat()}]
+    json.dump(keysData, open('keys.json', 'w'), indent=4)
+
+@app.route('/managelinks', methods=['GET'])
+def managelinks():
+    return send_file('managelinks.html')
+
+@app.route('/managelinks', methods=['POST'])
+def managelinks_post():
+    print(request.form)
+    password = request.form.get('password')
+    action = request.form.get('action')
+
+    if password is None:
+        return 'Unauthorized', 401
+    if not bcrypt.checkpw(password.encode(), password_hash):
+        return 'Unauthorized', 401
+    
+    match action:
+        case 'get':
+            return json.dumps(keys)
+        case 'delete':
+            key = request.form.get('key')
+            if key is None:
+                return 'Invalid key', 400
+            for i in range(len(keys)):
+                if keys[i]['key'] == key:
+                    keys.pop(i)
+                    sync_keys()
+                    return json.dumps(keys), 200
+            return 'Invalid key', 400
+        case 'add':
+            max_uses = int(request.form.get('max_uses'))
+            max_age = int(request.form.get('max_age'))
+            units = request.form.get('units')
+            switcher = {
+                "minutes": timedelta(minutes=max_age),
+                "hours": timedelta(hours=max_age),
+                "days": timedelta(days=max_age),
+                "weeks": timedelta(weeks=max_age)
+            }
+            max_age = switcher.get(units, "Invalid units")
+            if max_age == "Invalid units":
+                return 'Invalid units', 400
+            key = str(uuid.uuid4())[:8]
+            keys.append({'key': key, 'max_uses': max_uses, 'max_age': datetime.now() + max_age})
+            return json.dumps(keys), 200
+        case 'edit':
+            key = request.form.get('key')
+            if key is None:
+                return 'Invalid key', 400
+            for i in range(len(keys)):
+                if keys[i]['key'] == key:
+                    max_uses = int(request.form.get('max_uses'))
+                    max_age = datetime.fromisoformat(request.form.get('max_age'))
+                    keys[i]['max_uses'] = max_uses
+                    keys[i]['max_age'] = max_age
+                    sync_keys()
+                    return json.dumps(keys), 200
+            return 'Invalid key', 400
+        case action:
+            return f'Invalid action "{action}"', 400
 
 @app.route('/clicks-ani-world')
 def clicks_ani_world():
@@ -109,7 +250,7 @@ def save_file(file: datastructures.FileStorage):
     if file:
         name = os.path.splitext(file.filename)[0]
         ext = os.path.splitext(file.filename)[1]
-        if ext in media_extensions:
+        if ext.lower() in media_extensions:
             filename = str(uuid.uuid4())[:6] + ext
             while os.path.exists(os.path.join('media', filename)):
                 filename = str(uuid.uuid4())[:6] + ext
@@ -172,6 +313,20 @@ def rosterupload():
     return send_file("roster.csv", as_attachment=True)
 
 if __name__ == '__main__':
+    if not os.path.exists('media'):
+        os.mkdir('media')
+
+    try: keys: list = json.load(open('keys.json', 'r'))
+    except: keys = []
+
+    for i in range(len(keys)):
+        keys[i]['max_age'] = datetime.fromisoformat(keys[i]['max_age'])
+
+    for i in range(len(keys)):
+        if keys[i]['max_age'] < datetime.now():
+            keys.pop(i)
+            sync_keys()
+
     if DEV: app.run(port=3500)
     else:
         from waitress import serve

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Links</title>
+    <style>
+        * {
+            --background-color: #F3F9D2;
+            --primary-color: #391463;
+            --secondary-color: #C0D684;
+            --tertiary-color: #CBEAA6;
+            --text-color: #391463;
+            --text-color-light: #736d79;
+        }
+        body {
+            font-family: sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            width: 100%;
+            margin: 0px;
+            justify-content: center;
+            flex-direction: column;
+            align-content: center;
+            flex-wrap: wrap;
+        }
+        form, div#links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            background-color: var(--secondary-color);
+            padding: 40px;
+            border-radius: 10px;
+            width: 400px;
+            margin: 40px;
+        }
+        div#links {
+            margin-top: 0;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: transparent;
+        }
+        input[type="button"] {
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            width: 50%;
+        }
+        input[type="button"]:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        input[type="password"] {
+            color: var(--text-color);
+        }
+        input[type="password"]::placeholder, input[type="file"]::-ms-input-placeholder {
+            color: var(--text-color-light);
+        }
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+            padding-left: 10px;
+        }
+        div.form-group {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            gap: 10px;
+            border-radius: 25px;
+            background-color: var(--tertiary-color);
+            padding: 2px;
+        }
+        div.form-group select {
+            border: none;
+            background: var(--background-color);
+            padding: 10px;
+            border-radius: inherit;
+        }
+        div.link {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 25px;
+            background-color: var(--tertiary-color);
+            padding: 10px;
+            width: 100%;
+        }
+        .link div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2px;
+        }
+        .link div div{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            padding: 2px;
+            width: 100%;
+        }
+        span.key {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: left;
+            padding: 10px;
+        }
+        span.uses_left_label {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+            padding-left: 10px;
+        }
+        span.expires_label {
+            font-size: 12px;
+            font-weight: bold;
+            text-align: left;
+            padding-left: 10px;
+        }
+        span.uses_left {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: left;
+        }
+        span.expires {
+            font-size: 15px;
+            font-weight: bold;
+            text-align: left;
+        }
+        button.button, input[type="submit"] {
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px;
+            margin: 2px;
+        }
+        button.delete {
+            background-color: #8d1212;
+        }
+        #popover {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 1;
+            }
+        </style>
+    <script>
+        function onLoad(){
+            document.querySelector('form#login')?.addEventListener('submit', e => {
+                e.preventDefault();
+                document.querySelector('#loginBtn').click();
+            });
+        }
+
+        function login() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/managelinks');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    document.querySelector('#loginBtn').value = "Logout";
+                    document.querySelector('#loginBtn').onclick = logout;
+                    parseLinks(JSON.parse(xhr.responseText));
+                } else if (xhr.status === 401) {
+                    console.error(xhr.responseText);
+                    alert("Incorrect password");
+                } else {
+                    console.error(xhr.statusText);
+                }
+            };
+            xhr.onerror = function() {
+                console.error(xhr.statusText);
+            };
+            formdata = new FormData();
+            formdata.append('password', document.querySelector('input[name="password"]').value);
+            formdata.append('action', 'get');
+            xhr.send(formdata);
+        }
+
+        function logout(){
+            document.querySelector('#loginBtn').value = "Login";
+            document.querySelector('#loginBtn').onclick = login;
+            document.querySelector('#links').style.display = "none";
+            document.querySelector('#links').innerHTML = "";
+            document.querySelector('input[name="password"]').value = "";
+        }
+
+        function deleteLink(key) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/managelinks');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    parseLinks(JSON.parse(xhr.responseText));
+                } else if (xhr.status === 401) {
+                    console.error(xhr.responseText);
+                    alert("Incorrect password");
+                } else {
+                    console.error(xhr.statusText);
+                }
+            };
+            xhr.onerror = function() {
+                console.error(xhr.statusText);
+            };
+            formdata = new FormData();
+            formdata.append('password', document.querySelector('input[name="password"]').value);
+            formdata.append('action', 'delete');
+            formdata.append('key', key);
+            xhr.send(formdata);
+        }
+
+        function editLink(key){
+            const popover = document.createElement('div');
+            popover.id = "popover";
+
+            currentMaxUses = 0;
+            document.querySelectorAll('.link').forEach(link => {
+                if (link.querySelector('.key').textContent == key) {
+                    currentMaxUses = parseInt(link.querySelector('.uses_left').textContent);
+                }
+            });
+
+            currentMaxAge = '';
+            document.querySelectorAll('.link').forEach(link => {
+                if (link.querySelector('.key').textContent == key) {
+                    currentMaxAge = link.querySelector('.expires').textContent;
+                }
+            });
+
+            //convert to iso format
+            maxAge = '';
+            if(currentMaxAge != ''){
+                const date = new Date(currentMaxAge);
+                maxAge = date.toISOString().split('.')[0];
+            }
+
+            const form = document.createElement('form');
+            form.id = "editLinkForm";
+
+            const keyTitle = document.createElement('h1');
+            keyTitle.textContent = key;
+            form.appendChild(keyTitle);
+
+            const maxUsesDiv = document.createElement('div');
+            maxUsesDiv.classList.add('form-group');
+            const maxUsesLabel = document.createElement('label');
+            maxUsesLabel.textContent = "Max Uses:";
+            maxUsesDiv.appendChild(maxUsesLabel);
+            const maxUsesInput = document.createElement('input');
+            maxUsesInput.type = "number";
+            maxUsesInput.name = "max_uses";
+            maxUsesInput.id = "max_uses";
+            maxUsesInput.placeholder = "Max Uses";
+            maxUsesInput.value = currentMaxUses;
+            maxUsesDiv.appendChild(maxUsesInput);
+            form.appendChild(maxUsesDiv);
+            
+            const maxAgeDiv = document.createElement('div');
+            maxAgeDiv.classList.add('form-group');
+            const maxAgeLabel = document.createElement('label');
+            maxAgeLabel.textContent = "Max Age:";
+            maxAgeDiv.appendChild(maxAgeLabel);
+            const maxAgeInput = document.createElement('input');
+            maxAgeInput.type = "datetime-local";
+            maxAgeInput.step = "1";
+            maxAgeInput.min = new Date().toISOString().split('.')[0];
+            maxAgeInput.name = "max_age";
+            maxAgeInput.id = "max_age";
+            maxAgeInput.placeholder = "Max Age";
+            maxAgeInput.value = maxAge;
+            maxAgeDiv.appendChild(maxAgeInput);
+            form.appendChild(maxAgeDiv);
+
+            const btnDiv = document.createElement('div');
+            btnDiv.style.display = "flex";
+            btnDiv.style.flexDirection = "row";
+            btnDiv.style.justifyContent = "space-between";
+            btnDiv.style.width = "100%";
+            form.appendChild(btnDiv);
+
+            const submitBtn = document.createElement('input');
+            submitBtn.type = "submit";
+            submitBtn.value = "Submit";
+            btnDiv.appendChild(submitBtn);
+
+            const cancelBtn = document.createElement('input');
+            cancelBtn.type = "button";
+            cancelBtn.value = "Cancel";
+            cancelBtn.onclick = function() {
+                document.querySelector('#popover').remove();
+            };
+            btnDiv.appendChild(cancelBtn);
+
+            popover.appendChild(form);
+            document.querySelector('body').appendChild(popover);
+
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                editLinkSubmit(key);
+            });
+        }
+
+        function editLinkSubmit(key){
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/managelinks');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    document.querySelector('#popover').remove();
+                    parseLinks(JSON.parse(xhr.responseText));
+                } else if (xhr.status === 401) {
+                    console.error(xhr.responseText);
+                    alert("Incorrect password");
+                } else {
+                    console.error(xhr.statusText);
+                    alert(xhr.statusText);
+                }
+            };
+            xhr.onerror = function() {
+                console.error(xhr.statusText);
+            };
+            formdata = new FormData();
+            formdata.append('password', document.querySelector('input[name="password"]').value);
+            formdata.append('action', 'edit');
+            formdata.append('key', key);
+            formdata.append('max_uses', document.querySelector('#max_uses').value);
+            formdata.append('max_age', document.querySelector('#max_age').value);
+            // formdata.append('units', document.querySelector('#units').value);
+            xhr.send(formdata);
+        }
+
+        function parseLinks(linksData){
+            document.querySelector('#links').style.display = "flex";
+            document.querySelector('#links').innerHTML = "";
+
+            for (let i = 0; i < linksData.length; i++) {
+                const link = linksData[i];
+                const linkDiv = document.createElement('div');
+                linkDiv.id = `link${i}`;
+                linkDiv.classList.add('link');
+
+                const linkInfoDiv = document.createElement('div');
+                const linkInfoDiv1 = document.createElement('div');
+                const linkInfoDiv2 = document.createElement('div');
+                linkInfoDiv.appendChild(linkInfoDiv1);
+                linkInfoDiv.appendChild(linkInfoDiv2);
+
+                const keySpan = document.createElement('span');
+                keySpan.classList.add('key');
+                keySpan.textContent = link.key;
+                linkInfoDiv1.appendChild(keySpan);
+
+                const usesLeftLabelSpan = document.createElement('span');
+                usesLeftLabelSpan.classList.add('uses_left_label');
+                usesLeftLabelSpan.textContent = 'Uses Left:';
+                linkInfoDiv1.appendChild(usesLeftLabelSpan);
+
+                const usesLeftSpan = document.createElement('span');
+                usesLeftSpan.classList.add('uses_left');
+                usesLeftSpan.textContent = link.max_uses;
+                linkInfoDiv1.appendChild(usesLeftSpan);
+
+                const expiresLabelSpan = document.createElement('span');
+                expiresLabelSpan.classList.add('expires_label');
+                expiresLabelSpan.textContent = 'Expires:';
+                linkInfoDiv2.appendChild(expiresLabelSpan);
+
+                const expiresSpan = document.createElement('span');
+                expiresSpan.classList.add('expires');
+                expiresSpan.textContent = link.max_age;
+                linkInfoDiv2.appendChild(expiresSpan);
+
+                linkDiv.appendChild(linkInfoDiv);
+
+                const buttonDiv = document.createElement('div');
+                linkDiv.appendChild(buttonDiv);
+
+                const deleteButton = document.createElement('button');
+                deleteButton.classList.add('button', 'delete');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = function() {
+                    deleteLink(link.key);
+                };
+                buttonDiv.appendChild(deleteButton);
+
+                const editButton = document.createElement('button');
+                editButton.classList.add('button');
+                editButton.textContent = 'Edit';
+                editButton.onclick = function() {
+                    editLink(link.key);
+                };
+                buttonDiv.appendChild(editButton);
+
+                document.querySelector('#links').appendChild(linkDiv);
+            }
+
+            if(linksData.length == 0){
+                const noLinksSpan = document.createElement('span');
+                noLinksSpan.textContent = 'No links found';
+                document.querySelector('#links').appendChild(noLinksSpan);
+            }
+
+            const btnDiv = document.createElement('div');
+            btnDiv.style.display = "flex";
+            btnDiv.style.flexDirection = "row";
+            btnDiv.style.justifyContent = "space-between";
+            btnDiv.style.width = "100%";
+            document.querySelector('#links').appendChild(btnDiv);
+
+            const addBtn = document.createElement('button');
+            addBtn.classList.add('button');
+            addBtn.textContent = 'Create New Link';
+            addBtn.onclick = function() {
+                // addLink();
+                window.open('/uploadlink');
+            };
+            btnDiv.appendChild(addBtn);
+
+            const refreshBtn = document.createElement('button');
+            refreshBtn.classList.add('button');
+            refreshBtn.textContent = 'Refresh';
+            refreshBtn.onclick = function() {
+                login();
+            };
+            btnDiv.appendChild(refreshBtn);
+
+            const currentUTCMsg = document.createElement('span');
+            currentUTCMsg.textContent = `Current UTC Time: ${new Date().toISOString().split('.')[0]}`;
+            document.querySelector('#links').appendChild(currentUTCMsg);
+        }
+    </script>
+</head>
+<body onload="onLoad()">
+    <form id="login">
+        <div class="form-group">
+            <input placeholder="Password" type="password" name="password">
+            <input type="button" value="Login" onclick="login()" id="loginBtn">
+        </div>
+    </form>
+    <div id="links" style="display: none;">
+        <!-- <div id="link0" class="link">
+            <div>
+                <div>
+                    <span class="key">key000</span>
+                    <span class="uses_left_label">Uses Left:</span>
+                    <span class="uses_left">10</span>
+                </div>
+                <div>
+                    <span class="expires_label">Expires:</span>
+                    <span class="expires">Mon, 16 Oct 2023 18:52:34 GMT</span>
+                </div>
+            </div>
+            <div>
+                <button onclick="deleteLink(0)" class="button delete">Delete</button>
+                <button onclick="editLink(0)" class="button">Edit</button>
+            </div>
+        </div> -->
+    </div>
+</body>
+</html>

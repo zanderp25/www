@@ -9,4 +9,5 @@ __pycache__
 /media/world.zip
 /media/token_hash
 /media/hashes.py
-roster.csv
+/media/keys.json
+/media/roster.csv

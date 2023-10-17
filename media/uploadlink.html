@@ -51,51 +51,55 @@
             cursor: pointer;
             opacity: 0.8;
         }
-        input[type="file"] {
-            background-color: var(--tertiary-color);
-            color: var(--text-color);
-            font-size: 16px;
-            font-weight: bold;
-            padding: 4px;
-        }
-        input[type="file"]::file-selector-button {
-            border: none;
-            border-radius: 25px;
-            color: white;
-            background-color: var(--primary-color);
-            padding: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            width: 125px;
-            margin-right: 10px;
-        }
-        input[type="file"]::file-selector-button:hover {
-            cursor: pointer;
-            opacity: 0.8;
-        }
         input[type="password"] {
             color: var(--text-color);
         }
         input[type="password"]::placeholder, input[type="file"]::-ms-input-placeholder {
             color: var(--text-color-light);
         }
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+            padding-left: 10px;
+        }
         div.form-group {
             display: flex;
             flex-direction: row;
+            align-items: center;
             width: 100%;
             gap: 10px;
             border-radius: 25px;
             background-color: var(--tertiary-color);
             padding: 2px;
         }
+        div.form-group select {
+            border: none;
+            background: var(--background-color);
+            padding: 10px;
+            border-radius: inherit;
+        }
     </style>
 </head>
 <body>
-    <form action="/uploadfile" method="post" enctype="multipart/form-data">
-        <input type="file" name="file">
+    <form action="/uploadlink" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="max_uses" style="width: 35%;">Max Uses:</label>
+            <input type="number" name="max_uses" id="max_uses" placeholder="Max Uses" value="1">
+        </div>
+        <div class="form-group">
+            <label for="max_age">Duration:</label>
+            <input type="number" name="max_age" id="max_age" placeholder="Max Age" value="24">
+            <select name="units" id="units">
+                <option value="minutes">minutes</option>
+                <option value="hours" selected>hours</option>
+                <option value="days">days</option>
+                <option value="weeks">weeks</option>
+            </select>
+        </div>
         <div class="form-group">
             <input placeholder="Password" type="password" name="password">
-            <input type="submit" value="Upload">
+            <input type="submit" value="Create">
         </div>
     </form>
 </body>
