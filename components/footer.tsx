@@ -11,7 +11,8 @@ export function Footer() {
     let socials = [
         {name: 'GitHub', href: 'https://github.com/zanderp25', icon: '/assets/icons/socials/github.png'}, 
         {name: 'Discord', href: 'https://discord.gg/672yY5v', icon: '/assets/icons/socials/discord.png'},
-        {name: 'Twitter', href: 'https://twitter.com/zanderp25', icon: '/assets/icons/socials/twitter.png'}, 
+        {name: 'Instagram', href: 'https://instagram.com/zanderp25', icon: '/assets/icons/socials/instagram.png'},
+        {name: 'Threads', href: 'https://threads.net/@zanderp25', icon: '/assets/icons/socials/threads.png'},
         {name: 'YouTube', href: 'https://youtube.com/@zanderp25', icon: '/assets/icons/socials/youtube.png'},
         {name: 'Twitch', href: 'https://twitch.tv/zanderp25', icon: '/assets/icons/socials/twitch.png'},
     ]
