@@ -80,20 +80,32 @@
         "explanation":"This is filler text in Latin that is commonly used to demonstrate the graphic elements of a document or visual presentation."
     },
     {
-        "text":"Paimon's not emergency food!",
-        "explanation":"This is a reference from Genshin Impact. Paimon is friends with the main character and there is an ongoing joke about the main character introducing Paimon as emergency food, and this is Paimon's response."
-    },
-    {
         "text":"Beep boop.",
         "explanation":"I. AM. A. ROBOT. (Stereotypical robot noises)"
+    },
+    {
+        "text":"Beep. Construct. Beep.",
+        "explanation":"This is a quote from the character \"Paimon\" from the game Genshin Impact during the \"Throuch the Predawn Night\" quest in Chapter III, Act V: \"Akasha Pulses, the Kalpa Flame Rises\". In this Quest, Cyno calls Paimon a Construct to avoid bringing too much attention to her. Paimon then responds with \"Beep. Construct. Beep.\""
+    },
+    {
+        "text":"Paimon's not emergency food!",
+        "explanation":"This is a reference from Genshin Impact. Paimon is friends with the main character and there is an ongoing joke about the main character introducing Paimon as emergency food, and this is Paimon's response."
     },
     {
         "text":"Ehe te nandayō?!?",
         "explanation":"This is a meme from the Japanese voice over of the game Genshin Impact where Paimon says \"「えへ」て何だよう！？\" (pronounced \"Ehe te nandayō?!?\" which translates to \"What do you mean 'hehe'?\") after another character says \"hehe\"."
     },
     {
+        "text":"Why don't we explore the area ahead of us later?",
+        "explanation":"This is a quote from the character \"Paimon\" from the game Genshin Impact. It is a meme because Paimon says this every time you try to go to an area that hasn't been unlocked yet."
+    },
+    {
         "text":"Kuru kuru~!",
         "explanation":"This is a meme from the Japanese voice over of the game Honkai: Star Rail where the character Herta says \"くるくる～！\" (pronounced \"Kuru kuru~!\" which translates to \"Round and round~!\") while spinning to attack an enemy. The English voice over says \"Time to twirl~!\" instead."
+    },
+    {
+        "text":"Waku! Waku!",
+        "explanation":"This is a quote from Anya Forger from the Japanese anime \"SPY x FAMILY\". It is a meme because Anya says this every time she is excited. The original quote is \"スパイ！ミッション！わくわく！\" (pronounced \"Supai! Misshon! Wakuwaku!\" which translates to \"Spy! Mission! Exciting!\"), from a part of the anime where Anya is excited to go on a mission."
     },
     {
         "text":"https://youtu.be/dQw4w9WgXcQ",
@@ -122,6 +134,45 @@
     {
         "text":"(＾▽＾)ノ",
         "explanation":"A happy waving emoticon."
+    },
+    {
+        "text":"☆*: .｡. o(≧▽≦)o .｡.:*☆",
+        "explanation":"A *very* happy emoticon."
+    },
+    {
+        "text":"^0^",
+        "explanation":"A cheering emoticon."
+    },
+    {
+        "text":"(∪.∪ )...zzz",
+        "explanation":"Oops, this guy fell asleep!"
+    },
+    {
+        "text":"(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧",
+        "explanation":"A happy emoticon."
+    },
+    {
+        "text":"(⌐■_■)",
+        "explanation":"A cool dude emoticon."
+    },
+    {
+        "text":"o((>ω< ))o",
+        "explanation":"An angy emoticon. (Angy = cute way of saying angry)"
+    },
+    {
+        "text":"Hurry! Wish before it goes away!! 彡☆",
+        "explanation":"The characters at the end look like a shooting star, and the act of wishing upon a shooting star is said to have originated in Europe, when Greek astronomer Ptolemy wrote that the gods occasionally, out of curiosity, peer down at the Earth from between the spheres, and when they do, a star falls down."
+    },
+    {
+        "text":"オトノナルホウヘ→",
+        "explanation":"This is the title of a song by the Japanese band \"Goose House\". It is pronounced \"Oto no naru hou e\" (also written as \"音のなるほうへ\") which translates to \"Towards the sound\". The song is about embracing your true self, staying connected with others, and following your dreams. It is a really good song."
+    },
+    {
+        "text":"Waaaaaaa!",
+        "explanation":"This is a famous quote from the character \"Waluigi\" from Nintendo's Super Mario series of video games."
+    },
+    {
+        "text":""
     },
     {
         "text":"<p>Expert in web development</p>",
