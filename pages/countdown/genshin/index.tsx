@@ -155,7 +155,7 @@ function App() {
             <div style={{width: "100%",height: "100%",objectFit: "cover",position: "absolute",top: "0",left: "0",zIndex: "-1"}}>
                 <Image 
                     src={background} layout="fill" objectFit="cover" 
-                    onError={() => {setBackground("/assets/genshin/Fontaine.jpeg");return true;}}
+                    onError={() => {setBackground("/assets/genshin/Fontaine-aerial.webp");return true;}}
                 />
             </div>
             {body}
