@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import styles from "../styles/Components/countdown.module.css";
+import popoverStyles from '../styles/components/countdown.ver.module.css';
 
-export default function Countdown({ date, light }: { date: Date|string, light?: boolean }): JSX.Element {
+export function Countdown({ date, light }: { date: Date|string, light?: boolean }): JSX.Element {
     light = !!light;
 
     let [days, setDays] = useState(0);
@@ -75,4 +77,79 @@ export default function Countdown({ date, light }: { date: Date|string, light?: 
             </div>
         </div>
     );
+}
+
+export function VersionPopover({updates, isOpen, close}: {updates: {name: string, date: string, image: string}[], isOpen: boolean, close: () => void}): JSX.Element {
+    let rupdates = [...updates];
+    rupdates.reverse();
+
+    return (
+        <>
+            <div 
+                style={{display: isOpen ? "flex" : "none"}} className={popoverStyles.backdrop} 
+                onClick={(e) => {if (e.target == e.currentTarget) close();}}
+            >
+                <div className={popoverStyles.popover} >
+                    <div className={popoverStyles.popoverHeader}>
+                        <h1>Version History</h1>
+                        <span onClick={close} className={popoverStyles.popoverX}>✖</span>
+                    </div>
+                    <div className={popoverStyles.popoverList}>
+                        {rupdates.map((update, index) => (
+                            <div key={index} className={popoverStyles.popoverListItem}>
+                                <PopoverImage src={update.image} />
+                                <div>
+                                    <h3>{update.name}</h3>
+                                    <p>
+                                        {
+                                            new Date(update.date)
+                                            .toLocaleDateString(
+                                                "en-US", 
+                                                {weekday: "long", year: "numeric", month: "long", day: "numeric"}
+                                            )
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
+export function Notice({text}){
+    return (<div
+            style={{
+                display: "flex", justifyContent: "center", alignItems: "center", height: "100vh",
+                background: "rgba(0, 0, 0, 0.5)", backdropFilter: "blur(5px)",
+            }}
+        >
+            <div
+                style={{
+                    background: "rgba(0, 0, 0, 0.5)", padding: "2rem", margin: "4rem",
+                    borderRadius: "1rem", textAlign: "center",
+                }}
+            >
+                <h1 style={{color:"white"}}>{text}</h1>
+            </div>
+        </div>
+    );
+}
+
+function PopoverImage({src}){
+    let [imgsrc, setSrc] = useState(src);
+
+    function onError(){
+        setSrc("/assets/icons/genshin.png");
+    }
+
+    return (
+        <Image src={imgsrc} height={75} width={133} objectFit='cover'
+            style={{borderRadius: "10px"}}
+            placeholder='blur' blurDataURL={imgsrc}
+            onError={onError}
+        />
+    )
 }

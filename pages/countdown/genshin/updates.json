@@ -133,25 +133,10 @@
         "light": false
     },
     {
-        "name": "3.2 Banner 2", 
-        "date": "2022-11-20T06:59:00+08:00",
-        "image": "/assets/genshin/layla.png",
-        "image_credits": "HOYOVERSE",
-        "light": false
-    },
-    {
         "name": "Version 3.3",
         "date": "2022-12-07T11:00:00+08:00",
         "image": "/assets/genshin/wanderer.jpg",
         "image_credits": "HOYOVERSE",
-        "light": false
-    },
-    {
-        "name": "3.3 Banner 2",
-        "date": "2022-12-28T11:00:00+08:00",
-        "image": "/assets/genshin/ffluvy-raiden.jpg",
-        "image_credits": "@ffluvy on Twitter",
-        "image_credits_url": "https://twitter.com/ffluvy/status/1594956330963722240",
         "light": false
     },
     {
@@ -160,13 +145,6 @@
         "image": "/assets/genshin/alhaitham.jpg",
         "image_credits": "@dailyalhaitham via Twitter",
         "image_credits_url": "https://twitter.com/dailyalhaitham/status/1550940984405643267",
-        "light": false
-    },
-    {
-        "name": "3.4 Banner 2",
-        "date": "2023-02-08T11:00:00+08:00",
-        "image": "/assets/genshin/hutao.png",
-        "image_credits": "HOYOVERSE",
         "light": false
     },
     {
@@ -184,25 +162,10 @@
         "light": false
     },
     {
-        "name": "3.6 Banner 2",
-        "date": "2023-05-03T07:00:00+08:00",
-        "image": "/assets/genshin/baizhu.png",
-        "image_credits": "HOYOVERSE",
-        "light": false
-    },
-    {
         "name": "Version 3.7",
         "date": "2023-05-24T11:00:00+08:00",
         "image": "/assets/genshin/Kirara.png",
         "image_credits": "HOYOVERSE",
-        "light": false
-    },
-    {
-        "name": "3.7 Banner 2",
-        "date": "2023-06-13T07:00:00+08:00",
-        "image": "/assets/genshin/alhaitham.jpg",
-        "image_credits": "@dailyalhaitham via Twitter",
-        "image_credits_url": "https://twitter.com/dailyalhaitham/status/1550940984405643267",
         "light": false
     },
     {

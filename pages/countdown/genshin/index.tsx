@@ -3,91 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import Countdown from '../../../components/countdown';
+import {Countdown, Notice, VersionPopover} from '../../../components/countdown';
 import FullscreenButton from '../../../components/fullscreenButton';
 import updates from './updates.json';
-
-function VersionPopover({isOpen, close}) {
-    let rupdates = [...updates];
-    rupdates.reverse();
-
-    return (
-        <>
-            <div 
-                style={{
-                    position: "absolute",top: "0",left: "0",zIndex: "10",
-                    width: "100%", height: "100%",
-                    backdropFilter: "blur(5px)",
-                    display: isOpen ? "flex" : "none",
-                    placeContent: "center"
-                }}
-                onClick={close}
-            >
-                <div 
-                    style={{
-                        background: "rgba(0,0,0,0.5)",color: "#fff",
-                        padding: "2rem", margin: "4rem",
-                        borderRadius: "1rem",backdropFilter: "blur(5px)",
-                        display: "flex", flexDirection: "column",
-                    }}
-                >
-                    <div style={{display:"flex", justifyContent:"space-between", alignItems:"flex-start"}}>
-                        <h1 style={{textAlign: "center", margin:"0 0 10px 0"}}>Version History</h1>
-                        <button onClick={close} style={{float: "right",border: "none",background: "none",color: "#fff",fontSize: "1.5rem"}}>✖</button>
-                    </div>
-                    <div style={{overflowY: "scroll", height: "100%", display:"flex", flexDirection:"column", gap:"10px"}}>
-                        {rupdates.map((update, index) => (
-                            <div key={index} style={{display: "flex", alignItems: "center", marginBottom: "10px", paddingRight: "10px"}}>
-                                <PopoverImage src={update.image} />
-                                <div style={{display:"flex", marginLeft: "10px", flexDirection:"column"}}>
-                                    <h3 style={{fontSize:"30px", margin:"0"}}>{update.name}</h3>
-                                    <p style={{margin:"0"}}>
-                                        {new Date(update.date).toLocaleDateString("en-US", {weekday: "long", year: "numeric", month: "long", day: "numeric"})}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </>
-    )
-}
-
-function Notice({text}){
-    return (<div
-            style={{
-                display: "flex", justifyContent: "center", alignItems: "center", height: "100vh",
-                background: "rgba(0, 0, 0, 0.5)", backdropFilter: "blur(5px)",
-            }}
-        >
-            <div
-                style={{
-                    background: "rgba(0, 0, 0, 0.5)", padding: "2rem", margin: "4rem",
-                    borderRadius: "1rem", textAlign: "center",
-                }}
-            >
-                <h1 style={{color:"white"}}>{text}</h1>
-            </div>
-        </div>
-    );
-}
-
-function PopoverImage({src}){
-    let [imgsrc, setSrc] = useState(src);
-
-    function onError(){
-        setSrc("/assets/icons/genshin.png");
-    }
-
-    return (
-        <Image src={imgsrc} height={75} width={133} objectFit='cover'
-            style={{borderRadius: "10px"}}
-            placeholder='blur' blurDataURL={imgsrc}
-            onError={onError}
-        />
-    )
-}
 
 function App() {
     let dates = updates.filter((date) => {
@@ -183,7 +101,7 @@ function App() {
                     backdropFilter: "blur(5px)"
                 }}
             >Version History</button>
-            <VersionPopover isOpen={isOpen} close={closePopover} />
+            <VersionPopover updates={updates} isOpen={isOpen} close={closePopover} />
         </>
     )
 }

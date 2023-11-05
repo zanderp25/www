@@ -1,0 +1,206 @@
+.backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    display: flex;
+    place-content: center;
+}
+
+.popover {
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    padding: 2rem;
+    margin: 4rem;
+    border-radius: 1rem;
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+}
+
+.popoverHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.popoverHeader h1 {
+    margin: 0 0 10px 0;
+    text-align: center;
+}
+
+.popoverX {
+    cursor: pointer;
+    font-size: 2rem;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.popoverList {
+    overflow-y: scroll;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.popoverListItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-right: 10px;
+}
+
+.popoverListItem div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.popoverListItem div h3 {
+    font-size: 30px;
+    margin: 0;
+}
+
+.popoverListItem div p {
+    font-size: 20px;
+    margin: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .popover {
+        margin: 0;
+        border-radius: 0;
+        padding-bottom: 0;
+    }
+
+    .popoverHeader h1 {
+        padding: 0;
+        font-size: 2.5rem;
+    }
+    
+    .popoverList::after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4rem;
+        backdrop-filter: blur(10px);
+        mask: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0) 0%,
+            rgba(0,0,0,.4) 25%,
+            rgba(0,0,0,.7) 50%,
+            rgba(0,0,0,.9) 75%,
+            rgba(0,0,0,1) 100%
+        );
+        pointer-events: none;
+    }
+
+    .popoverListItem {
+        margin-bottom: 0;
+        padding-right: 0;
+    }
+
+    .popoverListItem div h3 {
+        font-size: 20px;
+    }
+
+    .popoverListItem div p {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-height: 500px) and (min-width: 600px) {
+    .popover {
+        margin: 0;
+        border-radius: 0;
+        padding: 0;
+        width: 100%;
+        padding: 1rem calc(1rem + env(safe-area-inset-right)) 1rem calc(1rem + env(safe-area-inset-left));
+    }
+
+    .popoverHeader h1 {
+        padding: 0;
+        padding-top: 1rem;
+        font-size: 2.5rem;
+        position: fixed;
+        width: calc(25vw - 2rem);
+        text-align: right;
+    }
+
+    .popoverHeader::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: calc(25vw + env(safe-area-inset-left));
+        width: 2px;
+        height: 100%;
+        background: #fff4;
+    }
+
+    .popoverX {
+        position: fixed;
+        top: 0;
+        right: env(safe-area-inset-right);
+        margin: 1rem;
+    }
+    .popoverList {
+        margin: -1rem 1rem -1rem 30%;
+        height: 100vh;
+        padding: 0;
+        padding-left: 5px;
+        padding-top: 1.5rem;
+        padding-bottom: 2rem;
+    }
+    
+    .popoverList::after, .popoverList::before{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.5rem;
+        backdrop-filter: blur(10px);
+        mask: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0) 0%,
+            rgba(0,0,0,.4) 25%,
+            rgba(0,0,0,.7) 50%,
+            rgba(0,0,0,.9) 75%,
+            rgba(0,0,0,1) 100%
+        );
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    .popoverList::before {
+        top: 0;
+        bottom: auto;
+        mask: linear-gradient(
+            to top,
+            rgba(0,0,0,0) 0%,
+            rgba(0,0,0,.4) 25%,
+            rgba(0,0,0,.7) 50%,
+            rgba(0,0,0,.9) 75%,
+            rgba(0,0,0,1) 100%
+        );
+    }
+
+    .popoverListItem {
+        margin-bottom: 0;
+        padding-right: 0;
+    }
+
+    .popoverListItem div h3 {
+        font-size: 20px;
+    }
+
+    .popoverListItem div p {
+        font-size: 15px;
+    }
+}
