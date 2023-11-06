@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Particles from "react-tsparticles";
 import { loadSnowPreset } from "tsparticles-preset-snow";
 
-import Countdown from '../../components/countdown';
+import { Countdown } from '../../components/countdown';
 import FullscreenButton from '../../components/fullscreenButton';
 
 function getChristmas(now){
