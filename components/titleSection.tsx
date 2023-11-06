@@ -42,14 +42,22 @@ export default function TitleSection({ children }){
         }, 1000);
     }
 
-    let [questIcon, setQuestIcon] = useState("/assets/icons/genshin/Icon_Archon_Quest.webp");
+    let [YSQuestIcon, setYSQuestIcon] = useState("/assets/icons/genshin/Icon_Archon_Quest.webp");
     useEffect(() => {
-            setQuestIcon(randomChoice([
+            setYSQuestIcon(randomChoice([
             "/assets/icons/genshin/Icon_Archon_Quest.webp",
             "/assets/icons/genshin/Icon_Commission.svg",
             "/assets/icons/genshin/Icon_Event_Quest.webp",
             "/assets/icons/genshin/Icon_Story_Quest.webp",
             "/assets/icons/genshin/Icon_World_Quest.webp",
+        ]));
+    });
+
+    let [HSRQuestIcon, setHSRQuestIcon] = useState("/assets/icons/star-rail/TrailblazeQuest.png");
+    useEffect(() => {
+            setHSRQuestIcon(randomChoice([
+            "/assets/icons/star-rail/TrailblazeQuest.png",
+            "/assets/icons/star-rail/AdventureMission.png",
         ]));
     });
 
@@ -63,7 +71,8 @@ export default function TitleSection({ children }){
                 <span id="scoreContainer" className={styles.scoreContainer}></span>
                 <img src="/assets/icons/mario/questionBlock.gif" className={styles.questionBlock} onClick={summonCoin} />
                 <img src="/assets/icons/mario/coin.gif" className={styles.floatingCoin} />
-                <img src={questIcon} className={styles.questIcon} />
+                <img src={YSQuestIcon} className={styles.YSQuestIcon} />
+                <img src={HSRQuestIcon} className={styles.HSRQuestIcon} />
                 <img src="/assets/icons/genshin/Icon_New.webp" className={styles.newIcon} />
                 <img src="/assets/icons/genshin/Icon_Paimon_Menu.webp" className={styles.paimonIcon} />
                 <img src="/assets/icons/mario/mario.png" className={styles.mario} />

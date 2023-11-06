@@ -152,14 +152,22 @@
     animation: floating 2s ease-in-out 500ms infinite;
 }
 
-.questIcon{
+.YSQuestIcon, .HSRQuestIcon{
     position: absolute;
     top: 17vh;
     left: 23vw;
     height: 40px;
     width: 40px;
     animation: floating 2s ease-in-out infinite;
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+}
+
+.HSRQuestIcon {
+    top: 25vh;
+    left: auto;
+    right: 25vw;
+    animation-delay: 1s;
+    filter: none;
 }
 
 .newIcon{
@@ -249,9 +257,12 @@
         left: 35vw;
         top: 80%;
     }
-    .questIcon{
+    .YSQuestIcon{
         top: 15vh;
         left: 45vw;
+    }
+    .HSRQuestIcon{
+        display: none;
     }
     .triforce{
         top: 20vh;
