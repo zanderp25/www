@@ -3,33 +3,32 @@ import { useState } from "react";
 import styles from "../styles/Components/alertBanner.module.css";
 import Link from "next/link";
 
-// function AlertBanner({ title, message, type, link, cookieName, maxAge}: 
-export default function AlertBanner({ title, message, type, link}: 
-        // { title: string, message: string, type: string, link?: string}) 
-        { title: string, message: string, type: string, link?: string, cookieName?: string, maxAge?: number }) 
+export default function AlertBanner({ title, message, type, link, stayAlive}:
+        { title: string, message: string, type: string, link?: string, stayAlive?: number }) 
     {
-    const [show, setShow] = useState(true);
+    let [show, setShow] = useState(true);
+    let [opacity, setOpacity] = useState(1);
+
+    function closeBanner() {
+        setOpacity(0);
+        setTimeout(() => {
+            setShow(false);
+        }, 500);
+    }
+
+    if (stayAlive) {
+        setTimeout(() => {
+            closeBanner();
+        }, stayAlive*1000);
+    }
 
     if (link == undefined) link = "javascript:void(0)";
-    
-    // if (cookieName) {
-    //     if (document.cookie.includes(cookieName)) {
-    //         setShow(false);
-    //     }
-    // }
-
-    // function closeBanner(cookieName?:string, maxAge?: number) {
-    //     if(cookieName) {
-    //         document.cookie = `${cookieName}=true; ${maxAge? `max-age=${maxAge}` : ""} path=/`;
-    //     }
-    //     setShow(false);
-    // }
 
     let linkStyle = {color: "inherit", textDecoration: "none"};
 
     return (
         show && (
-        <div className={`${styles.alertBanner} ${styles[type]}`}>
+        <div className={`${styles.alertBanner} ${styles[type]}`} style={{opacity: opacity, transform: `translateX(-${100*(1-opacity)}%)`}} >
             {
                 link? (
                     <Link href={link}><a style={linkStyle}>
@@ -48,7 +47,7 @@ export default function AlertBanner({ title, message, type, link}:
             {/* {cookieName? (
                 <button className={styles.alertBannerClose} onClick={() => closeBanner(cookieName, maxAge)}>&#10006;</button>
             ) : ( */}
-                <button className={styles.alertBannerClose} onClick={() => setShow(false)}>&#10006;</button>
+                <button className={styles.alertBannerClose} onClick={closeBanner}>&#10006;</button>
             {/* )} */}
         </div>
         )

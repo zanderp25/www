@@ -1,6 +1,7 @@
 import AlertBanner from "./alertBanner";
 import genshinUpdates from "../pages/countdown/genshin/updates.json";
 import starRailUpdates from "../pages/countdown/star-rail/updates.json";
+import styles from "../styles/Components/alertBanner.module.css";
 
 export default function CountdownBanner() {
     let events = getEvents();
@@ -11,20 +12,19 @@ export default function CountdownBanner() {
             banners.push(
                 <AlertBanner 
                     title={events[i].title}
-                    message={`The ${events[i].name} countdown is ending in ${Math.round(timeUntil/86400000)} days ${Math.round((timeUntil%86400000)/3600000)} hours. Click here to see the countdown.`}
+                    message={`The ${events[i].name} countdown is ending in ${Math.floor(timeUntil/86400000)} days ${Math.floor((timeUntil%86400000)/3600000)} hours. Click here to see the countdown.`}
                     type="info"
                     link={`/countdown/${events[i].type}`}
                     key={events[i].name}
-                    // cookieName={events[i].type}
-                    // maxAge={86400}
+                    stayAlive={10}
                 />
             );
         }
     }
     return (
-        <>
+        <div className={styles.bannerGroup}>
             {banners}
-        </>
+        </div>
     );
 }
 

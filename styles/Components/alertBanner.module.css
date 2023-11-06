@@ -1,38 +1,47 @@
 .alertBanner {
-  position: absolute;
-  top: 50px;
-  left: 0;
-  right: 0;
+  position: relative;
+  width: 100%;
   z-index: 99;
 
   background-color: #f8f8f8;
   color: #000;
-  border-radius: 3em;
-  padding: 1rem 2rem;
-  margin: 1rem;
-  margin-top: 2rem;
+  border-radius: 1em;
+  padding: 0.75rem;
+  padding-left: 1.5em;
+  transition-duration: 500ms;
+  transition-property: opacity, transform;
+  transition-timing-function: ease-in-out;
 
   display: flex;
-  align-items: center;
   flex-direction: row;
   justify-content: space-between;
 }
 
+.alertBanner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.75rem;
+  height: 100%;
+  border-radius: 1em 0 0 1em;
+}
+
 .alertBannerContent {
   display: flex;
-  align-items: center;
-  flex-direction: row;
+  flex-direction: column;
+  align-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .alertBannerContent h3 {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   margin: 0;
 }
 
 .alertBannerContent p {
-  font-size: 1rem;
+  font-size: 0.8rem;
   margin: 0;
-  margin-left: 1rem;
 }
 
 .alertBanner button {
@@ -44,17 +53,40 @@
 }
 
 .info {
-  background: #1e88e5;
-  color: #fff;
+  background: #c9e6ff;
+  color: #000;
 }
 
 .warning {
-  background: #ff9900;
-  color: #fff;
+  background: #ffeaa7;
+  color: #000;
 }
 
 .danger {
-  background: #dc5046;
-  color: #fff;
+  background: #ffcccc;
+  color: #000;
 }
 
+.info::before {
+  background: #1e88e5;
+}
+
+.warning::before {
+  background: #ff9900;
+}
+
+.danger::before {
+  background: #dc5046;
+}
+
+.bannerGroup {
+  position: absolute;
+  top: 75px;
+  left: 15px;
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: left;
+  gap: 0.5rem;
+}
