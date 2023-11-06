@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "../styles/Components/countdown.module.css";
-import popoverStyles from '../styles/components/countdown.ver.module.css';
+import popoverStyles from '../styles/Components/countdown.ver.module.css';
 
 export function Countdown({ date, light }: { date: Date|string, light?: boolean }): JSX.Element {
     light = !!light;
