@@ -148,7 +148,7 @@
 
 .floatingCoin{
     left: 17vw;
-    top: 15vh;
+    top: 15%;
     animation: floating 2s ease-in-out 500ms infinite;
 }
 
@@ -247,7 +247,7 @@
 @media (max-width: 800px) {
     .floatingCoin{
         left: 35vw;
-        top: 80vh;
+        top: 80%;
     }
     .questIcon{
         top: 15vh;
@@ -258,7 +258,7 @@
         left: 25vw;
     }
     .rupee{
-        top: 85vh;
+        top: 85%;
         right: 15vw;
     }
     .mario{
@@ -277,7 +277,7 @@
         right: 35vw;
     }
     .mushroom{
-        bottom: 25vh;
+        bottom: 25%;
         right: 30vw;
     }
 }

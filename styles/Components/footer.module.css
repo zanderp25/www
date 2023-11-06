@@ -56,7 +56,10 @@
 .socials {
     align-items: center;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     font-size: 16px;
+    row-gap: 10pt;
 }
 
 .socials li {
@@ -80,14 +83,11 @@
 }
 
 @media (max-width: 800px) {
-    .socials {
-        flex-direction: column;
-    }
-    .socials li {
-        margin: 5pt;
-    }
     .footer {
         justify-content: space-around;
+    }
+    .socials a span {
+        display: none;
     }
 }
 
