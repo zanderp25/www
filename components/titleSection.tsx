@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import styles from "../styles/Components/titleSection.module.css";
 
 function randomChoice(arr) {
@@ -41,13 +42,16 @@ export default function TitleSection({ children }){
         }, 1000);
     }
 
-    let questIcon = randomChoice([
-        "/assets/icons/genshin/Icon_Archon_Quest.webp",
-        "/assets/icons/genshin/Icon_Commission.svg",
-        "/assets/icons/genshin/Icon_Event_Quest.webp",
-        "/assets/icons/genshin/Icon_Story_Quest.webp",
-        "/assets/icons/genshin/Icon_World_Quest.webp",
-    ]);
+    let [questIcon, setQuestIcon] = useState("/assets/icons/genshin/Icon_Archon_Quest.webp");
+    useEffect(() => {
+            setQuestIcon(randomChoice([
+            "/assets/icons/genshin/Icon_Archon_Quest.webp",
+            "/assets/icons/genshin/Icon_Commission.svg",
+            "/assets/icons/genshin/Icon_Event_Quest.webp",
+            "/assets/icons/genshin/Icon_Story_Quest.webp",
+            "/assets/icons/genshin/Icon_World_Quest.webp",
+        ]));
+    });
 
     return(
         <>

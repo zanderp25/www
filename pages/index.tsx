@@ -1,7 +1,7 @@
 import DefaultLayout from '../components/defaultLayout';
 import { Button } from '../components/button';
 import TitleSection from '../components/titleSection';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import splashTextList from './splashTexts.json';
 import Link from 'next/link';
 import CountdownBanner from '../components/countdownBanner';
@@ -15,10 +15,13 @@ export default function HomePage() {
     return text.text;
   });
   splashTexts.push(`There is a 1 in ${splashTexts.length+1} chance of seeing this message.`);
-  let [splashText, setSplashText] = useState(randomChoice(splashTexts));
+  let [splashText, setSplashText] = useState("Hello, world!");
   let newSplashText = () => {
     setSplashText(randomChoice(splashTexts));
   };
+  useEffect(() => {
+    newSplashText();
+  }, []);
 
   return (
     <DefaultLayout>
