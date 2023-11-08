@@ -82,6 +82,10 @@
         font-size: 2.5rem;
     }
     
+    .popoverList{
+        padding-bottom: 2rem;
+    }
+    
     .popoverList::after{
         content: '';
         position: absolute;
