@@ -220,7 +220,7 @@ def clicks_ani_world():
     return send_file('world.zip', as_attachment=True)
 
 @app.route('/clicks-ani-sabimora')
-def clicks_ani_world():
+def clicks_ani_sabimora():
     os.system('cp -r ../../ClicksAniMC/sabimora .; zip -r sabimora.zip sabimora; rm -rf sabimora')
     return send_file('sabimora.zip', as_attachment=True)
 
