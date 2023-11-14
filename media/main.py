@@ -219,6 +219,11 @@ def clicks_ani_world():
     os.system('cp -r ../../ClicksAniMC/world .; zip -r world.zip world; rm -rf world')
     return send_file('world.zip', as_attachment=True)
 
+@app.route('/clicks-ani-sabimora')
+def clicks_ani_world():
+    os.system('cp -r ../../ClicksAniMC/sabimora .; zip -r sabimora.zip sabimora; rm -rf sabimora')
+    return send_file('sabimora.zip', as_attachment=True)
+
 @app.route('/update/<string:game>', methods=['POST'])
 def update_countdown(game: str):
     token = request.headers.get('Authorization')
