@@ -8,6 +8,7 @@ export default function CountdownBanner() {
     let banners = [];
     for (let i = 0; i < events.length; i++) {
         let timeUntil = getTimeUntil(events[i].date);
+        if (events[i].name.includes(" (TBD)")) continue;
         if (timeUntil < 864000000 && timeUntil > 0) {
             banners.push(
                 <AlertBanner 

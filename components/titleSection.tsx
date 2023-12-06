@@ -19,7 +19,7 @@ export default function TitleSection({ children }){
         sound.src = "/assets/sounds/coin.aac";
         sound.controls = false;
         sound.autoplay = true;
-        sound.volume = 0.25;
+        sound.volume = 0.04; // 4 percent volume lol
 
         container.appendChild(coin);
         container.appendChild(sound);
