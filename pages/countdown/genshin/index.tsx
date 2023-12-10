@@ -46,9 +46,6 @@ function App() {
             credits = date.image_credits;
         }
         body = <>
-            <div style={{width: "100%",height: "100%",objectFit: "cover",position: "absolute",top: "0",left: "0",zIndex: "-1"}}>
-                <Image src={date.image} layout="fill" objectFit="cover" />
-            </div>
             <Countdown date={date.date} light={date.light} />
             <span 
                 style={{
