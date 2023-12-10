@@ -198,9 +198,16 @@
         "light": false
     },
     {
-        "name": "Version 4.3 (TBD)",
+        "name": "Version 4.3",
         "date": "2023-12-20T11:00:00+08:00",
         "image": "/assets/genshin/4.3.png",
+        "image_credits": "HOYOVERSE",
+        "light": false
+    },
+    {
+        "name": "Version 4.4 (TBD)",
+        "date": "2024-01-31T11:00:00+08:00",
+        "image": "/assets/genshin/4.4.png",
         "image_credits": "HOYOVERSE",
         "light": false
     }
