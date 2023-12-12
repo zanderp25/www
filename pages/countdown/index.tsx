@@ -7,7 +7,11 @@ function Card(props) {
     return (
         <div className={styles.card}>
             <div className={styles.img}>
-                <Image src={countdown.image} alt={countdown.name} layout="fill" objectFit="contain" />
+                <Image 
+                    src={countdown.image}
+                    layout="fill" objectFit="contain"
+                    alt="" aria-hidden={true}
+                />
             </div>
             <div>
             <h3>{countdown.name}</h3>

@@ -71,6 +71,7 @@ function App() {
                 <Image 
                     src={background} layout="fill" objectFit="cover" 
                     onError={() => {setBackground("/assets/genshin/Fontaine-aerial.webp");return true;}}
+                    alt="" aria-hidden={true}
                 />
             </div>
             {body}

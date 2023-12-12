@@ -63,25 +63,25 @@ export default function TitleSection({ children }){
 
     return(
         <>
-            <div className={styles.background}></div>
-            <div className={styles.overlay}>
-                <img className={styles.bigLogo} />
-                <img className={styles.smallLogo} />
+            <div className={styles.background} aria-hidden={true}></div>
+            <div className={styles.overlay} aria-hidden={true}>
+                <img alt="" className={styles.bigLogo} />
+                <img alt="" className={styles.smallLogo} />
                 <div id="coinContainer" className={styles.coinContainer}></div>
                 <span id="scoreContainer" className={styles.scoreContainer}></span>
-                <img src="/assets/icons/mario/questionBlock.gif" className={styles.questionBlock} onClick={summonCoin} />
-                <img src="/assets/icons/mario/coin.gif" className={styles.floatingCoin} />
-                <img src={YSQuestIcon} className={styles.YSQuestIcon} />
-                <img src={HSRQuestIcon} className={styles.HSRQuestIcon} />
-                <img src="/assets/icons/genshin/Icon_New.webp" className={styles.newIcon} />
-                <img src="/assets/icons/genshin/Icon_Paimon_Menu.webp" className={styles.paimonIcon} />
-                <img src="/assets/icons/mario/mario.png" className={styles.mario} />
-                <img src="/assets/icons/mario/mushroom.png" className={styles.mushroom} />
-                <img src="/assets/icons/langs/c++.png" className={styles.cpp} />
-                <img src="/assets/icons/langs/python.png" className={styles.python} />
-                <img src="/assets/icons/langs/js.png" className={styles.js} />
-                <img src="/assets/icons/zelda/triforce.png" className={styles.triforce} />
-                <img src="/assets/icons/zelda/rupee.png" className={styles.rupee} />
+                <img alt="" src="/assets/icons/mario/questionBlock.gif" className={styles.questionBlock} onClick={summonCoin} />
+                <img alt="" src="/assets/icons/mario/coin.gif" className={styles.floatingCoin} />
+                <img alt="" src={YSQuestIcon} className={styles.YSQuestIcon} />
+                <img alt="" src={HSRQuestIcon} className={styles.HSRQuestIcon} />
+                <img alt="" src="/assets/icons/genshin/Icon_New.webp" className={styles.newIcon} />
+                <img alt="" src="/assets/icons/genshin/Icon_Paimon_Menu.webp" className={styles.paimonIcon} />
+                <img alt="" src="/assets/icons/mario/mario.png" className={styles.mario} />
+                <img alt="" src="/assets/icons/mario/mushroom.png" className={styles.mushroom} />
+                <img alt="" src="/assets/icons/langs/c++.png" className={styles.cpp} />
+                <img alt="" src="/assets/icons/langs/python.png" className={styles.python} />
+                <img alt="" src="/assets/icons/langs/js.png" className={styles.js} />
+                <img alt="" src="/assets/icons/zelda/triforce.png" className={styles.triforce} />
+                <img alt="" src="/assets/icons/zelda/rupee.png" className={styles.rupee} />
             </div>
             <div className={styles.container}>
                 <div className={styles.content}>

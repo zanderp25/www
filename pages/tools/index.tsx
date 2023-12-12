@@ -8,7 +8,11 @@ function ToolCard(props) {
   return (
     <div className={styles.card}>
       <div className={styles.img}>
-        <Image src={tool.image || "/assets/icons/ZP25 Circle.png"} layout="fill" objectFit="contain" />
+        <Image 
+          src={tool.image || "/assets/icons/ZP25 Circle.png"} 
+          layout="fill" objectFit="contain"
+          alt="" aria-hidden={true}
+        />
       </div>
       <div>
         <h3>{tool.name}</h3>

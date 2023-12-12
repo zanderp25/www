@@ -28,7 +28,10 @@ export function Footer() {
                 <li key={link.name}>
                     <Link href={link.href}>
                         <a>
-                            <Image src={link.icon} height={30} width={30} objectFit="contain" />
+                            <Image 
+                                src={link.icon} height={30} width={30} objectFit="contain" 
+                                alt="" aria-hidden={true}
+                            />
                             <span>
                                 {link.name}
                             </span>

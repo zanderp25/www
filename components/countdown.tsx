@@ -146,9 +146,11 @@ function PopoverImage({src}){
     }
 
     return (
-        <Image src={imgsrc} height={75} width={133} objectFit='cover'
+        <Image 
+            src={imgsrc} height={75} width={133} objectFit='cover'
             style={{borderRadius: "10px"}}
             placeholder='blur' blurDataURL={imgsrc}
+            alt="" aria-hidden={true}
             onError={onError}
         />
     )
