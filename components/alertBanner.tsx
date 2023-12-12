@@ -31,7 +31,7 @@ export default function AlertBanner({ title, message, type, link, stayAlive}:
         <div className={`${styles.alertBanner} ${styles[type]}`} style={{opacity: opacity, transform: `translateX(-${100*(1-opacity)}%)`}} >
             {
                 link? (
-                    <Link href={link}><a style={linkStyle}>
+                    <Link legacyBehavior href={link}><a style={linkStyle}>
                         <div className={styles.alertBannerContent}>
                             <h3>{title}</h3>
                             <p>{message}</p>

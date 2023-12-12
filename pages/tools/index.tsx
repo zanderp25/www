@@ -10,14 +10,14 @@ function ToolCard(props) {
       <div className={styles.img}>
         <Image 
           src={tool.image || "/assets/icons/ZP25 Circle.png"} 
-          layout="fill" objectFit="contain"
+          layout="fill" style={{objectFit: "contain"}}
           alt="" aria-hidden={true}
         />
       </div>
       <div>
         <h3>{tool.name}</h3>
         <p>{tool.description}</p>
-        <Link href={tool.link} >
+        <Link href={tool.link} legacyBehavior>
           <a>Open</a>
           {/* <a>{tool.buttonText}</a> */}
         </Link>

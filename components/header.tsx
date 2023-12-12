@@ -33,7 +33,7 @@ export function Header(
         <meta property="og:image" content={"https://zanderp25.com" + icon.replaceAll(' ',"%20")} />
       </Head>
       <div className={styles.navbar_brand}>
-        <Link href="/">
+        <Link legacyBehavior href="/">
           <a>
             <div/>
             <span>Zanderp25</span>
@@ -44,7 +44,7 @@ export function Header(
         <ul className={!navbar?styles.hideNavbar:styles.showNavbar}>
           {links.map((link) => (
             <li key={link.href}>
-              <Link href={link.href}>
+              <Link legacyBehavior href={link.href}>
                 <a>{link.label}</a>
               </Link>
             </li>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "../styles/Components/countdown.module.css";
 import popoverStyles from '../styles/Components/countdown.ver.module.css';
+import { error } from "console";
 
 export function Countdown({ date, light }: { date: Date|string, light?: boolean }): JSX.Element {
     light = !!light;
@@ -79,7 +80,10 @@ export function Countdown({ date, light }: { date: Date|string, light?: boolean 
     );
 }
 
-export function VersionPopover({updates, isOpen, close}: {updates: {name: string, date: string, image: string}[], isOpen: boolean, close: () => void}): JSX.Element {
+export function VersionPopover(
+    {updates, isOpen, close, errImg = "/assets/icons/Zanderp25.png"}:
+    {updates: {name: string, date: string, image: string}[], isOpen: boolean, close: () => void, errImg?: string}
+): JSX.Element {
     let rupdates = [...updates];
     rupdates.reverse();
 
@@ -97,7 +101,7 @@ export function VersionPopover({updates, isOpen, close}: {updates: {name: string
                     <div className={popoverStyles.popoverList}>
                         {rupdates.map((update, index) => (
                             <div key={index} className={popoverStyles.popoverListItem}>
-                                <PopoverImage src={update.image} />
+                                <PopoverImage src={update.image} errorURL={errImg} />
                                 <div>
                                     <h3>{update.name}</h3>
                                     <p>
@@ -138,17 +142,20 @@ export function Notice({text}){
     );
 }
 
-function PopoverImage({src}){
+function PopoverImage({src, errorURL = "/assets/icons/Zanderp25.png"}){
     let [imgsrc, setSrc] = useState(src);
+    useEffect(() => {
+        setSrc(src);
+    }, [src]);
 
-    function onError(){
-        setSrc("/assets/icons/genshin.png");
+    let onError = () => {
+        setSrc(errorURL);
     }
 
     return (
-        <Image 
-            src={imgsrc} height={75} width={133} objectFit='cover'
-            style={{borderRadius: "10px"}}
+        <Image
+            src={imgsrc} height={75} width={133}
+            style={{borderRadius: "10px", objectFit: "cover"}}
             placeholder='blur' blurDataURL={imgsrc}
             alt="" aria-hidden={true}
             onError={onError}

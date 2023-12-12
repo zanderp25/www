@@ -29,7 +29,7 @@ export default function HomePage() {
       <TitleSection>
         <h1>Zanderp25</h1>
         <p onClick={newSplashText}>{splashText}
-          <Link href='/website/splashTexts'>
+          <Link legacyBehavior href='/website/splashTexts'>
             <a className="infoIcon">?</a>
           </Link>
         </p>

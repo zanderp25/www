@@ -9,14 +9,14 @@ function ProjectCard(props) {
     <div className={styles.card}>
       <div className={styles.img}>
         <Image 
-          src={project.image} layout="fill" objectFit="contain"
+          src={project.image} layout="fill" style={{objectFit: "contain"}}
           alt="" aria-hidden={true}
         />
       </div>
       <div>
         <h3>{project.name}</h3>
         <p>{project.description}</p>
-        <Link href={project.link} >
+        <Link legacyBehavior href={project.link} >
           <a>{project.buttonText}</a>
         </Link>
       </div>

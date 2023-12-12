@@ -26,10 +26,10 @@ export function Footer() {
             <ul className={styles.socials}>
             {socials.map((link) => (
                 <li key={link.name}>
-                    <Link href={link.href}>
+                    <Link legacyBehavior href={link.href}>
                         <a>
                             <Image 
-                                src={link.icon} height={30} width={30} objectFit="contain" 
+                                src={link.icon} height={30} width={30} style={{objectFit: "contain"}}
                                 alt="" aria-hidden={true}
                             />
                             <span>

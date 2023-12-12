@@ -37,7 +37,7 @@ function App() {
     } else {
         let credits;
         if (date.image_credits_url != "" && date.image_credits_url != undefined){
-            credits = <Link href={date.image_credits_url}>
+            credits = <Link legacyBehavior href={date.image_credits_url}>
                 <a style={{color:"white"}}>
                     {date.image_credits}
                 </a>
@@ -69,7 +69,7 @@ function App() {
             </Head>
             <div style={{width: "100%",height: "100%",objectFit: "cover",position: "absolute",top: "0",left: "0",zIndex: "-1"}}>
                 <Image 
-                    src={background} layout="fill" objectFit="cover" 
+                    src={background} layout="fill" style={{objectFit: "cover"}}
                     onError={() => {setBackground("/assets/star-rail/star-rail.jpg");return true;}}
                     alt="" aria-hidden={true}
                 />
@@ -99,7 +99,7 @@ function App() {
                     backdropFilter: "blur(5px)"
                 }}
             >Version History</button>
-            <VersionPopover updates={updates} isOpen={isOpen} close={closePopover} />
+            <VersionPopover updates={updates} isOpen={isOpen} close={closePopover} errImg='/assets/icons/star-rail.png' />
         </>
     );
 }
