@@ -30,11 +30,14 @@ function Color({ color }) {
         <BlankLayout title={`Color #${color}`}>
             <Head>
                 <meta name="theme-color" content={`#${color}`} />
-                {/* metadata for a discord embed: i need a title with the color name (unless not specified (url is /color instead of /color/xxx)) etc */}
                 <meta property="og:title" content={`Color #${color}`} />
+                <meta property="og:description" content={`Color #${color}`} />
                 <meta property="og:image" content={`https://zanderp25.com/api/color/${color}`} />
+                <meta property="og:url" content={`https://zanderp25.com/color/${color}`} />
                 <meta property="og:image:width" content="500" />
                 <meta property="og:image:height" content="300" />
+                <meta property="og:type" content="website" />
+                <meta name="twitter:card" content="summary_large_image" />
             </Head>
             <div style={{
                 backgroundImage: "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)", 
