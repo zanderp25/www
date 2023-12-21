@@ -10,6 +10,7 @@
     "start": "next build; next start -p 2999"
   },
   "dependencies": {
+    "canvas": "^2.11.2",
     "eslint-config-next": "^14.0.4",
     "next": "^14.0.4",
     "react": "^18.2.0",
