@@ -10,6 +10,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     
     // Validate color, adding a leading # if missing
     color = color.replace(/^([^#])/g, '#$1');
+    // convert 3-digit hex to 6-digits, if needed
+    color = color.replace(
+        /^#?([a-f\d])([a-f\d])([a-f\d])$/i,
+        (m, r, g, b) => '#' + r + r + g + g + b + b
+    );
     if (!/^#[0-9A-F]{6}$/i.test(color)) {
         throw new Error('Invalid color');
         color = '#FF0000';

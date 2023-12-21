@@ -27,15 +27,14 @@ function Color({ color }) {
     let [colorText, setColorText] = useState(color);
     console.log(color);
     return (
-        <BlankLayout title={`Color #${color}`}>
+        <BlankLayout 
+            title={`Color #${color}`}
+            description={`HEX color code #${color}`}
+            icon={`https://zanderp25.com/api/color/${color}`}
+        >
             <Head>
                 <meta name="theme-color" content={`#${color}`} />
-                <meta property="og:title" content={`Color #${color}`} />
-                <meta property="og:description" content={`Color #${color}`} />
-                <meta property="og:image" content={`https://zanderp25.com/api/color/${color}`} />
                 <meta property="og:url" content={`https://zanderp25.com/color/${color}`} />
-                <meta property="og:image:width" content="500" />
-                <meta property="og:image:height" content="300" />
                 <meta property="og:type" content="website" />
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
