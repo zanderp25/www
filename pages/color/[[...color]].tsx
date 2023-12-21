@@ -30,7 +30,7 @@ function Color({ color }) {
         <BlankLayout 
             title={`Color #${color}`}
             description={`HEX color code #${color}`}
-            icon={`https://zanderp25.com/api/color/${color}`}
+            icon={`/api/color/${color}`}
         >
             <Head>
                 <meta name="theme-color" content={`#${color}`} />
