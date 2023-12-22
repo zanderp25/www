@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { NextRouter, useRouter } from 'next/router';
-import dynamic from "next/dynamic";
 import Head from 'next/head';
 import BlankLayout from '../../components/blankLayout';
 
@@ -12,7 +11,7 @@ export async function getServerSideProps(context) {
     }
 }
 
-function Color({ color }) {
+export default function Color({ color }) {
     const router = useRouter();
     
     useEffect(() => {
@@ -29,7 +28,6 @@ function Color({ color }) {
     return (
         <BlankLayout 
             title={`Color #${color}`}
-            description={`HEX color code #${color}`}
             icon={`/api/color/${color}`}
         >
             <Head>
@@ -60,8 +58,6 @@ function Color({ color }) {
         </BlankLayout>
     )
 }
-
-export default dynamic(() => Promise.resolve(Color), { ssr: false });
 
 function setColor(router: NextRouter, color: string, setColorText: (color: string) => void){
     if (color === undefined) return true;
