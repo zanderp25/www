@@ -7,6 +7,10 @@ import {Countdown, Notice, VersionPopover} from '../../../components/countdown';
 import FullscreenButton from '../../../components/fullscreenButton';
 import updates from './updates.json';
 
+const hostname = typeof window !== 'undefined' 
+    ? window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '')
+    : 'https://zanderp25.com';
+
 function App() {
     let dates = updates.filter((date) => {
         return new Date(date.date) > new Date();
@@ -64,7 +68,7 @@ function App() {
                 <title>Genshin Impact Countdown</title>
                 <meta name="description" content="Countdown to the next Genshin Impact update or banner." />
                 <link rel="icon" href="/assets/icons/genshin.png" />
-                <meta name="og:image" content="https://zanderp25.com/assets/icons/genshin.png" />
+                <meta name="og:image" content={hostname + "/assets/icons/genshin.png"} />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
             </Head>
             <div style={{width: "100%",height: "100%",objectFit: "cover",position: "absolute",top: "0",left: "0",zIndex: "-1"}}>

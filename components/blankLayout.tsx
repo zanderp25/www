@@ -5,6 +5,10 @@ export default function BlankLayout(
   { children: JSX.Element|string|Array<JSX.Element>, title?: string, description?: string, icon?: string }
   ): JSX.Element
 {
+  const hostname = typeof window !== 'undefined' 
+    ? window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '')
+    : 'https://zanderp25.com';
+
   return (
     <div>
       <Head>
@@ -14,7 +18,7 @@ export default function BlankLayout(
         <link rel="icon" href={icon} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={"https://zanderp25.com" + icon.replaceAll(' ',"%20")} />
+        <meta property="og:image" content={hostname + icon.replaceAll(' ',"%20")} />
       </Head>
       {children}
     </div>

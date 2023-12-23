@@ -22,6 +22,10 @@ export function Header(
   let [navbar, setNavbar] = useState(false)
   let toggleNavbar = () => setNavbar(!navbar); console.log()
 
+  const hostname = typeof window !== 'undefined' 
+    ? window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '')
+    : 'https://zanderp25.com';
+
   return (
     <header className={styles.navbar}>
       <Head>
@@ -30,7 +34,7 @@ export function Header(
         <link rel="icon" href={icon} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={"https://zanderp25.com" + icon.replaceAll(' ',"%20")} />
+        <meta property="og:image" content={hostname + icon.replaceAll(' ',"%20")} />
       </Head>
       <div className={styles.navbar_brand}>
         <Link legacyBehavior href="/">
