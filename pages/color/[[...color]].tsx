@@ -33,7 +33,7 @@ export default function Color({ color }) {
         <BlankLayout 
             title={`#${color}`}
             icon={`/api/color/${color}`}
-            image={`/api/color/${color}?text=1`}
+            // image={`/api/color/${color}?text=1`} // uncomment to add text to embeds
         >
             <Head>
                 <meta name="theme-color" content={`#${color}`} />
