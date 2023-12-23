@@ -28,11 +28,11 @@ export default function Color({ color }) {
     return (
         <BlankLayout 
             title={`#${color}`}
-            icon={`/api/color/${color}`}
+            icon={`/api/color/${color}?text=1`}
         >
             <Head>
                 <meta name="theme-color" content={`#${color}`} />
-                <meta property="og:url" content={`https://zanderp25.com/color/${color}?text=1`} />
+                <meta property="og:url" content={`https://zanderp25.com/color/${color}`} />
                 <meta property="og:type" content="website" />
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
