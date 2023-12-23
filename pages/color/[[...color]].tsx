@@ -3,10 +3,6 @@ import { NextRouter, useRouter } from 'next/router';
 import Head from 'next/head';
 import BlankLayout from '../../components/blankLayout';
 
-const hostname = typeof window !== 'undefined' 
-    ? window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '')
-    : 'https://zanderp25.com';
-
 export async function getServerSideProps(context) {
     return {
         props: {
