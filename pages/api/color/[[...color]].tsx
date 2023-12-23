@@ -1,38 +1,56 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createCanvas } from 'canvas';
 
+const defaultColor = '#0face0';
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    const text = req.query.text === '1';
+
     const canvas = createCanvas(500, 300);
     const context = canvas.getContext('2d');
 
-    // Set the background color
-    let color = Array.isArray(req.query.color) ? req.query.color[0] : req.query.color || '#FF0000'; // Replace with your desired color
-    
-    // Validate color, adding a leading # if missing
+    let color = Array.isArray(req.query.color) ? req.query.color[0] : req.query.color || defaultColor;
     color = color.replace(/^([^#])/g, '#$1');
-    // convert 3-digit hex to 6-digits, if needed
-    color = color.replace(
-        /^#?([a-f\d])([a-f\d])([a-f\d])$/i,
-        (m, r, g, b) => '#' + r + r + g + g + b + b
-    );
-    if (!/^#[0-9A-F]{6}$/i.test(color)) {
-        throw new Error('Invalid color');
-        color = '#FF0000';
+    let alpha = 1;
+    let r = 0;
+    let g = 0;
+    let b = 0;
+
+    switch (color.length - 1) {
+        case 3: // #RGB
+        case 4: // #RGBA
+            color = color.replace(/([^#])/g, '$1$1');
+            break;
+        case 6: // #RRGGBB
+        case 8: // #RRGGBBAA
+            break;
+        default:
+            color = defaultColor;
     }
 
-    // Set the context background color
-    context.fillStyle = color;
+    if (color.length === 9) {
+        alpha = parseInt(color.slice(7), 16) / 255;
+    }
 
-    // Fill the canvas with the background color
+    r = parseInt(color.slice(1, 3), 16);
+    g = parseInt(color.slice(3, 5), 16);
+    b = parseInt(color.slice(5, 7), 16);
+
+    context.globalAlpha = alpha;
+    context.fillStyle = color;
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Convert the canvas to a PNG buffer
+    if (text) {
+        context.font = '75px "Helvetica Neue", Helvetica, sans-serif';
+        context.fillStyle = (r * 0.299 + g * 0.587 + b * 0.114) > 186 ? '#000000' : '#ffffff';
+        context.textAlign = 'center';
+        context.textBaseline = 'middle';
+        context.translate(canvas.width / 2, canvas.height / 2);
+        context.fillText(color, 0, 0);
+    }
+
     const buffer = canvas.toBuffer('image/png');
-
-    // Set the response headers
     res.setHeader('Content-Type', 'image/png');
-    res.setHeader('Cache-Control', 'public, max-age=3600'); // Optional caching
-
-    // Send the PNG buffer as the response
+    res.setHeader('Cache-Control', 'public, max-age=3600');
     res.send(buffer);
 }

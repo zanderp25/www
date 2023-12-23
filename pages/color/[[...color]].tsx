@@ -24,15 +24,15 @@ export default function Color({ color }) {
 
     if (color == "0") color = "0face0";
     let [colorText, setColorText] = useState(color);
-    console.log(color);
+    // console.log(color);
     return (
         <BlankLayout 
-            title={`Color #${color}`}
+            title={`#${color}`}
             icon={`/api/color/${color}`}
         >
             <Head>
                 <meta name="theme-color" content={`#${color}`} />
-                <meta property="og:url" content={`https://zanderp25.com/color/${color}`} />
+                <meta property="og:url" content={`https://zanderp25.com/color/${color}?text=1`} />
                 <meta property="og:type" content="website" />
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
@@ -43,7 +43,7 @@ export default function Color({ color }) {
             }}></div>
             <div style={{backgroundColor: `#${color}`, width: "100vw", height: "100vh", position: "fixed", top: 0, left: 0}}>
                 <div style={{position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "100vw"}}>
-                    <input type="text" value={`#${colorText}`} onChange={(e) => setColor(router, e.target.value.slice(1), setColorText)} 
+                    <input type="text" value={`#${colorText}`} onChange={(e) => setColor(router, e.target.value, setColorText)} 
                         style={{
                             width: "100%", height: "100px", fontSize: "5em", textAlign: "center", 
                             padding: 0,
@@ -61,15 +61,14 @@ export default function Color({ color }) {
 
 function setColor(router: NextRouter, color: string, setColorText: (color: string) => void){
     if (color === undefined) return true;
-    if(!color.match(/^[0-9a-fA-F]{0,8}$/)) return false;
+    if (color[0] !== "#") color = `#${color}`;
+    if (!color.match(/^#([A-Fa-f0-9]{0,8})$/)) return false;
 
-    console.log(`Setting color to "${color}"`);
-    setColorText(color);
+    // console.log(`Setting color to "${color}"`);
+    setColorText(color.slice(1));
+    if ([3, 4, 6, 8].indexOf(color.length - 1) === -1) return true;
+    // console.log("Valid color");
 
-    // validate color
-    if ([3, 4, 6, 8].indexOf(color.length) === -1) return true;
-    console.log("Valid color");
-
-    router.push(`/color/${color}`);
+    router.push(`/color/${color.slice(1)}`);
     return true;
 }
