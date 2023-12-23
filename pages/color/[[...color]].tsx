@@ -3,6 +3,10 @@ import { NextRouter, useRouter } from 'next/router';
 import Head from 'next/head';
 import BlankLayout from '../../components/blankLayout';
 
+const hostname = typeof window !== 'undefined' 
+    ? window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '')
+    : 'https://zanderp25.com';
+
 export async function getServerSideProps(context) {
     return {
         props: {
@@ -28,12 +32,12 @@ export default function Color({ color }) {
     return (
         <BlankLayout 
             title={`#${color}`}
-            icon={`/api/color/${color}?text=1`}
+            icon={`/api/color/${color}`}
+            image={`/api/color/${color}?text=1`}
         >
             <Head>
                 <meta name="theme-color" content={`#${color}`} />
                 <meta property="og:url" content={`https://zanderp25.com/color/${color}`} />
-                <meta property="og:type" content="website" />
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
             <div style={{
