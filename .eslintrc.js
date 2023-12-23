@@ -29,7 +29,8 @@ module.exports = {
     "rules": {
         "react/prop-types": "off",
         "react/react-in-jsx-scope": "off",
-        "@next/next/no-img-element": "off",
+        "@next/next/no-img-element": "warn",
         "prefer-const": "off",
+        "no-unused-vars": "warn",
     }
 }
