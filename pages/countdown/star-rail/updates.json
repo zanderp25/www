@@ -38,7 +38,7 @@
     {
         "name":"Version 1.5",
         "date":"2023-11-15T04:00:00-05:00",
-        "image": "/assets/star-rail/1.5-crepuscule-zone.png",
+        "image": "/assets/star-rail/1.5.png",
         "image_credits": "HOYOVERSE",
         "light": false
     },
@@ -46,6 +46,13 @@
         "name":"Version 1.6",
         "date":"2023-12-27T11:00:00+08:00",
         "image": "/assets/star-rail/1.6.png",
+        "image_credits": "HOYOVERSE",
+        "light": false
+    },
+    {
+        "name":"Version 2.0",
+        "date":"2024-02-06T11:00:00+08:00",
+        "image": "/assets/star-rail/2.0.png",
         "image_credits": "HOYOVERSE",
         "light": false
     }
