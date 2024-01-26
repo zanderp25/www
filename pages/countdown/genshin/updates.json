@@ -205,9 +205,9 @@
         "light": false
     },
     {
-        "name": "Version 4.4 (TBD)",
-        "date": "2024-01-31T11:00:00+08:00",
-        "image": "/assets/genshin/4.4.png",
+        "name": "Version 4.4",
+        "date": "2024-02-01T11:00:00+08:00",
+        "image": "/assets/genshin/4.4.png ",
         "image_credits": "HOYOVERSE",
         "light": false
     }
