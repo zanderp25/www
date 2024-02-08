@@ -50,6 +50,7 @@ export async function getServerSideProps({ req }) {
       },
     }
   }
+  return {};
 }
 
 export default function RickRoll(){
