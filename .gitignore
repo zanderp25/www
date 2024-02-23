@@ -12,3 +12,4 @@ __pycache__
 /media/hashes.py
 /media/keys.json
 /media/roster.csv
+.env

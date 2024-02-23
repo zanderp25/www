@@ -5,14 +5,44 @@ export async function getServerSideProps({ req }) {
       /Discordbot|Twitterbot|facebookexternalhit/i
     )
 
-  if (isBot) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
+  if (!isBot) {
+    // omg someone clicked the link!!1!
+    // send it to the discord webhook
+
+    let msgs = [
+      "He's never gonna give you up",
+      "haha get rickrolled",
+      "you just got rickrolled",
+      "lol",
+      "*scoffs* of course",
+      "you're welcome",
+      "You've been hit by, you've been struck by, a smooth rickroll",
+      "You know the rules, and so do I",
+      "I just wanna tell you how I'm feeling",
+      "He never gave us up, he never let us down",
+      "*evil laughter*",
+      "nothing to see here, move along",
+      "and their ip is... just kidding i would never",
+    ];
+
+    fetch(process.env.DISCORD_WEBHOOK, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    }
-  } else {
+      body: JSON.stringify({
+        embeds: [
+          {
+            title: `Someone clicked the link!`,
+            url: "https://zanderp25.com/l",
+            footer: {
+              text: msgs[Math.floor(Math.random() * msgs.length)],
+            },
+          },
+        ],
+      }),
+    })
+
     return {
       redirect: {
         destination: 'https://youtu.be/dQw4w9WgXcQ',
@@ -20,6 +50,7 @@ export async function getServerSideProps({ req }) {
       },
     }
   }
+  return {};
 }
 
 export default function RickRoll(){
