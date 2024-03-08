@@ -210,5 +210,40 @@
         "image": "/assets/genshin/4.4.png ",
         "image_credits": "HOYOVERSE",
         "light": false
+    },
+    {
+        "name": "Version 4.5",
+        "date": "2024-03-13T11:00:00+08:00",
+        "image": "/assets/genshin/4.5.png",
+        "image_credits": "HOYOVERSE",
+        "light": false
+    },
+    {
+        "name": "Version 4.6 (TBD)",
+        "date": "2024-04-24T11:00:00+08:00",
+        "image": "/assets/genshin/4.6.png",
+        "image_credits": "HOYOVERSE",
+        "light": false
+    },
+    {
+        "name": "Version 4.7 (TBD)",
+        "date": "2024-06-05T11:00:00+08:00",
+        "image": "/assets/genshin/4.7.png",
+        "image_credits": "HOYOVERSE",
+        "light": false
+    },
+    {
+        "name": "Version 4.8 (TBD)",
+        "date": "2024-07-17T11:00:00+08:00",
+        "image": "/assets/genshin/4.8.png",
+        "image_credits": "HOYOVERSE",
+        "light": false
+    },
+    {
+        "name": "Version 5.0 (TBD)",
+        "date": "2024-08-28T11:00:00+08:00",
+        "image": "/assets/genshin/5.0.png",
+        "image_credits": "HOYOVERSE",
+        "light": false
     }
 ]
