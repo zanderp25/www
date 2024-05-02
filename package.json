@@ -10,6 +10,10 @@
     "start": "next build; next start -p 2999"
   },
   "dependencies": {
+    "@tsparticles/engine": "^3.3.0",
+    "@tsparticles/preset-fireworks": "^3.0.2",
+    "@tsparticles/preset-snow": "^3.0.2",
+    "@tsparticles/react": "^3.0.0",
     "canvas": "^2.11.2",
     "dotenv": "^16.4.1",
     "eslint-config-next": "^14.0.4",
@@ -17,13 +21,10 @@
     "react": "^18.2.0",
     "react-confetti-explosion": "^2.1.2",
     "react-dom": "^18.2.0",
-    "react-tsparticles": "^2.4.0",
     "react-use": "^17.4.0",
     "semver": "^7.5.4",
-    "sharp": "^0.33.0",
+    "sharp": "^0.33.3",
     "tsparticles": "^3.0.2",
-    "tsparticles-preset-fireworks": "^2.4.0",
-    "tsparticles-preset-snow": "^2.4.0",
     "word-wrap": "^1.2.4"
   },
   "devDependencies": {
