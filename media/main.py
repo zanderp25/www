@@ -1,4 +1,4 @@
-import os, uuid, bcrypt, json
+import os, uuid, bcrypt, json, re
 from datetime import datetime, timedelta
 from flask import *
 from werkzeug import datastructures
@@ -25,12 +25,20 @@ def media(path):
         # generate the index
         files = os.listdir(os.path.join('media', path))
         files.sort()
-        index = f'<h1>Index of /{path}</h1><hr><pre>'
+        index = open("fileIndex.html").read()
+        file_data = ""
         for file in files:
-            index += f'<a href="{path}/{file}">{file}</a><br>'
-        index += '</pre><hr>'
+            file_path = "/".join([path, file]).replace(' ', '%20')
+            file_size = os.path.getsize(os.path.join('media', file_path))
+            is_dir = os.path.isdir(os.path.join('media', file_path))
+            file_data += f'{{"name":"{file}", "size": {file_size}, "path": "{file_path}", "isDir": {"true" if is_dir else "false"}}},'
+        file_data = file_data.rstrip(',')
+        pattern = r"\/\/ DATA START\n([\s\S]*)\n\/\/ DATA END"
+        data = f'// DATA START\nlet pwd = "/{path}";\nlet files = [{file_data}];\n// DATA END'
+        index = re.sub(pattern, data, index)
         return index
-    return send_from_directory('media', path)
+    download = "download" in request.args
+    return send_from_directory('media', path, as_attachment=download)
 
 @app.route('/favicon.ico')
 def favicon():

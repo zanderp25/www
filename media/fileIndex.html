@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <!-- <meta http-equiv="refresh" content="5"> -->
+    <script>
+// DATA START
+let pwd = "/media/";
+let files = [
+    {"name":"file1.txt", "size": 1000, "path": "/media/file1.txt"},
+    {"name":"file2.png", "size": 2000, "path": "/media/file2.png"},
+    {"name":"file3.jpg", "size": 3000, "path": "/media/file3.jpg"},
+    {"name":"file4.mp4", "size": 400000, "path": "/media/file4.mp4"},
+    {"name":"file5.mp3", "size": 5000, "path": "/media/file5.mp3"},
+    {"name":"file6.pdf", "size": 600000, "path": "/media/file6.pdf"},
+    {"name":"file7.doc", "size": 7000, "path": "/media/file7.doc"},
+    {"name":"file8.xls", "size": 8000, "path": "/media/file8.xls"},
+    {"name":"file9.ppt", "size": 9000, "path": "/media/file9.ppt"},
+    {"name":"file10.txt", "size": 10000000, "path": "/media/file10.txt"},
+    {"name":"file11.png", "size": 11000, "path": "/media/file11.png"},
+    {"name":"file12.jpg", "size": 120000, "path": "/media/file12.jpg"},
+    {"name":"file13.mp4", "size": 13000, "path": "/media/file13.mp4"},
+    {"name":"file14.mp3", "size": 14000, "path": "/media/file14.mp3"},
+    {"name":"file15.00000000000000000000000000000000000000000000000000000000000000000.pdf", "size": 150000, "path": "/media/file15.pdf"},
+    {"name":"file16.doc", "size": 16000, "path": "/media/file16.doc"},
+    {"name":"file17.xls", "size": 17000, "path": "/media/file17.xls"},
+    {"name":"file18.ppt", "size": 18000000, "path": "/media/file18.ppt"},
+    {"name":"file19.txt", "size": 19000000000, "path": "/media/file19.txt"},
+    {"name":"file20.png", "size": 20000000000000, "path": "/media/file20.png"},
+    {"name":"file21.jpg", "size": 21000000000000000, "path": "/media/file21.jpg"},
+    {"name":"directory", "size": 0, "path": "/media/directory", "isDir": true}
+];
+// DATA END
+
+        function onLoad(){
+            let title = document.getElementById("title");
+            title.innerHTML = "Index of " + pwd;
+            document.title = "Index of " + pwd;
+            let fileList = document.getElementById("fileList");
+            fileList.innerHTML = "";
+            if (files.length == 0){
+                let div = document.createElement("div");
+                div.innerHTML = "No files found";
+                div.style.textAlign = "center";
+                fileList.style.justifyContent = "center";
+                fileList.appendChild(div);
+                return;
+            }
+            for(let i=0; i<files.length; i++){
+                let file = files[i];
+                let div = document.createElement("a");
+                div.className = "file";
+                div.href = file.path;
+                div.alt = file.name;
+                div.title = file.name;
+                div.target = file.isDir ? "_self" : "_blank"; // open in new tab if not a directory
+                let img = document.createElement("img");
+                img.src = file.isDir ? "https://img.icons8.com/ios/50/000000/folder-invoices.png" : file.name.match(/\.(jpeg|jpg|png|gif|ico|bmp|webp)$/i) ? file.path : "https://img.icons8.com/ios/50/000000/file.png";
+                let a = document.createElement("span");
+                a.className = "filename";
+                if (file.isDir){
+                    a.innerHTML = `<span>${file.name}</span>`;
+                } else {
+                    a.innerHTML = `<span class="filename">${getFileName(file.name)}</span>` +
+                        `<span class="fileext">${getFileExtension(file.name)}</span>`;
+                }
+                let span = document.createElement("span");
+                span.className = "filesize";
+                span.innerHTML = humanizeSize(file.size);
+                let aDownload = document.createElement("a");
+                aDownload.className = "download";
+                aDownload.href = file.path + "?download";
+                aDownload.innerHTML = "Download";
+                div.appendChild(img);
+                div.appendChild(a);
+                div.appendChild(span);
+                div.appendChild(aDownload);
+                fileList.appendChild(div);
+            }
+        }
+
+        function humanizeSize(size){
+            let units = ["B", "KB", "MB", "GB", "TB", "PB", "EB"];
+            let i = 0;
+            while(size > 1024){
+                size = size / 1024;
+                i++;
+            }
+            if (i==0) {
+                unit = "byte" + (size > 1 ? "s" : "");
+                return size + " " + unit;
+            }
+            return size.toFixed(2) + " " + units[i];
+        }
+
+        function getFileName(path){
+            return path.split('.').slice(0, -1).join('.');
+        }
+
+        function getFileExtension(path){
+            return "." + path.split('.').pop();
+        }
+    </script>
+    <style>
+        body{
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1{
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: 0;
+        }
+        #fileList{
+            padding: 10px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: calc(100% - 20px);
+            margin: 0;
+        }
+        .file{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 112px;
+            padding: 5px;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5%;
+        }
+        .file:hover{
+            background-color: #f0f0f0;
+        }
+        img{
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+        }
+        .filename{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            white-space: nowrap;
+        }
+        .filename span{
+            display: inline-block;
+        }
+        .filename span:nth-child(1){
+            width: min-content;
+            word-wrap: break-word;
+            overflow: hidden;   
+            text-overflow: ellipsis;
+        }
+        .download{
+            font-size: 0.8em;
+            text-decoration: none;
+            color: #7e7e7e;
+        }
+        .download:hover{
+            text-decoration: underline;
+        }
+        .filesize{
+            font-size: 0.8em;
+        }
+        #listSel, #gridSel{
+            display: none;
+        }
+        #listSel + label, #gridSel + label{
+            display: inline-block;
+            padding: 7px 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        #listSel + label{
+            border-radius: 5px 0 0 5px;
+            margin-right: 0;
+        }
+        #gridSel + label{
+            border-radius: 0 5px 5px 0;
+            margin-left: 0;
+        }
+        #listSel:checked + label, #gridSel:checked + label{
+            background-color: #d0d0d0
+        }
+        #listSel:checked ~ #fileList{
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+        #listSel:checked ~ #fileList .file{
+            flex-direction: row;
+            width: 100%;
+            gap: 10px;
+            padding: 5px 10px;
+            border-radius: 0;
+        }
+        #listSel:checked ~ #fileList .file:nth-child(odd){
+            background-color: #f0f0f0;
+        }
+        #listSel:checked ~ #fileList .file:hover{
+            background-color: #e0e0e0;
+        }
+        #listSel:checked ~ #fileList .file img{
+            width: 32px;
+            height: 32px;
+        }
+        #listSel:checked ~ #fileList .file .filename{
+            justify-content: flex-start;
+        }
+        #listSel:checked ~ #fileList .file .filesize{
+            width: 75px;
+        }
+    </style>
+</head>
+<body onload="onLoad()">
+    <h1 id="title"></h1>
+    <input type="radio" name="list" id="listSel">
+    <label for="listSel">List</label>
+    <input type="radio" name="list" id="gridSel" checked>
+    <label for="gridSel">Grid</label>
+    <div id="fileList">
+        <!-- 
+        <a href="#">
+            <img src="#"/>
+            <span>file1.txt</span>
+            <span>1 KB</span>
+            <a href="#?download">Download</a>
+        </div> 
+        -->
+    </div>
+</body>
+</html>
