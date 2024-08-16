@@ -89,17 +89,19 @@ let files = [
                 i++;
             }
             if (i==0) {
-                unit = "byte" + (size > 1 ? "s" : "");
+                unit = "byte" + (size != 1 ? "s" : "");
                 return size + " " + unit;
             }
             return size.toFixed(2) + " " + units[i];
         }
 
         function getFileName(path){
+            if (!path.includes('.')) return path;
             return path.split('.').slice(0, -1).join('.');
         }
 
         function getFileExtension(path){
+            if (!path.includes('.')) return "";
             return "." + path.split('.').pop();
         }
     </script>

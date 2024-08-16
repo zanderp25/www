@@ -31,7 +31,7 @@ def media(path):
             file_path = "/".join([path, file]).replace(' ', '%20')
             file_size = os.path.getsize(os.path.join('media', file_path))
             is_dir = os.path.isdir(os.path.join('media', file_path))
-            file_data += f'{{"name":"{file}", "size": {file_size}, "path": "{file_path}", "isDir": {"true" if is_dir else "false"}}},'
+            file_data += f'{{"name":"{file}", "size": {file_size}, "path": "/{file_path}", "isDir": {"true" if is_dir else "false"}}},'
         file_data = file_data.rstrip(',')
         pattern = r"\/\/ DATA START\n([\s\S]*)\n\/\/ DATA END"
         data = f'// DATA START\nlet pwd = "/{path}";\nlet files = [{file_data}];\n// DATA END'
