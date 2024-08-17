@@ -199,6 +199,9 @@
         }
 
         function login() {
+            if (document.querySelector('input[name="password"]').value == "n0t_a_p455w0rd") {
+                return alert("Did you really think that was going to work? lol")
+            }
             const xhr = new XMLHttpRequest();
             xhr.open('POST', '/managelinks');
             xhr.onload = function() {

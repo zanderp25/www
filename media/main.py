@@ -74,6 +74,8 @@ def uploadfile():
     print(password, keys)
     if password is None:
         return 'Unauthorized', 401
+    if password == "n0t_a_p455w0rd":
+        return "Did you actually think that was going to work? lol", 401
     if key_matches(password):
         use_key(password)
     elif not bcrypt.checkpw(password.encode(), password_hash):
@@ -106,6 +108,8 @@ def uploadlink_post():
 
     if password is None:
         return 'Unauthorized', 401
+    if password == "n0t_a_p455w0rd":
+        return "Did you actually think that was going to work? lol", 401
     if not bcrypt.checkpw(password.encode(), password_hash):
         return 'Unauthorized', 401
     
