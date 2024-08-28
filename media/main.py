@@ -71,7 +71,6 @@ def upload_client():
 @app.route('/uploadfile', methods=['POST'])
 def uploadfile():
     password = request.form.get('password')
-    print(password, keys)
     if password is None:
         return 'Unauthorized', 401
     if password == "n0t_a_p455w0rd":
