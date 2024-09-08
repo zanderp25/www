@@ -22,7 +22,7 @@ function App() {
     }
     let [date, setDate] = useState(dates[0]);
     let body = <h1>Loading...</h1>;
-    let [background, setBackground] = useState(date.image || "/assets/genshin/Fontaine.jpeg");
+    let [background, setBackground] = useState(date.image || "/assets/genshin/5.0.jpeg");
 
     let [isOpen, setIsOpen] = useState(false);
     function togglePopover() {
