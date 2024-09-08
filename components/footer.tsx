@@ -4,17 +4,19 @@ import Link from 'next/link';
 
 export function Footer() {
     let infoLines = [
-        "Zanderp25",
+        "Zander Picon",
         <Link key="email" href='mailto:zander@zanderp25.com'>zander@zanderp25.com</Link>,
-        "© 2023 Zanderp25",
+        "© 2024 Zanderp25",
     ]
     let socials = [
         {name: 'GitHub', href: 'https://github.com/zanderp25', icon: '/assets/icons/socials/github.png'}, 
-        {name: 'Discord', href: 'https://discord.gg/672yY5v', icon: '/assets/icons/socials/discord.png'},
+        {name: 'LinkedIn', href: 'https://linkedin.com/in/zanderpicon', icon: '/assets/icons/socials/linkedin.png'},
         {name: 'Instagram', href: 'https://instagram.com/zanderp25', icon: '/assets/icons/socials/instagram.png'},
-        {name: 'Threads', href: 'https://threads.net/@zanderp25', icon: '/assets/icons/socials/threads.png'},
+        {name: 'Discord', href: 'https://discord.gg/672yY5v', icon: '/assets/icons/socials/discord.png'},
+        // {name: 'Threads', href: 'https://threads.net/@zanderp25', icon: '/assets/icons/socials/threads.png'},
         {name: 'YouTube', href: 'https://youtube.com/@zanderp25', icon: '/assets/icons/socials/youtube.png'},
-        {name: 'Twitch', href: 'https://twitch.tv/zanderp25', icon: '/assets/icons/socials/twitch.png'},
+        // {name: 'Twitch', href: 'https://twitch.tv/zanderp25', icon: '/assets/icons/socials/twitch.png'},
+        {name: 'Spotify', href: 'https://open.spotify.com/artist/5AspbPwL5IXqE8p7orQbF0?si=PcqnmjDjRRu8NUc_b-3UIA', icon: '/assets/icons/socials/spotify.png'},
     ]
     return (
         <footer className={styles.footer}>
