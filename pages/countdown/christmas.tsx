@@ -1,7 +1,7 @@
-import { useCallback } from 'react';
+// import { useCallback } from 'react';
 import Head from 'next/head';
-import Particles from "react-tsparticles";
-import { loadSnowPreset } from "tsparticles-preset-snow";
+// import Particles from "react-tsparticles";
+// import { loadSnowPreset } from "tsparticles-preset-snow";
 
 import { Countdown } from '../../components/countdown';
 import FullscreenButton from '../../components/fullscreenButton';
@@ -28,9 +28,9 @@ function App() {
     let now = new Date();
     let christmas = getChristmas(now);
 
-    const particlesInit = useCallback(async function(main) {
-        await loadSnowPreset(main);
-    }, [])
+    // const particlesInit = useCallback(async function(main) {
+    //     await loadSnowPreset(main);
+    // }, [])
 
     return (
         <>
@@ -41,7 +41,7 @@ function App() {
                 <meta name="og:image" content={hostname + "/assets/icons/christmas.png"} />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
             </Head>
-            <Particles options={{preset:"snow",background:{color:"#000"}}} init={particlesInit} />
+            {/* <Particles options={{preset:"snow",background:{color:"#000"}}} init={particlesInit} /> */}
             <Countdown date={christmas} light />
             <FullscreenButton />
         </>
