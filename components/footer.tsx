@@ -14,7 +14,8 @@ export function Footer() {
         {name: 'Instagram', href: 'https://instagram.com/zanderp25', icon: '/assets/icons/socials/instagram.png'},
         {name: 'Discord', href: 'https://discord.gg/672yY5v', icon: '/assets/icons/socials/discord.png'},
         // {name: 'Threads', href: 'https://threads.net/@zanderp25', icon: '/assets/icons/socials/threads.png'},
-        {name: 'YouTube', href: 'https://youtube.com/@zanderp25', icon: '/assets/icons/socials/youtube.png'},
+        {name: 'YouTube', href: 'https://youtube.com/@zanderpicon', icon: '/assets/icons/socials/youtube.png'},
+        // {name: 'YouTube', href: 'https://youtube.com/@zanderp25', icon: '/assets/icons/socials/youtube.png'},
         // {name: 'Twitch', href: 'https://twitch.tv/zanderp25', icon: '/assets/icons/socials/twitch.png'},
         {name: 'Spotify', href: 'https://open.spotify.com/artist/5AspbPwL5IXqE8p7orQbF0?si=PcqnmjDjRRu8NUc_b-3UIA', icon: '/assets/icons/socials/spotify.png'},
     ]
