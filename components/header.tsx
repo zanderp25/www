@@ -9,8 +9,8 @@ export function Header(
   { title: string, description: string, icon: string, links: Array<{href:string, label:string}> }
   ): JSX.Element
 {
-  title = title ? `${title} - Zanderp25` : 'Zanderp25';
-  description = description ? description : 'Zanderp25\'s website';
+  title = title ? `${title} - Zander Picon` : 'Zander Picon';
+  description = description ? description : 'Zander Picon\'s official website';
   icon = icon ? icon : '/assets/icons/ZP25 Circle.png';
   links = links ? links : [ 
     { href: '/', label: 'Home' },
@@ -40,7 +40,7 @@ export function Header(
         <Link legacyBehavior href="/">
           <a>
             <div/>
-            <span>Zanderp25</span>
+            <span>Zander Picon</span>
           </a>
         </Link>
       </div>

@@ -1,0 +1,138 @@
+.albumCover {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.albumCover img {
+    border-radius: 10px;
+}
+
+.albumList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.albumView {
+    display: flex;
+    justify-content: center;
+}
+
+.albumInfo {
+    margin-left: 10px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.albumInfo h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.albumInfo p {
+    margin: 0;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.songList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+}
+
+.songList ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #aaa2;
+    max-height: 220px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.songList ul li:nth-child(odd) {
+    background-color: #aaa3;
+}
+
+.song {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.songList h3 {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 400;
+}
+
+.albumLinks {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    gap: 20px;
+}
+
+.albumLinks a {
+    font-size: 1.2rem;
+    text-decoration: none;
+    opacity: 1;
+}
+
+.albumLinks span {
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.albumLinks a:hover {
+    opacity: 0.7;
+}
+
+.albumLinks img {
+    object-fit: contain;
+}
+
+@media (max-width: 600px) {
+    .albumView {
+        flex-direction: column;
+    }
+
+    .albumInfo {
+        margin-left: 0;
+    }
+
+    .songList {
+        margin: 15px 0;
+        width: 100%;
+    }
+
+    .songList ul {
+        width: 90%;
+    }
+}

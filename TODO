@@ -1,4 +1,20 @@
-- Everything
+# TODO
+
+- [ ] pages on home screen
+  - [ ] title page
+    - [ ] prominent info
+    - [ ] links to other pages
+    - [ ] glitchy text on load
+    - [ ] splash text in the corner or something
+  - [ ] about page
+  - [ ] new releases page
+  - [ ] projects summary page
+  - [ ] photography page
+  - [ ] music page
+
+## old list, to look through later
+
+- fix countdown backgrounds
 - New tab page
 - qr code generator
 - Battery remake: stopwatch that starts when unplugged, mode switch (percent only / stopwatch and percent)
@@ -6,10 +22,10 @@
 - utility that makes an iPhone act like a stream deck with an api or something
 - loading background message for countdown and battery
 - elements that fade in on scroll (about different things I do) for the homepage or something like that idk it seems cool and it's late and I'm tired and it seems like a good idea
-    - https://michalsnik.github.io/aos/
+  - https://michalsnik.github.io/aos/
 - use /public/Apple Devices/ somehow
 - Résumé
-    - qr code or something to show more stuff # why the heck do i need a qr code on a website lol
+  - qr code or something to show more stuff # why the heck do i need a qr code on a website lol <!-- lol that's not how you do a markdown comment, silly -->
 - Show that I edit videos
 - photography portfolio
 - move this todo to github projects or something maybe?
