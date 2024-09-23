@@ -54,7 +54,7 @@ export default function HomePage() {
     <DefaultLayout>
       <CountdownBanner />
       <TitleSection>
-        <h1>Zanderp25</h1>
+        <h1>Zander Picon</h1>
         <p onClick={newSplashText}>{splashText}
           <Link legacyBehavior href='/website/splashTexts'>
             <a className="infoIcon">?</a>
