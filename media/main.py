@@ -28,9 +28,10 @@ def media(path):
         index = open("fileIndex.html").read()
         file_data = ""
         for file in files:
-            file_path = "/".join([path, file]).replace(' ', '%20')
+            file_path = "/".join([path, file])
             file_size = os.path.getsize(os.path.join('media', file_path))
             is_dir = os.path.isdir(os.path.join('media', file_path))
+            file_path = file_path.replace(' ', '%20') # for URLs
             file_data += f'{{"name":"{file}", "size": {file_size}, "path": "/{file_path}", "isDir": {"true" if is_dir else "false"}}},'
         file_data = file_data.rstrip(',')
         pattern = r"\/\/ DATA START\n([\s\S]*)\n\/\/ DATA END"
