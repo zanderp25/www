@@ -15,7 +15,7 @@ const nextConfig = {
     return [
       {
         source: '/utils/:slug*',
-        destination: 'l',
+        destination: '/l/:slug*',
         permanent: false,
       },
       {
