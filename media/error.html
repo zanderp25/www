@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Artifacts Document Generator</title>
+    <style>
+        * {
+            --background-color: #F3F9D2;
+            --primary-color: #391463;
+            --secondary-color: #C0D684;
+            --tertiary-color: #CBEAA6;
+            --text-color: #391463;
+            --text-color-light: #736d79;
+            --error-color: #d63384;
+        }
+        body {
+            font-family: sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            width: 100%;
+            margin: 0px;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            background-color: var(--secondary-color);
+            padding: 40px;
+            border-radius: 10px;
+            width: 400px;
+            margin: 40px;
+            text-align: center;
+        }
+        .error-icon {
+            font-size: 48px;
+            color: var(--error-color);
+        }
+        h1 {
+            margin: 0;
+            font-size: 24px;
+            color: var(--error-color);
+        }
+        p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .back-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .back-button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-icon">⚠️</div>
+        <h1>$ERROR_TITLE</h1>
+        <p>$ERROR_MESSAGE</p>
+        <a href="/artifactsDoc" class="back-button">Try Again</a>
+    </div>
+</body>
+</html>

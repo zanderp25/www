@@ -226,6 +226,103 @@ def managelinks_post():
         case action:
             return f'Invalid action "{action}"', 400
 
+@app.route('/artifactsDoc', methods=['GET'])
+def artifactsdoc_client():
+    return send_file('artifactsupload.html')
+
+@app.route('/artifactsDoc', methods=['POST'])
+def artifactsdoc_post():
+    try:
+        file = request.files.get('file')
+        if file is None:
+            return render_error_page('No file provided', 'Please select a JSON file to upload.'), 400
+        
+        # Check if file is JSON
+        if not file.filename.lower().endswith('.json'):
+            return render_error_page('Invalid file type', 'Only JSON files are allowed. Please upload a .json file.'), 400
+        
+        # Check if file is empty
+        if file.filename == '':
+            return render_error_page('No file selected', 'Please select a JSON file to upload.'), 400
+        
+        # Save the uploaded JSON file temporarily
+        json_filename = f"temp_{str(uuid.uuid4())[:6]}.json"
+        json_path = os.path.join('media', 'artifacts', json_filename)
+        
+        # Ensure media/artifacts directory exists
+        media_artifacts_dir = os.path.join('media', 'artifacts')
+        if not os.path.exists(media_artifacts_dir):
+            os.makedirs(media_artifacts_dir)
+        
+        file.save(json_path)
+        
+        # Validate JSON format
+        try:
+            with open(json_path, 'r') as f:
+                json_data = json.load(f)
+            
+            # Basic validation - check if it has artifacts key
+            if 'artifacts' not in json_data:
+                os.remove(json_path)
+                return render_error_page('Invalid JSON structure', 'The JSON file must contain an "artifacts" key with artifact data.'), 400
+                
+        except json.JSONDecodeError as e:
+            os.remove(json_path)
+            return render_error_page('Invalid JSON format', f'The file is not a valid JSON: {str(e)}'), 400
+        
+        # # Import and use the artifact document generator
+        # import sys
+        # artifacts_path = os.path.abspath('artifacts')
+        # if artifacts_path not in sys.path:
+        #     sys.path.append(artifacts_path)
+        from artifacts.artifactDoc import generate_artifacts_doc
+        
+        # Generate the document
+        docx_filename = f"artifacts_{str(uuid.uuid4())[:6]}.docx"
+        docx_path = os.path.join('media', 'artifacts', docx_filename)
+        output_path = generate_artifacts_doc(json_path, docx_path)
+        
+        # Clean up the temporary JSON file
+        os.remove(json_path)
+        
+        # Return the generated document for download
+        return send_file(output_path, as_attachment=True, download_name=f"artifacts_{datetime.now().strftime('%m-%d')}.docx")
+        
+    except ImportError as e:
+        # Clean up the temporary JSON file in case of error
+        if 'json_path' in locals() and os.path.exists(json_path):
+            os.remove(json_path)
+        return render_error_page('Missing dependencies', f'Required Python packages are not installed: {str(e)}'), 500
+    except Exception as e:
+        # Clean up the temporary JSON file in case of error
+        if 'json_path' in locals() and os.path.exists(json_path):
+            os.remove(json_path)
+        return render_error_page('Processing error', f'An error occurred while generating the document: {str(e)}'), 500
+
+def render_error_page(error_title, error_message):
+    """Render a user-friendly error page"""
+    try:
+        with open('error.html', 'r') as f:
+            error_html = f.read()
+        
+        # Replace placeholders with actual values
+        error_html = error_html.replace('$ERROR_TITLE', error_title)
+        error_html = error_html.replace('$ERROR_MESSAGE', error_message)
+        
+        return error_html
+    except Exception as e:
+        # Fallback to basic error message if template file is missing
+        return f"""
+        <html>
+        <head><title>Error</title></head>
+        <body>
+            <h1>{error_title}</h1>
+            <p>{error_message}</p>
+            <a href="/artifactsDoc">Try Again</a>
+        </body>
+        </html>
+        """
+
 @app.route('/clicks-ani-world')
 def clicks_ani_world():
     os.system('cp -r ../../ClicksAniMC/world .; zip -r world.zip world; rm -rf world')

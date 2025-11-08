@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artifacts Document Generator</title>
+    <style>
+        * {
+            --background-color: #F3F9D2;
+            --primary-color: #391463;
+            --secondary-color: #C0D684;
+            --tertiary-color: #CBEAA6;
+            --text-color: #391463;
+            --text-color-light: #736d79;
+        }
+        body {
+            font-family: sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            width: 100%;
+            margin: 0px;
+            justify-content: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            background-color: var(--secondary-color);
+            padding: 40px;
+            border-radius: 10px;
+            width: 400px;
+            margin: 40px;
+        }
+        h1 {
+            margin: 0;
+            text-align: center;
+            font-size: 24px;
+        }
+        p {
+            margin: 0;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-color-light);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: transparent;
+        }
+        input[type="submit"] {
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            width: 50%;
+        }
+        input[type="submit"]:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        input[type="file"] {
+            background-color: var(--tertiary-color);
+            color: var(--text-color);
+            font-size: 16px;
+            font-weight: bold;
+            padding: 4px;
+        }
+        input[type="file"]::file-selector-button {
+            border: none;
+            border-radius: 25px;
+            color: white;
+            background-color: var(--primary-color);
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            width: 125px;
+            margin-right: 10px;
+        }
+        input[type="file"]::file-selector-button:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        input[type="password"] {
+            color: var(--text-color);
+        }
+        input[type="password"]::placeholder, input[type="file"]::-ms-input-placeholder {
+            color: var(--text-color-light);
+        }
+        div.form-group {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            gap: 10px;
+            border-radius: 25px;
+            background-color: var(--tertiary-color);
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    <form action="/artifactsDoc" method="post" enctype="multipart/form-data">
+        <h1>Artifacts Document Generator</h1>
+        <p>Upload a JSON file containing artifact data to generate a Word document</p>
+        <input type="file" name="file" accept=".json" required>
+        <input type="submit" value="Generate Document" style="width: 50%; background-color: var(--primary-color); color: white; cursor: pointer; margin-top: 10px;">
+    </form>
+</body>
+</html>

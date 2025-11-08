@@ -2,3 +2,4 @@ bcrypt
 flask
 werkzeug
 waitress
+python-docx
