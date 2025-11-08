@@ -247,14 +247,17 @@ def artifactsdoc_post():
         
         # Save the uploaded JSON file temporarily
         json_filename = f"temp_{str(uuid.uuid4())[:6]}.json"
-        json_path = os.path.join('media', 'artifacts', json_filename)
+        json_path = os.path.join('media', 'media', 'artifacts', json_filename)
         
-        # Ensure media/artifacts directory exists
-        media_artifacts_dir = os.path.join('media', 'artifacts')
+        # Ensure media/media/artifacts directory exists
+        media_artifacts_dir = os.path.join('media', 'media', 'artifacts')
         if not os.path.exists(media_artifacts_dir):
             os.makedirs(media_artifacts_dir)
         
         file.save(json_path)
+        
+        # Convert to absolute path for the artifact processor
+        absolute_json_path = os.path.abspath(json_path)
         
         # Validate JSON format
         try:
@@ -279,14 +282,16 @@ def artifactsdoc_post():
         
         # Generate the document
         docx_filename = f"artifacts_{str(uuid.uuid4())[:6]}.docx"
-        docx_path = os.path.join('media', 'artifacts', docx_filename)
-        output_path = generate_artifacts_doc(json_path, docx_path)
+        docx_path = os.path.join('media', 'media', 'artifacts', docx_filename)
+        # Convert to absolute path to avoid working directory issues
+        absolute_docx_path = os.path.abspath(docx_path)
+        output_path = generate_artifacts_doc(absolute_json_path, absolute_docx_path)
         
         # Clean up the temporary JSON file
         os.remove(json_path)
         
         # Return the generated document for download
-        return send_file(output_path, as_attachment=True, download_name=f"artifacts_{datetime.now().strftime('%m-%d')}.docx")
+        return send_file(output_path, as_attachment=True, download_name=f"artifacts.docx")
         
     except ImportError as e:
         # Clean up the temporary JSON file in case of error

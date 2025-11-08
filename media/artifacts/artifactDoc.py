@@ -101,9 +101,7 @@ def generate_artifacts_doc(artifacts_json_path, output_path=None):
 
     # Save the document
     # Generate the filename with the current date if no output path provided
-    if output_path is None:
-        current_date = datetime.now().strftime("%m-%d")
-        output_path = f"artifacts_{current_date}.docx"
+    if output_path is None: output_path = f"artifacts.docx"
 
     # Save the document with the generated filename
     doc.save(output_path)
