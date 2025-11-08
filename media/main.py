@@ -293,8 +293,10 @@ def artifactsdoc_post():
         # Clean up the temporary JSON file
         os.remove(json_path)
         
-        # Return the generated document for download
-        return send_file(output_path, as_attachment=True, download_name=f"artifacts.docx")
+        # Generate the URL for the document and redirect to it
+        # The file is saved in media/artifacts, so the URL should be /artifacts/filename
+        document_url = f"/artifacts/{docx_filename}?download=true"
+        return redirect(document_url)
         
     except ImportError as e:
         # Clean up the temporary JSON file in case of error
