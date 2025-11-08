@@ -293,10 +293,9 @@ def artifactsdoc_post():
         # Clean up the temporary JSON file
         os.remove(json_path)
         
-        # Generate the URL for the document and redirect to it
-        # The file is saved in media/artifacts, so the URL should be /artifacts/filename
+        # Generate the URL for the document and show success page
         document_url = f"/artifacts/{docx_filename}?download=true"
-        return redirect(document_url)
+        return render_success_page(document_url)
         
     except ImportError as e:
         # Clean up the temporary JSON file in case of error
@@ -312,7 +311,11 @@ def artifactsdoc_post():
 def render_error_page(error_title, error_message):
     """Render a user-friendly error page"""
     try:
-        with open('error.html', 'r') as f:
+        # Get the directory where this script is located
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        error_template_path = os.path.join(script_dir, 'error.html')
+        
+        with open(error_template_path, 'r') as f:
             error_html = f.read()
         
         # Replace placeholders with actual values
@@ -329,6 +332,35 @@ def render_error_page(error_title, error_message):
             <h1>{error_title}</h1>
             <p>{error_message}</p>
             <a href="/artifactsDoc">Try Again</a>
+        </body>
+        </html>
+        """
+
+def render_success_page(download_url):
+    """Render a success page with download link"""
+    try:
+        # Get the directory where this script is located
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        success_template_path = os.path.join(script_dir, 'artifactssuccess.html')
+        
+        with open(success_template_path, 'r') as f:
+            success_html = f.read()
+        
+        # Replace placeholder with actual download URL
+        success_html = success_html.replace('$DOWNLOAD_URL', download_url)
+        
+        return success_html
+    except Exception as e:
+        # Fallback to basic success message if template file is missing
+        return f"""
+        <html>
+        <head><title>Success</title></head>
+        <body>
+            <h1>Document Generated Successfully!</h1>
+            <p>Your document is ready for download:</p>
+            <a href="{download_url}">Download Document</a>
+            <br><br>
+            <a href="/artifactsDoc">Generate Another</a>
         </body>
         </html>
         """

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Generated - Artifacts Document Generator</title>
+    <style>
+        * {
+            --background-color: #F3F9D2;
+            --primary-color: #391463;
+            --secondary-color: #C0D684;
+            --tertiary-color: #CBEAA6;
+            --text-color: #391463;
+            --text-color-light: #736d79;
+            --success-color: #28a745;
+        }
+        body {
+            font-family: sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            width: 100%;
+            margin: 0px;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            background-color: var(--secondary-color);
+            padding: 40px;
+            border-radius: 10px;
+            width: 450px;
+            margin: 40px;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 24px;
+            color: var(--success-color);
+        }
+        p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .url-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            margin: 10px 0;
+        }
+        .url-display {
+            background-color: var(--tertiary-color);
+            padding: 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            word-break: break-all;
+            border: 2px solid transparent;
+            transition: border-color 0.3s, background-color 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .url-display:hover {
+            border-color: var(--primary-color);
+        }
+        .url-display.copied {
+            border-color: var(--success-color);
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+        .button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            flex: 1;
+            transition: opacity 0.3s;
+        }
+        .button:hover {
+            opacity: 0.8;
+        }
+        .button.secondary {
+            background-color: var(--text-color-light);
+        }
+        .copy-feedback {
+            font-size: 14px;
+            color: var(--success-color);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .copy-feedback.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Document Generated Successfully!</h1>
+        <p>Your artifacts document has been created and is ready for download.</p>
+        
+        <div class="url-container">
+            <a href="$DOWNLOAD_URL" class="url-display" id="downloadUrl">$DOWNLOAD_URL</a>
+            <div class="copy-feedback" id="copyFeedback">Link copied to clipboard!</div>
+        </div>
+        
+        <div class="button-group">
+            <a href="$DOWNLOAD_URL" class="button" target="_blank">Download Document</a>
+            <button class="button secondary" onclick="copyToClipboard()">Copy Link</button>
+        </div>
+        
+        <a href="/artifactsDoc" class="button" style="width: 50%; margin-top: 10px;">Generate Another</a>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            const urlElement = document.getElementById('downloadUrl');
+            const feedbackElement = document.getElementById('copyFeedback');
+            const url = urlElement.textContent;
+            
+            navigator.clipboard.writeText(url).then(function() {
+                // Show visual feedback
+                urlElement.classList.add('copied');
+                feedbackElement.classList.add('show');
+                
+                // Remove feedback after 2 seconds
+                setTimeout(function() {
+                    urlElement.classList.remove('copied');
+                    feedbackElement.classList.remove('show');
+                }, 2000);
+            }).catch(function(err) {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = url;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                // Show visual feedback
+                urlElement.classList.add('copied');
+                feedbackElement.classList.add('show');
+                
+                setTimeout(function() {
+                    urlElement.classList.remove('copied');
+                    feedbackElement.classList.remove('show');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
