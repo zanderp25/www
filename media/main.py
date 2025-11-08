@@ -283,19 +283,37 @@ def artifactsdoc_post():
         #     sys.path.append(artifacts_path)
         from artifacts.artifactDoc import generate_artifacts_doc
         
-        # Generate the document
+        # Generate the document (add error handling for Cloudflare compatibility)
         docx_filename = f"artifacts_{str(uuid.uuid4())[:6]}.docx"
         docx_path = os.path.join(artifacts_dir, docx_filename)
         # Convert to absolute path to avoid working directory issues
         absolute_docx_path = os.path.abspath(docx_path)
-        output_path = generate_artifacts_doc(absolute_json_path, absolute_docx_path)
+        
+        try:
+            # Ensure we flush any output to avoid buffering issues with Cloudflare
+            import sys
+            sys.stdout.flush()
+            sys.stderr.flush()
+            
+            output_path = generate_artifacts_doc(absolute_json_path, absolute_docx_path)
+            
+        except Exception as e:
+            os.remove(json_path)
+            return render_error_page('Document generation failed', f'An error occurred while generating the document: {str(e)}'), 500
         
         # Clean up the temporary JSON file
         os.remove(json_path)
         
         # Generate the URL for the document and show success page
         document_url = f"/artifacts/{docx_filename}?download=true"
-        return render_success_page(document_url)
+        response = make_response(render_success_page(document_url))
+        
+        # Add headers to help with Cloudflare compatibility
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '0'
+        
+        return response
         
     except ImportError as e:
         # Clean up the temporary JSON file in case of error
