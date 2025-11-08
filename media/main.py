@@ -6,6 +6,7 @@ from hashes import token_hash, password_hash
 
 app = Flask(__name__)
 keys = []
+DEV = False
 
 # Store for async tasks
 processing_tasks = {}
