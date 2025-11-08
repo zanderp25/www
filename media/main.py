@@ -247,12 +247,15 @@ def artifactsdoc_post():
         
         # Save the uploaded JSON file temporarily
         json_filename = f"temp_{str(uuid.uuid4())[:6]}.json"
-        json_path = os.path.join('media', 'media', 'artifacts', json_filename)
         
-        # Ensure media/media/artifacts directory exists
-        media_artifacts_dir = os.path.join('media', 'media', 'artifacts')
-        if not os.path.exists(media_artifacts_dir):
-            os.makedirs(media_artifacts_dir)
+        # Get the directory where this script is running from (should be /media)
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        artifacts_dir = os.path.join(script_dir, 'media', 'artifacts')
+        json_path = os.path.join(artifacts_dir, json_filename)
+        
+        # Ensure media/artifacts directory exists
+        if not os.path.exists(artifacts_dir):
+            os.makedirs(artifacts_dir)
         
         file.save(json_path)
         
@@ -282,7 +285,7 @@ def artifactsdoc_post():
         
         # Generate the document
         docx_filename = f"artifacts_{str(uuid.uuid4())[:6]}.docx"
-        docx_path = os.path.join('media', 'media', 'artifacts', docx_filename)
+        docx_path = os.path.join(artifacts_dir, docx_filename)
         # Convert to absolute path to avoid working directory issues
         absolute_docx_path = os.path.abspath(docx_path)
         output_path = generate_artifacts_doc(absolute_json_path, absolute_docx_path)
