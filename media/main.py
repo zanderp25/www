@@ -1,4 +1,4 @@
-import os, uuid, bcrypt, json, re
+import os, uuid, bcrypt, json, re, threading, time
 from datetime import datetime, timedelta
 from flask import *
 from werkzeug import datastructures
@@ -6,7 +6,9 @@ from hashes import token_hash, password_hash
 
 app = Flask(__name__)
 keys = []
-DEV = False
+
+# Store for async tasks
+processing_tasks = {}
 
 @app.route('/')
 def index():
@@ -276,44 +278,24 @@ def artifactsdoc_post():
             os.remove(json_path)
             return render_error_page('Invalid JSON format', f'The file is not a valid JSON: {str(e)}'), 400
         
-        # # Import and use the artifact document generator
-        # import sys
-        # artifacts_path = os.path.abspath('artifacts')
-        # if artifacts_path not in sys.path:
-        #     sys.path.append(artifacts_path)
-        from artifacts.artifactDoc import generate_artifacts_doc
+        # Start asynchronous document generation
+        task_id = str(uuid.uuid4())
+        processing_tasks[task_id] = {
+            'status': 'processing',
+            'progress_message': 'Validating JSON file...',
+            'created_at': datetime.now()
+        }
         
-        # Generate the document (add error handling for Cloudflare compatibility)
-        docx_filename = f"artifacts_{str(uuid.uuid4())[:6]}.docx"
-        docx_path = os.path.join(artifacts_dir, docx_filename)
-        # Convert to absolute path to avoid working directory issues
-        absolute_docx_path = os.path.abspath(docx_path)
+        # Start background thread
+        thread = threading.Thread(
+            target=generate_document_async,
+            args=(task_id, absolute_json_path, artifacts_dir)
+        )
+        thread.daemon = True
+        thread.start()
         
-        try:
-            # Ensure we flush any output to avoid buffering issues with Cloudflare
-            import sys
-            sys.stdout.flush()
-            sys.stderr.flush()
-            
-            output_path = generate_artifacts_doc(absolute_json_path, absolute_docx_path)
-            
-        except Exception as e:
-            os.remove(json_path)
-            return render_error_page('Document generation failed', f'An error occurred while generating the document: {str(e)}'), 500
-        
-        # Clean up the temporary JSON file
-        os.remove(json_path)
-        
-        # Generate the URL for the document and show success page
-        document_url = f"/artifacts/{docx_filename}?download=true"
-        response = make_response(render_success_page(document_url))
-        
-        # Add headers to help with Cloudflare compatibility
-        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-        response.headers['Pragma'] = 'no-cache'
-        response.headers['Expires'] = '0'
-        
-        return response
+        # Return processing page immediately
+        return render_processing_page(task_id)
         
     except ImportError as e:
         # Clean up the temporary JSON file in case of error
@@ -325,6 +307,79 @@ def artifactsdoc_post():
         if 'json_path' in locals() and os.path.exists(json_path):
             os.remove(json_path)
         return render_error_page('Processing error', f'An error occurred while generating the document: {str(e)}'), 500
+
+def generate_document_async(task_id, json_path, artifacts_dir):
+    """Generate document in background thread"""
+    try:
+        from artifacts.artifactDoc import generate_artifacts_doc
+        
+        # Update progress
+        processing_tasks[task_id]['progress_message'] = 'Generating document...'
+        
+        # Generate the document
+        docx_filename = f"artifacts_{str(uuid.uuid4())[:6]}.docx"
+        docx_path = os.path.join(artifacts_dir, docx_filename)
+        absolute_docx_path = os.path.abspath(docx_path)
+        
+        output_path = generate_artifacts_doc(json_path, absolute_docx_path)
+        
+        # Clean up the temporary JSON file
+        os.remove(json_path)
+        
+        # Mark as completed
+        document_url = f"/artifacts/{docx_filename}?download=true"
+        processing_tasks[task_id] = {
+            'status': 'completed',
+            'document_url': document_url,
+            'success_url': f'/artifactsDoc/success?url={document_url}',
+            'completed_at': datetime.now()
+        }
+        
+    except Exception as e:
+        # Clean up on error
+        if os.path.exists(json_path):
+            os.remove(json_path)
+        
+        processing_tasks[task_id] = {
+            'status': 'error',
+            'error_message': str(e),
+            'failed_at': datetime.now()
+        }
+
+@app.route('/artifactsDoc/status/<task_id>')
+def artifactsdoc_status(task_id):
+    """Check status of document generation task"""
+    if task_id not in processing_tasks:
+        return jsonify({'status': 'error', 'error_message': 'Task not found'}), 404
+    
+    task = processing_tasks[task_id]
+    
+    # Clean up old tasks (older than 10 minutes)
+    cleanup_old_tasks()
+    
+    return jsonify(task)
+
+@app.route('/artifactsDoc/success')
+def artifactsdoc_success():
+    """Show success page with download URL"""
+    download_url = request.args.get('url', '')
+    if not download_url:
+        return render_error_page('Invalid request', 'No download URL provided.'), 400
+    
+    return render_success_page(download_url)
+
+def cleanup_old_tasks():
+    """Remove tasks older than 10 minutes"""
+    cutoff_time = datetime.now() - timedelta(minutes=10)
+    tasks_to_remove = []
+    
+    for task_id, task in processing_tasks.items():
+        task_time = task.get('created_at') or task.get('completed_at') or task.get('failed_at')
+        if task_time and task_time < cutoff_time:
+            tasks_to_remove.append(task_id)
+    
+    for task_id in tasks_to_remove:
+        del processing_tasks[task_id]
 
 def render_error_page(error_title, error_message):
     """Render a user-friendly error page"""
@@ -379,6 +434,36 @@ def render_success_page(download_url):
             <a href="{download_url}">Download Document</a>
             <br><br>
             <a href="/artifactsDoc">Generate Another</a>
+        </body>
+        </html>
+        """
+
+def render_processing_page(task_id):
+    """Render a processing page with task ID"""
+    try:
+        # Get the directory where this script is located
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        processing_template_path = os.path.join(script_dir, 'processing.html')
+        
+        with open(processing_template_path, 'r') as f:
+            processing_html = f.read()
+        
+        # Replace placeholder with actual task ID
+        processing_html = processing_html.replace('$TASK_ID', task_id)
+        
+        return processing_html
+    except Exception as e:
+        # Fallback to basic processing message if template file is missing
+        return f"""
+        <html>
+        <head>
+            <title>Processing</title>
+            <meta http-equiv="refresh" content="3;url=/artifactsDoc/status/{task_id}">
+        </head>
+        <body>
+            <h1>Processing Your Document</h1>
+            <p>Please wait while we generate your artifacts document...</p>
+            <p>You will be redirected automatically.</p>
         </body>
         </html>
         """

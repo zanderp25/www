@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing - Artifacts Document Generator</title>
+    <style>
+        * {
+            --background-color: #F3F9D2;
+            --primary-color: #391463;
+            --secondary-color: #C0D684;
+            --tertiary-color: #CBEAA6;
+            --text-color: #391463;
+            --text-color-light: #736d79;
+            --processing-color: #007bff;
+        }
+        body {
+            font-family: sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            width: 100%;
+            margin: 0px;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            background-color: var(--secondary-color);
+            padding: 40px;
+            border-radius: 10px;
+            width: 450px;
+            margin: 40px;
+            text-align: center;
+        }
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--tertiary-color);
+            border-top: 4px solid var(--processing-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        h1 {
+            margin: 0;
+            font-size: 24px;
+            color: var(--processing-color);
+        }
+        p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .progress-text {
+            font-style: italic;
+            color: var(--text-color-light);
+        }
+        .error-message {
+            color: #d63384;
+            font-weight: bold;
+        }
+        .button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            margin-top: 10px;
+            display: none;
+        }
+        .button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="spinner" id="spinner"></div>
+        <h1 id="statusTitle">Processing Your Document</h1>
+        <p id="statusMessage">Please wait while we generate your artifacts document...</p>
+        <p class="progress-text" id="progressText">This usually takes 10-30 seconds</p>
+        <a href="/artifactsDoc" class="button" id="tryAgainButton">Try Again</a>
+    </div>
+
+    <script>
+        const taskId = '$TASK_ID';
+        let pollCount = 0;
+        const maxPolls = 60; // 2 minutes max
+        
+        function pollStatus() {
+            pollCount++;
+            
+            fetch(`/artifactsDoc/status/${taskId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'completed') {
+                        // Success - redirect to success page
+                        window.location.href = data.success_url;
+                    } else if (data.status === 'error') {
+                        // Error occurred
+                        showError(data.error_message || 'An unknown error occurred');
+                    } else if (data.status === 'processing') {
+                        // Still processing
+                        updateProgress(data.progress_message || 'Still processing...');
+                        if (pollCount < maxPolls) {
+                            setTimeout(pollStatus, 2000); // Poll every 2 seconds
+                        } else {
+                            showError('Processing is taking longer than expected. Please try again.');
+                        }
+                    } else {
+                        // Unknown status
+                        setTimeout(pollStatus, 2000);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error polling status:', error);
+                    if (pollCount < maxPolls) {
+                        setTimeout(pollStatus, 2000);
+                    } else {
+                        showError('Failed to check processing status. Please try again.');
+                    }
+                });
+        }
+        
+        function updateProgress(message) {
+            document.getElementById('progressText').textContent = message;
+        }
+        
+        function showError(errorMessage) {
+            document.getElementById('spinner').style.display = 'none';
+            document.getElementById('statusTitle').textContent = 'Processing Failed';
+            document.getElementById('statusTitle').style.color = '#d63384';
+            document.getElementById('statusMessage').innerHTML = `<span class="error-message">${errorMessage}</span>`;
+            document.getElementById('progressText').textContent = '';
+            document.getElementById('tryAgainButton').style.display = 'inline-block';
+        }
+        
+        // Start polling
+        setTimeout(pollStatus, 1000); // Start after 1 second
+    </script>
+</body>
+</html>
