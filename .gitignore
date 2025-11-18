@@ -1,15 +1,40 @@
+# Mac stuff
 .DS_Store
 ._*
+
+# VSCode settings
 .vscode
+
+# Python stuff
+*.pyc
+*.pyo
+*.pyd
 __pycache__
+
+# Node.js stuff
 /node_modules
 /.next
+
+# old site files
 /old
+
+# Media files
 /media/media/
+
+# Temporary media files
 /media/world.zip
 /media/sabimora.zip
 /media/token_hash
 /media/hashes.py
 /media/keys.json
 /media/roster.csv
+
+# Environment variables
 .env
+
+# Python virtual environments
+venv/
+bin/
+lib/
+include/
+pyvenv.cfg
