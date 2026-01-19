@@ -20,13 +20,15 @@ __pycache__
 
 # Media files
 /media/media/
+/media/.prod
+/media/keys.json
+/media/links.json
 
 # Temporary media files
 /media/world.zip
 /media/sabimora.zip
 /media/token_hash
 /media/hashes.py
-/media/keys.json
 /media/roster.csv
 
 # Environment variables

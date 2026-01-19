@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Manager</title>
+    <style>
+        * {
+            --background-color: #F3F9D2;
+            --primary-color: #391463;
+            --secondary-color: #C0D684;
+            --tertiary-color: #CBEAA6;
+            --text-color: #391463;
+            --text-color-light: #736d79;
+        }
+        body {
+            font-family: sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            width: 100%;
+            margin: 0px;
+            justify-content: center;
+            flex-direction: column;
+            align-content: center;
+            flex-wrap: wrap;
+        }
+        form, div#files {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            background-color: var(--secondary-color);
+            padding: 40px;
+            border-radius: 10px;
+            width: calc(100% - 160px);
+            max-width: 1200px;
+            margin: 40px;
+        }
+        div#files {
+            margin-top: 0;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: transparent;
+        }
+        input[type="button"] {
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            width: 50%;
+        }
+        input[type="button"]:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        input[type="password"], input[type="text"] {
+            color: var(--text-color);
+        }
+        input[type="password"]::placeholder, input[type="text"]::placeholder {
+            color: var(--text-color-light);
+        }
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+            padding-left: 10px;
+        }
+        div.form-group {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            gap: 10px;
+            border-radius: 25px;
+            background-color: var(--tertiary-color);
+            padding: 2px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--tertiary-color);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        thead {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        th {
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+        }
+        th:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        th.sortable::after {
+            content: ' ↕';
+            opacity: 0.5;
+        }
+        th.sort-asc::after {
+            content: ' ↑';
+            opacity: 1;
+        }
+        th.sort-desc::after {
+            content: ' ↓';
+            opacity: 1;
+        }
+        td {
+            padding: 12px;
+            border-top: 1px solid var(--secondary-color);
+        }
+        tr:hover {
+            background-color: rgba(57, 20, 99, 0.05);
+        }
+        .file-name {
+            font-weight: bold;
+            word-break: break-all;
+        }
+        .actions-cell {
+            white-space: nowrap;
+        }
+        button.button, input[type="submit"] {
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            border-radius: 15px;
+            border: none;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 16px;
+            margin: 2px;
+        }
+        button.button:hover {
+            opacity: 0.8;
+        }
+        button.delete {
+            background-color: #8d1212;
+        }
+        button.view {
+            background-color: #1565c0;
+        }
+        button.small {
+            padding: 6px 10px;
+            font-size: 12px;
+        }
+        #popover {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        #popover form {
+            width: 400px;
+            max-width: 90%;
+        }
+        .button-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            gap: 10px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            form, div#files {
+                width: calc(100% - 40px);
+                margin: 10px;
+                padding: 20px;
+                border-radius: 0;
+            }
+            input[type="button"] {
+                width: 100%;
+            }
+            div.form-group {
+                width: 100%;
+                padding: 5px;
+            }
+            table {
+                font-size: 12px;
+            }
+            th, td {
+                padding: 8px 4px;
+            }
+            button.small {
+                padding: 4px 6px;
+                font-size: 11px;
+            }
+            #popover form {
+                width: 90%;
+            }
+        }
+    </style>
+    <script>
+        let filesData = [];
+        let sortColumn = 'modified';
+        let sortDirection = 'desc';
+
+        function onLoad(){
+            document.querySelector('form#login')?.addEventListener('submit', e => {
+                e.preventDefault();
+                document.querySelector('#loginBtn').click();
+            });
+        }
+
+        function login() {
+            if (document.querySelector('input[name="password"]').value == "n0t_a_p455w0rd") {
+                return alert("Did you really think that was going to work? lol")
+            }
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/files');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    document.querySelector('#loginBtn').value = "Logout";
+                    document.querySelector('#loginBtn').onclick = logout;
+                    filesData = JSON.parse(xhr.responseText);
+                    renderFiles();
+                } else if (xhr.status === 401) {
+                    console.error(xhr.responseText);
+                    alert("Incorrect password");
+                } else {
+                    console.error(xhr.statusText);
+                }
+            };
+            xhr.onerror = function() {
+                console.error(xhr.statusText);
+            };
+            formdata = new FormData();
+            formdata.append('password', document.querySelector('input[name="password"]').value);
+            formdata.append('action', 'list');
+            xhr.send(formdata);
+        }
+
+        function logout(){
+            document.querySelector('#loginBtn').value = "Login";
+            document.querySelector('#loginBtn').onclick = login;
+            document.querySelector('#files').style.display = "none";
+            document.querySelector('#files').innerHTML = "";
+            document.querySelector('input[name="password"]').value = "";
+            filesData = [];
+        }
+
+        function deleteFile(filename) {
+            if (!confirm(`Are you sure you want to delete "${filename}"?`)) {
+                return;
+            }
+            
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/files');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        login(); // Refresh the list
+                    } else {
+                        alert("Error: " + response.message);
+                    }
+                } else if (xhr.status === 401) {
+                    console.error(xhr.responseText);
+                    alert("Incorrect password");
+                } else {
+                    console.error(xhr.statusText);
+                    alert("Error: " + xhr.statusText);
+                }
+            };
+            xhr.onerror = function() {
+                console.error(xhr.statusText);
+            };
+            formdata = new FormData();
+            formdata.append('password', document.querySelector('input[name="password"]').value);
+            formdata.append('action', 'delete');
+            formdata.append('filename', filename);
+            xhr.send(formdata);
+        }
+
+        function renameFile(oldName){
+            const popover = document.createElement('div');
+            popover.id = "popover";
+
+            const form = document.createElement('form');
+            form.id = "renameFileForm";
+
+            const title = document.createElement('h2');
+            title.textContent = "Rename File";
+            form.appendChild(title);
+
+            const oldNameLabel = document.createElement('p');
+            oldNameLabel.textContent = `Current name: ${oldName}`;
+            oldNameLabel.style.wordBreak = "break-all";
+            form.appendChild(oldNameLabel);
+
+            const newNameDiv = document.createElement('div');
+            newNameDiv.classList.add('form-group');
+            const newNameLabel = document.createElement('label');
+            newNameLabel.textContent = "New Name:";
+            newNameDiv.appendChild(newNameLabel);
+            const newNameInput = document.createElement('input');
+            newNameInput.type = "text";
+            newNameInput.name = "new_name";
+            newNameInput.id = "new_name";
+            newNameInput.placeholder = "New filename";
+            newNameInput.value = oldName;
+            newNameDiv.appendChild(newNameInput);
+            form.appendChild(newNameDiv);
+
+            const btnDiv = document.createElement('div');
+            btnDiv.style.display = "flex";
+            btnDiv.style.flexDirection = "row";
+            btnDiv.style.justifyContent = "space-between";
+            btnDiv.style.width = "100%";
+            form.appendChild(btnDiv);
+
+            const submitBtn = document.createElement('input');
+            submitBtn.type = "submit";
+            submitBtn.value = "Rename";
+            btnDiv.appendChild(submitBtn);
+
+            const cancelBtn = document.createElement('input');
+            cancelBtn.type = "button";
+            cancelBtn.value = "Cancel";
+            cancelBtn.onclick = function() {
+                document.querySelector('#popover').remove();
+            };
+            btnDiv.appendChild(cancelBtn);
+
+            popover.appendChild(form);
+            document.querySelector('body').appendChild(popover);
+
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                renameFileSubmit(oldName);
+            });
+
+            // Focus and select the filename (without extension)
+            newNameInput.focus();
+            const lastDot = oldName.lastIndexOf('.');
+            if (lastDot > 0) {
+                newNameInput.setSelectionRange(0, lastDot);
+            }
+        }
+
+        function renameFileSubmit(oldName){
+            const newName = document.querySelector('#new_name').value;
+            
+            if (!newName || newName.trim() === '') {
+                alert("Please enter a new filename");
+                return;
+            }
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/files');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    const response = JSON.parse(xhr.responseText);
+                    document.querySelector('#popover').remove();
+                    if (response.success) {
+                        login(); // Refresh the list
+                    } else {
+                        alert("Error: " + response.message);
+                    }
+                } else if (xhr.status === 401) {
+                    console.error(xhr.responseText);
+                    alert("Incorrect password");
+                } else {
+                    console.error(xhr.statusText);
+                    alert("Error: " + xhr.statusText);
+                }
+            };
+            xhr.onerror = function() {
+                console.error(xhr.statusText);
+            };
+            formdata = new FormData();
+            formdata.append('password', document.querySelector('input[name="password"]').value);
+            formdata.append('action', 'rename');
+            formdata.append('old_name', oldName);
+            formdata.append('new_name', newName);
+            xhr.send(formdata);
+        }
+
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+        }
+
+        function formatDate(isoString) {
+            const date = new Date(isoString);
+            return date.toLocaleString();
+        }
+
+        function sortFiles(column) {
+            if (sortColumn === column) {
+                sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+            } else {
+                sortColumn = column;
+                sortDirection = column === 'modified' ? 'desc' : 'asc';
+            }
+            renderFiles();
+        }
+
+        function renderFiles(){
+            document.querySelector('#files').style.display = "flex";
+            document.querySelector('#files').innerHTML = "";
+
+            const header = document.createElement('h2');
+            header.textContent = 'Media Files';
+            document.querySelector('#files').appendChild(header);
+
+            if(filesData.length == 0){
+                const noFilesSpan = document.createElement('span');
+                noFilesSpan.textContent = 'No files found';
+                document.querySelector('#files').appendChild(noFilesSpan);
+            } else {
+                // Sort data
+                const sortedFiles = [...filesData].sort((a, b) => {
+                    let aVal, bVal;
+                    if (sortColumn === 'name') {
+                        aVal = a.name.toLowerCase();
+                        bVal = b.name.toLowerCase();
+                        return sortDirection === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+                    } else if (sortColumn === 'size') {
+                        aVal = a.size;
+                        bVal = b.size;
+                    } else if (sortColumn === 'modified') {
+                        aVal = new Date(a.modified).getTime();
+                        bVal = new Date(b.modified).getTime();
+                    }
+                    return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+                });
+
+                // Create table
+                const table = document.createElement('table');
+                
+                // Create header
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+                
+                const nameHeader = document.createElement('th');
+                nameHeader.textContent = 'File Name';
+                nameHeader.classList.add('sortable');
+                if (sortColumn === 'name') {
+                    nameHeader.classList.add('sort-' + sortDirection);
+                }
+                nameHeader.onclick = () => sortFiles('name');
+                headerRow.appendChild(nameHeader);
+                
+                const sizeHeader = document.createElement('th');
+                sizeHeader.textContent = 'Size';
+                sizeHeader.classList.add('sortable');
+                if (sortColumn === 'size') {
+                    sizeHeader.classList.add('sort-' + sortDirection);
+                }
+                sizeHeader.onclick = () => sortFiles('size');
+                headerRow.appendChild(sizeHeader);
+                
+                const dateHeader = document.createElement('th');
+                dateHeader.textContent = 'Modified';
+                dateHeader.classList.add('sortable');
+                if (sortColumn === 'modified') {
+                    dateHeader.classList.add('sort-' + sortDirection);
+                }
+                dateHeader.onclick = () => sortFiles('modified');
+                headerRow.appendChild(dateHeader);
+                
+                const actionsHeader = document.createElement('th');
+                actionsHeader.textContent = 'Actions';
+                headerRow.appendChild(actionsHeader);
+                
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+                
+                // Create body
+                const tbody = document.createElement('tbody');
+                sortedFiles.forEach(file => {
+                    const row = document.createElement('tr');
+                    
+                    const nameCell = document.createElement('td');
+                    nameCell.classList.add('file-name');
+                    if (file.isDir) {
+                        nameCell.textContent = '📁 ' + file.name;
+                        nameCell.style.color = 'var(--primary-color)';
+                    } else {
+                        nameCell.textContent = file.name;
+                    }
+                    row.appendChild(nameCell);
+                    
+                    const sizeCell = document.createElement('td');
+                    sizeCell.textContent = file.isDir ? '—' : formatBytes(file.size);
+                    row.appendChild(sizeCell);
+                    
+                    const dateCell = document.createElement('td');
+                    dateCell.textContent = formatDate(file.modified);
+                    row.appendChild(dateCell);
+                    
+                    const actionsCell = document.createElement('td');
+                    actionsCell.classList.add('actions-cell');
+                    
+                    if (file.isDir) {
+                        // Folder actions
+                        const viewButton = document.createElement('button');
+                        viewButton.classList.add('button', 'view', 'small');
+                        viewButton.textContent = 'Browse';
+                        viewButton.onclick = function() {
+                            window.open(`/${file.name}/`, '_blank');
+                        };
+                        actionsCell.appendChild(viewButton);
+                    } else {
+                        // File actions
+                        const viewButton = document.createElement('button');
+                        viewButton.classList.add('button', 'view', 'small');
+                        viewButton.textContent = 'View';
+                        viewButton.onclick = function() {
+                            window.open(`/${file.name}`, '_blank');
+                        };
+                        actionsCell.appendChild(viewButton);
+
+                        const downloadButton = document.createElement('button');
+                        downloadButton.classList.add('button', 'small');
+                        downloadButton.textContent = 'Download';
+                        downloadButton.onclick = function() {
+                            window.open(`/${file.name}?download=true`, '_blank');
+                        };
+                        actionsCell.appendChild(downloadButton);
+
+                        const renameButton = document.createElement('button');
+                        renameButton.classList.add('button', 'small');
+                        renameButton.textContent = 'Rename';
+                        renameButton.onclick = function() {
+                            renameFile(file.name);
+                        };
+                        actionsCell.appendChild(renameButton);
+
+                        const deleteButton = document.createElement('button');
+                        deleteButton.classList.add('button', 'delete', 'small');
+                        deleteButton.textContent = 'Delete';
+                        deleteButton.onclick = function() {
+                            deleteFile(file.name);
+                        };
+                        actionsCell.appendChild(deleteButton);
+                    }
+                    
+                    row.appendChild(actionsCell);
+                    tbody.appendChild(row);
+                });
+                table.appendChild(tbody);
+                
+                document.querySelector('#files').appendChild(table);
+            }
+
+            const btnDiv = document.createElement('div');
+            btnDiv.classList.add('button-row');
+            document.querySelector('#files').appendChild(btnDiv);
+
+            const refreshBtn = document.createElement('button');
+            refreshBtn.classList.add('button');
+            refreshBtn.textContent = 'Refresh';
+            refreshBtn.onclick = function() {
+                login();
+            };
+            btnDiv.appendChild(refreshBtn);
+        }
+    </script>
+</head>
+<body onload="onLoad()">
+    <form id="login">
+        <div class="form-group">
+            <input placeholder="Password" type="password" name="password">
+            <input type="button" value="Login" onclick="login()" id="loginBtn">
+        </div>
+    </form>
+    <div id="files" style="display: none;">
+    </div>
+</body>
+</html>

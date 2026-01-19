@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Shortener</title>
+    <style>
+        * {
+            --background-color: #F3F9D2;
+            --primary-color: #391463;
+            --secondary-color: #C0D684;
+            --tertiary-color: #CBEAA6;
+            --text-color: #391463;
+            --text-color-light: #736d79;
+        }
+        body {
+            font-family: sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            width: 100%;
+            margin: 0px;
+            justify-content: center;
+            flex-direction: column;
+            align-content: center;
+            flex-wrap: wrap;
+        }
+        form, div#links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            background-color: var(--secondary-color);
+            padding: 40px;
+            border-radius: 10px;
+            width: 600px;
+            margin: 40px;
+        }
+        div#links {
+            margin-top: 0;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: transparent;
+        }
+        textarea {
+            border-radius: 15px;
+            font-family: sans-serif;
+            resize: vertical;
+            min-height: 60px;
+        }
+        input[type="button"] {
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            width: 50%;
+        }
+        input[type="button"]:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        input[type="password"], input[type="text"], textarea {
+            color: var(--text-color);
+        }
+        input[type="password"]::placeholder, input[type="text"]::placeholder, textarea::placeholder {
+            color: var(--text-color-light);
+        }
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+            padding-left: 10px;
+        }
+        div.form-group {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            gap: 10px;
+            border-radius: 25px;
+            background-color: var(--tertiary-color);
+            padding: 2px;
+        }
+        div.form-group.textarea-group {
+            border-radius: 15px;
+            align-items: flex-start;
+        }
+        div.link {
+            display: flex;
+            flex-direction: column;
+            border-radius: 15px;
+            background-color: var(--tertiary-color);
+            padding: 15px;
+            width: 100%;
+            gap: 10px;
+        }
+        .link-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .link-slug {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .link-url {
+            font-size: 14px;
+            word-break: break-all;
+            color: var(--text-color-light);
+            margin: 5px 0;
+        }
+        .link-description {
+            font-size: 14px;
+            font-style: italic;
+            color: var(--text-color);
+        }
+        .link-created {
+            font-size: 12px;
+            color: var(--text-color-light);
+        }
+        .link-actions {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        button.button, input[type="submit"] {
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            border-radius: 15px;
+            border: none;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 16px;
+            margin: 2px;
+        }
+        button.button:hover {
+            opacity: 0.8;
+        }
+        button.delete {
+            background-color: #8d1212;
+        }
+        button.copy {
+            background-color: #1565c0;
+        }
+        #popover {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        #popover form {
+            width: 500px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            form, div#links {
+                width: 100%;
+                margin: 10px 0;
+                padding: 20px 0;
+                border-radius: 0;
+            }
+            input[type="button"] {
+                width: 100%;
+            }
+            div.form-group {
+                width: 90%;
+                padding: 5px;
+            }
+            div.link {
+                padding: 10px;
+                border-radius: 10px;
+            }
+            #popover form {
+                width: 90%;
+            }
+        }
+    </style>
+    <script>
+        function onLoad(){
+            document.querySelector('form#login')?.addEventListener('submit', e => {
+                e.preventDefault();
+                document.querySelector('#loginBtn').click();
+            });
+        }
+
+        function login() {
+            if (document.querySelector('input[name="password"]').value == "n0t_a_p455w0rd") {
+                return alert("Did you really think that was going to work? lol")
+            }
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/links');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    document.querySelector('#loginBtn').value = "Logout";
+                    document.querySelector('#loginBtn').onclick = logout;
+                    parseLinks(JSON.parse(xhr.responseText));
+                } else if (xhr.status === 401) {
+                    console.error(xhr.responseText);
+                    alert("Incorrect password");
+                } else {
+                    console.error(xhr.statusText);
+                }
+            };
+            xhr.onerror = function() {
+                console.error(xhr.statusText);
+            };
+            formdata = new FormData();
+            formdata.append('password', document.querySelector('input[name="password"]').value);
+            formdata.append('action', 'list');
+            xhr.send(formdata);
+        }
+
+        function logout(){
+            document.querySelector('#loginBtn').value = "Login";
+            document.querySelector('#loginBtn').onclick = login;
+            document.querySelector('#links').style.display = "none";
+            document.querySelector('#links').innerHTML = "";
+            document.querySelector('input[name="password"]').value = "";
+        }
+
+        function deleteLink(slug) {
+            if (!confirm(`Are you sure you want to delete the link "${slug}"?`)) {
+                return;
+            }
+            
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/links');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    const response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            login(); // Refresh the list
+                        } else {
+                            alert("Error: " + response.message);
+                        }
+                } else if (xhr.status === 401) {
+                    console.error(xhr.responseText);
+                    alert("Incorrect password");
+                } else {
+                    console.error(xhr.statusText);
+                    alert("Error: " + xhr.statusText);
+                }
+            };
+            xhr.onerror = function() {
+                console.error(xhr.statusText);
+            };
+            formdata = new FormData();
+            formdata.append('password', document.querySelector('input[name="password"]').value);
+            formdata.append('action', 'delete');
+            formdata.append('slug', slug);
+            xhr.send(formdata);
+        }
+
+        function addLink(){
+            const popover = document.createElement('div');
+            popover.id = "popover";
+
+            const form = document.createElement('form');
+            form.id = "addLinkForm";
+
+            const title = document.createElement('h2');
+            title.textContent = "Add New Link";
+            form.appendChild(title);
+
+            const slugDiv = document.createElement('div');
+            slugDiv.classList.add('form-group');
+            const slugLabel = document.createElement('label');
+            slugLabel.textContent = "Slug:";
+            slugLabel.style.width = "80px";
+            slugDiv.appendChild(slugLabel);
+            const slugInput = document.createElement('input');
+            slugInput.type = "text";
+            slugInput.name = "slug";
+            slugInput.id = "slug";
+            slugInput.placeholder = "short-name";
+            slugInput.required = true;
+            slugDiv.appendChild(slugInput);
+            form.appendChild(slugDiv);
+
+            const urlDiv = document.createElement('div');
+            urlDiv.classList.add('form-group');
+            const urlLabel = document.createElement('label');
+            urlLabel.textContent = "URL:";
+            urlLabel.style.width = "80px";
+            urlDiv.appendChild(urlLabel);
+            const urlInput = document.createElement('input');
+            urlInput.type = "text";
+            urlInput.name = "url";
+            urlInput.id = "url";
+            urlInput.placeholder = "https://example.com";
+            urlInput.required = true;
+            urlDiv.appendChild(urlInput);
+            form.appendChild(urlDiv);
+
+            const descDiv = document.createElement('div');
+            descDiv.classList.add('form-group', 'textarea-group');
+            descDiv.style.flexDirection = 'column';
+            const descLabel = document.createElement('label');
+            descLabel.textContent = "Description:";
+            descLabel.style.width = "100%";
+            descDiv.appendChild(descLabel);
+            
+            const descTextarea = document.createElement('textarea');
+            descTextarea.name = "description";
+            descTextarea.id = "description";
+            descTextarea.placeholder = "Optional description";
+            descTextarea.rows = 3;
+            descTextarea.style.width = '100%';
+            descTextarea.style.borderRadius = '12px';
+            descDiv.appendChild(descTextarea);
+            form.appendChild(descDiv);
+
+            const btnDiv = document.createElement('div');
+            btnDiv.style.display = "flex";
+            btnDiv.style.flexDirection = "row";
+            btnDiv.style.justifyContent = "space-between";
+            btnDiv.style.width = "100%";
+            form.appendChild(btnDiv);
+
+            const submitBtn = document.createElement('input');
+            submitBtn.type = "submit";
+            submitBtn.value = "Add Link";
+            btnDiv.appendChild(submitBtn);
+
+            const cancelBtn = document.createElement('input');
+            cancelBtn.type = "button";
+            cancelBtn.value = "Cancel";
+            cancelBtn.onclick = function() {
+                document.querySelector('#popover').remove();
+            };
+            btnDiv.appendChild(cancelBtn);
+
+            popover.appendChild(form);
+            document.querySelector('body').appendChild(popover);
+
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                addLinkSubmit();
+            });
+
+            slugInput.focus();
+        }
+
+        function addLinkSubmit(){
+            const slug = document.querySelector('#slug').value;
+            const url = document.querySelector('#url').value;
+            const description = document.querySelector('#description').value;
+            
+            if (!slug || slug.trim() === '') {
+                alert("Please enter a slug");
+                return;
+            }
+
+            if (!url || url.trim() === '') {
+                alert("Please enter a URL");
+                return;
+            }
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/links');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    const response = JSON.parse(xhr.responseText);
+                    document.querySelector('#popover').remove();
+                        if (response.success) {
+                            login(); // Refresh the list
+                        } else {
+                            alert("Error: " + response.message);
+                        }
+                } else if (xhr.status === 401) {
+                    console.error(xhr.responseText);
+                    alert("Incorrect password");
+                } else {
+                    console.error(xhr.statusText);
+                    alert("Error: " + xhr.statusText);
+                }
+            };
+            xhr.onerror = function() {
+                console.error(xhr.statusText);
+            };
+            formdata = new FormData();
+            formdata.append('password', document.querySelector('input[name="password"]').value);
+            formdata.append('action', 'add');
+            formdata.append('slug', slug);
+            formdata.append('url', url);
+            formdata.append('description', description);
+            xhr.send(formdata);
+        }
+
+        function editLink(slug, currentUrl, currentDescription){
+            const popover = document.createElement('div');
+            popover.id = "popover";
+
+            const form = document.createElement('form');
+            form.id = "editLinkForm";
+
+            const title = document.createElement('h2');
+            title.textContent = `Edit Link: ${slug}`;
+            form.appendChild(title);
+
+            const urlDiv = document.createElement('div');
+            urlDiv.classList.add('form-group');
+            const urlLabel = document.createElement('label');
+            urlLabel.textContent = "URL:";
+            urlLabel.style.width = "80px";
+            urlDiv.appendChild(urlLabel);
+            const urlInput = document.createElement('input');
+            urlInput.type = "text";
+            urlInput.name = "url";
+            urlInput.id = "edit_url";
+            urlInput.placeholder = "https://example.com";
+            urlInput.value = currentUrl;
+            urlInput.required = true;
+            urlDiv.appendChild(urlInput);
+            form.appendChild(urlDiv);
+
+            const descDiv = document.createElement('div');
+            descDiv.classList.add('form-group', 'textarea-group');
+            descDiv.style.flexDirection = 'column';
+            const descLabel = document.createElement('label');
+            descLabel.textContent = "Description:";
+            descLabel.style.width = "100%";
+            descDiv.appendChild(descLabel);
+            
+            const descTextarea = document.createElement('textarea');
+            descTextarea.name = "description";
+            descTextarea.id = "edit_description";
+            descTextarea.placeholder = "Optional description";
+            descTextarea.value = currentDescription || '';
+            descTextarea.rows = 3;
+            descTextarea.style.width = '100%';
+            descTextarea.style.borderRadius = '12px';
+            descDiv.appendChild(descTextarea);
+            form.appendChild(descDiv);
+
+            const btnDiv = document.createElement('div');
+            btnDiv.style.display = "flex";
+            btnDiv.style.flexDirection = "row";
+            btnDiv.style.justifyContent = "space-between";
+            btnDiv.style.width = "100%";
+            form.appendChild(btnDiv);
+
+            const submitBtn = document.createElement('input');
+            submitBtn.type = "submit";
+            submitBtn.value = "Update";
+            btnDiv.appendChild(submitBtn);
+
+            const cancelBtn = document.createElement('input');
+            cancelBtn.type = "button";
+            cancelBtn.value = "Cancel";
+            cancelBtn.onclick = function() {
+                document.querySelector('#popover').remove();
+            };
+            btnDiv.appendChild(cancelBtn);
+
+            popover.appendChild(form);
+            document.querySelector('body').appendChild(popover);
+
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                editLinkSubmit(slug);
+            });
+
+            urlInput.focus();
+        }
+
+        function editLinkSubmit(slug){
+            const url = document.querySelector('#edit_url').value;
+            const description = document.querySelector('#edit_description').value;
+            
+            if (!url || url.trim() === '') {
+                alert("Please enter a URL");
+                return;
+            }
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/links');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    const response = JSON.parse(xhr.responseText);
+                    document.querySelector('#popover').remove();
+                        if (response.success) {
+                            login(); // Refresh the list
+                        } else {
+                            alert("Error: " + response.message);
+                        }
+                } else if (xhr.status === 401) {
+                    console.error(xhr.responseText);
+                    alert("Incorrect password");
+                } else {
+                    console.error(xhr.statusText);
+                    alert("Error: " + xhr.statusText);
+                }
+            };
+            xhr.onerror = function() {
+                console.error(xhr.statusText);
+            };
+            formdata = new FormData();
+            formdata.append('password', document.querySelector('input[name="password"]').value);
+            formdata.append('action', 'edit');
+            formdata.append('slug', slug);
+            formdata.append('url', url);
+            formdata.append('description', description);
+            xhr.send(formdata);
+        }
+
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text).then(function() {
+                // Change button to green with checkmark
+                button.style.backgroundColor = '#4caf50';
+                button.textContent = '✓';
+                button.disabled = true;
+                
+                // Reset after 2 seconds
+                setTimeout(function() {
+                    button.style.backgroundColor = '';
+                    button.textContent = 'Copy';
+                    button.disabled = false;
+                }, 2000);
+            }).catch(function(err) {
+                alert('Failed to copy: ' + err);
+            });
+        }
+
+        function formatDate(isoString) {
+            if (!isoString) return 'Unknown';
+            const date = new Date(isoString);
+            return date.toLocaleString();
+        }
+
+        function parseLinks(linksData){
+            document.querySelector('#links').style.display = "flex";
+            document.querySelector('#links').innerHTML = "";
+
+            const header = document.createElement('h2');
+            header.textContent = 'Shortened Links';
+            document.querySelector('#links').appendChild(header);
+
+            for (let i = 0; i < linksData.length; i++) {
+                const link = linksData[i];
+                const linkDiv = document.createElement('div');
+                linkDiv.id = `link${i}`;
+                linkDiv.classList.add('link');
+
+                // Link slug
+                const slugDiv = document.createElement('div');
+                slugDiv.classList.add('link-slug');
+                slugDiv.textContent = `zp25.cc/${link.slug}`;
+                linkDiv.appendChild(slugDiv);
+
+                // Link URL
+                const urlDiv = document.createElement('div');
+                urlDiv.classList.add('link-url');
+                urlDiv.textContent = `→ ${link.url}`;
+                linkDiv.appendChild(urlDiv);
+
+                // Description (if exists)
+                if (link.description) {
+                    const descDiv = document.createElement('div');
+                    descDiv.classList.add('link-description');
+                    descDiv.textContent = link.description;
+                    linkDiv.appendChild(descDiv);
+                }
+
+                // Created date and hit count
+                const metaDiv = document.createElement('div');
+                metaDiv.style.display = 'flex';
+                metaDiv.style.justifyContent = 'space-between';
+                metaDiv.style.width = '100%';
+                metaDiv.style.gap = '10px';
+
+                if (link.created) {
+                    const createdDiv = document.createElement('div');
+                    createdDiv.classList.add('link-created');
+                    createdDiv.textContent = `Created: ${formatDate(link.created)}`;
+                    metaDiv.appendChild(createdDiv);
+                }
+
+                const hitsDiv = document.createElement('div');
+                hitsDiv.classList.add('link-created');
+                hitsDiv.textContent = `Hits: ${link.hits || 0}`;
+                metaDiv.appendChild(hitsDiv);
+
+                linkDiv.appendChild(metaDiv);
+
+                // Action buttons
+                const actionsDiv = document.createElement('div');
+                actionsDiv.classList.add('link-actions');
+
+                const copyButton = document.createElement('button');
+                copyButton.classList.add('button', 'copy');
+                copyButton.textContent = 'Copy';
+                copyButton.onclick = function() {
+                    copyToClipboard(`https://zp25.cc/${link.slug}`, copyButton);
+                };
+                actionsDiv.appendChild(copyButton);
+
+                const editButton = document.createElement('button');
+                editButton.classList.add('button');
+                editButton.textContent = 'Edit';
+                editButton.onclick = function() {
+                    editLink(link.slug, link.url, link.description);
+                };
+                actionsDiv.appendChild(editButton);
+
+                const deleteButton = document.createElement('button');
+                deleteButton.classList.add('button', 'delete');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = function() {
+                    deleteLink(link.slug);
+                };
+                actionsDiv.appendChild(deleteButton);
+
+                linkDiv.appendChild(actionsDiv);
+                document.querySelector('#links').appendChild(linkDiv);
+            }
+
+            if(linksData.length == 0){
+                const noLinksSpan = document.createElement('span');
+                noLinksSpan.textContent = 'No shortened links found';
+                document.querySelector('#links').appendChild(noLinksSpan);
+            }
+
+            const btnDiv = document.createElement('div');
+            btnDiv.style.display = "flex";
+            btnDiv.style.flexDirection = "row";
+            btnDiv.style.justifyContent = "space-between";
+            btnDiv.style.width = "100%";
+            document.querySelector('#links').appendChild(btnDiv);
+
+            const addBtn = document.createElement('button');
+            addBtn.classList.add('button');
+            addBtn.textContent = 'Add New Link';
+            addBtn.onclick = function() {
+                addLink();
+            };
+            btnDiv.appendChild(addBtn);
+
+            const refreshBtn = document.createElement('button');
+            refreshBtn.classList.add('button');
+            refreshBtn.textContent = 'Refresh';
+            refreshBtn.onclick = function() {
+                login();
+            };
+            btnDiv.appendChild(refreshBtn);
+        }
+    </script>
+</head>
+<body onload="onLoad()">
+    <form id="login">
+        <div class="form-group">
+            <input placeholder="Password" type="password" name="password">
+            <input type="button" value="Login" onclick="login()" id="loginBtn">
+        </div>
+    </form>
+    <div id="links" style="display: none;">
+    </div>
+</body>
+</html>

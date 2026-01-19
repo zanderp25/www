@@ -3,25 +3,122 @@ from datetime import datetime, timedelta
 from flask import *
 from werkzeug import datastructures
 from hashes import token_hash, password_hash
+from file_manager import FileManager
+from link_shortener import LinkShortener
+from upload_key_manager import UploadKeyManager
+from artifact_processor import ArtifactProcessor
+from template_renderer import TemplateRenderer
 
 app = Flask(__name__)
-keys = []
-DEV = False
+DEV = not os.path.exists('.prod')
 
-# Store for async tasks
-processing_tasks = {}
+# Initialize managers
+file_manager = FileManager()
+link_shortener = LinkShortener()
+key_manager = UploadKeyManager()
+artifact_processor = ArtifactProcessor()
+template_renderer = TemplateRenderer()
 
 @app.route('/')
 def index():
-    redirect('https://zanderp25.com')
-    return "Hi"
+    return redirect("https://zanderp25.com/")
 
 @app.route('/robots.txt')
 def robots():
     return send_file("robots.txt")
 
+@app.route('/files', methods=['GET'])
+def filemanager():
+    return send_file('filemanager.html')
+
+@app.route('/files', methods=['POST'])
+def filemanager_post():
+    password = request.form.get('password')
+    action = request.form.get('action')
+
+    if password is None:
+        return 'Unauthorized', 401
+    if not bcrypt.checkpw(password.encode(), password_hash):
+        return 'Unauthorized', 401
+    
+    match action:
+        case 'list':
+            files = file_manager.get_files_list()
+            return json.dumps(files), 200
+        case 'delete':
+            filename = request.form.get('filename')
+            if filename is None:
+                return json.dumps({'success': False, 'message': 'No filename provided'}), 400
+            success, message = file_manager.delete_file(filename)
+            return json.dumps({'success': success, 'message': message}), 200
+        case 'rename':
+            old_name = request.form.get('old_name')
+            new_name = request.form.get('new_name')
+            if old_name is None or new_name is None:
+                return json.dumps({'success': False, 'message': 'Missing filenames'}), 400
+            success, message = file_manager.rename_file(old_name, new_name)
+            return json.dumps({'success': success, 'message': message}), 200
+        case action:
+            return f'Invalid action "{action}"', 400
+
+@app.route('/links', methods=['GET'])
+def linkshortener():
+    return send_file('linkshortener.html')
+
+@app.route('/links', methods=['POST'])
+def linkshortener_post():
+    password = request.form.get('password')
+    action = request.form.get('action')
+
+    if password is None:
+        return 'Unauthorized', 401
+    if not bcrypt.checkpw(password.encode(), password_hash):
+        return 'Unauthorized', 401
+    
+    match action:
+        case 'list':
+            links = link_shortener.get_all_links()
+            return json.dumps(links), 200
+        case 'add':
+            slug = request.form.get('slug')
+            url = request.form.get('url')
+            description = request.form.get('description', '')
+            if slug is None or url is None:
+                return json.dumps({'success': False, 'message': 'Missing slug or URL'}), 400
+            success, message = link_shortener.add_link(slug, url, description)
+            if success:
+                # Add creation timestamp
+                links = link_shortener.get_all_links()
+                for link in links:
+                    if link['slug'] == slug and link['created'] is None:
+                        link['created'] = datetime.utcnow().isoformat()
+                link_shortener._save_links(links)
+            return json.dumps({'success': success, 'message': message}), 200
+        case 'delete':
+            slug = request.form.get('slug')
+            if slug is None:
+                return json.dumps({'success': False, 'message': 'No slug provided'}), 400
+            success, message = link_shortener.delete_link(slug)
+            return json.dumps({'success': success, 'message': message}), 200
+        case 'edit':
+            slug = request.form.get('slug')
+            url = request.form.get('url')
+            description = request.form.get('description', '')
+            if slug is None or url is None:
+                return json.dumps({'success': False, 'message': 'Missing slug or URL'}), 400
+            success, message = link_shortener.update_link(slug, url, description)
+            return json.dumps({'success': success, 'message': message}), 200
+        case action:
+            return f'Invalid action "{action}"', 400
+
 @app.route('/<path:path>')
 def media(path):
+    # Check if this is a shortened link first
+    link = link_shortener.get_link(path)
+    if link:
+        link_shortener.increment_hits(path)  # Track the hit
+        return redirect(link['url'], code=302)
+    
     if os.path.isdir(os.path.join('media', path)):
         if path.startswith('confidential'):
             return 'Unauthorized', 401
@@ -66,7 +163,7 @@ def upload():
 def upload_client():
     key = request.args.get('k')
     if key:
-        if not key_matches(key):
+        if not key_manager.key_matches(key):
             return 'Unauthorized', 401
         else:
             return open('upload.html').read().replace('name="password">', f'name="password" value="{key}">')
@@ -79,8 +176,8 @@ def uploadfile():
         return 'Unauthorized', 401
     if password == "n0t_a_p455w0rd":
         return "Did you actually think that was going to work? lol", 401
-    if key_matches(password):
-        use_key(password)
+    if key_manager.key_matches(password):
+        key_manager.use_key(password)
     elif not bcrypt.checkpw(password.encode(), password_hash):
         return 'Unauthorized', 401
     file = request.files.get('file')
@@ -123,14 +220,12 @@ def uploadlink_post():
         "weeks": timedelta(weeks=max_age)
     }
     
-    max_age = switcher.get(units, "Invalid units")
+    max_age_delta = switcher.get(units, "Invalid units")
     
-    if max_age == "Invalid units":
+    if max_age_delta == "Invalid units":
         return 'Invalid units', 400
     
-    key = str(uuid.uuid4())[:8]
-    keys.append({'key': key, 'max_uses': max_uses, 'max_age': datetime.utcnow() + max_age})
-    sync_keys()
+    key = key_manager.create_key(max_uses, max_age_delta)
     
     domain = 'http://localhost:3500' if DEV else 'https://media.zanderp25.com'
 
@@ -140,35 +235,9 @@ def uploadlink_post():
     return open('uploadfile.html')\
         .read()\
         .replace('$URL', f'{domain}/upload?k={key}')\
-        .replace('Saved as $NAME', f'Expires {datetime.utcnow() + max_age}, {max_uses} uses left')\
+        .replace('Saved as $NAME', f'Expires {datetime.utcnow() + max_age_delta}, {max_uses} uses left')\
         .replace('$NAME', "New Link")\
         .replace('$QRURL', f'{domain}/qrgen/key-{key}.png')
-
-def key_matches(key: str):
-    for i in range(len(keys)):
-        if keys[i]['key'] == key:
-            if keys[i]['max_age'] < datetime.utcnow():
-                keys.pop(i)
-                sync_keys()
-                return False
-            return True
-    return False
-
-def use_key(key: str):
-    for i in range(len(keys)):
-        if keys[i]['key'] == key:
-            keys[i]['max_uses'] -= 1
-            if keys[i]['max_uses'] <= 0:
-                keys.pop(i)
-            sync_keys()
-            return True
-    return False
-
-def sync_keys():
-    keysData = []
-    for key in keys:
-        keysData += [{'key': key['key'], 'max_uses': key['max_uses'], 'max_age': key['max_age'].isoformat()}]
-    json.dump(keysData, open('keys.json', 'w'), indent=4)
 
 @app.route('/managelinks', methods=['GET'])
 def managelinks():
@@ -186,7 +255,7 @@ def managelinks_post():
     
     match action:
         case 'get':
-            return json.dumps(keys)
+            return json.dumps(key_manager.get_all_keys())
         case 'delete':
             key = request.form.get('key')
             if key is None:
@@ -194,8 +263,7 @@ def managelinks_post():
             for i in range(len(keys)):
                 if keys[i]['key'] == key:
                     keys.pop(i)
-                    sync_keys()
-                    return json.dumps(keys), 200
+                    return json.dumps(key_manager.get_all_keys()), 200
             return 'Invalid key', 400
         case 'add':
             max_uses = int(request.form.get('max_uses'))
@@ -212,7 +280,7 @@ def managelinks_post():
                 return 'Invalid units', 400
             key = str(uuid.uuid4())[:8]
             keys.append({'key': key, 'max_uses': max_uses, 'max_age': datetime.utcnow() + max_age})
-            return json.dumps(keys), 200
+            return json.dumps(key_manager.get_all_keys()), 200
         case 'edit':
             key = request.form.get('key')
             if key is None:
@@ -223,8 +291,7 @@ def managelinks_post():
                     max_age = datetime.fromisoformat(request.form.get('max_age'))
                     keys[i]['max_uses'] = max_uses
                     keys[i]['max_age'] = max_age
-                    sync_keys()
-                    return json.dumps(keys), 200
+                    return json.dumps(key_manager.get_all_keys()), 200
             return 'Invalid key', 400
         case action:
             return f'Invalid action "{action}"', 400
@@ -281,7 +348,7 @@ def artifactsdoc_post():
         
         # Start asynchronous document generation
         task_id = str(uuid.uuid4())
-        processing_tasks[task_id] = {
+        artifact_processor.processing_tasks[task_id] = {
             'status': 'processing',
             'progress_message': 'Validating JSON file...',
             'created_at': datetime.now()
@@ -315,7 +382,7 @@ def generate_document_async(task_id, json_path, artifacts_dir):
         from artifacts.artifactDoc import generate_artifacts_doc
         
         # Update progress
-        processing_tasks[task_id]['progress_message'] = 'Generating document...'
+        artifact_processor.processing_tasks[task_id]['progress_message'] = 'Generating document...'
         
         # Generate the document
         docx_filename = f"artifacts_{str(uuid.uuid4())[:6]}.docx"
@@ -329,7 +396,7 @@ def generate_document_async(task_id, json_path, artifacts_dir):
         
         # Mark as completed
         document_url = f"/artifacts/{docx_filename}?download=true"
-        processing_tasks[task_id] = {
+        artifact_processor.processing_tasks[task_id] = {
             'status': 'completed',
             'document_url': document_url,
             'success_url': f'/artifactsDoc/success?url={document_url}',
@@ -341,7 +408,7 @@ def generate_document_async(task_id, json_path, artifacts_dir):
         if os.path.exists(json_path):
             os.remove(json_path)
         
-        processing_tasks[task_id] = {
+        artifact_processor.processing_tasks[task_id] = {
             'status': 'error',
             'error_message': str(e),
             'failed_at': datetime.now()
@@ -350,10 +417,10 @@ def generate_document_async(task_id, json_path, artifacts_dir):
 @app.route('/artifactsDoc/status/<task_id>')
 def artifactsdoc_status(task_id):
     """Check status of document generation task"""
-    if task_id not in processing_tasks:
+    if task_id not in artifact_processor.processing_tasks:
         return jsonify({'status': 'error', 'error_message': 'Task not found'}), 404
     
-    task = processing_tasks[task_id]
+    task = artifact_processor.processing_tasks[task_id]
     
     # Clean up old tasks (older than 10 minutes)
     cleanup_old_tasks()
@@ -374,13 +441,13 @@ def cleanup_old_tasks():
     cutoff_time = datetime.now() - timedelta(minutes=10)
     tasks_to_remove = []
     
-    for task_id, task in processing_tasks.items():
+    for task_id, task in artifact_processor.processing_tasks.items():
         task_time = task.get('created_at') or task.get('completed_at') or task.get('failed_at')
         if task_time and task_time < cutoff_time:
             tasks_to_remove.append(task_id)
     
     for task_id in tasks_to_remove:
-        del processing_tasks[task_id]
+        del artifact_processor.processing_tasks[task_id]
 
 def render_error_page(error_title, error_message):
     """Render a user-friendly error page"""
@@ -517,6 +584,17 @@ def save_file(file: datastructures.FileStorage):
             filename = f"{name}_{str(uuid.uuid4())[:6]}{ext}"
             while os.path.exists(os.path.join('media', filename)):
                 filename = f"{name}_{str(uuid.uuid4())[:6]}{ext}"
+        
+        # Check for conflicts with shortened links
+        has_conflict, conflict_msg = file_manager.check_filename_conflict(filename)
+        while has_conflict:
+            # Generate a new filename if there's a conflict
+            if ext.lower() in media_extensions:
+                filename = str(uuid.uuid4())[:6] + ext
+            else:
+                filename = f"{name}_{str(uuid.uuid4())[:6]}{ext}"
+            has_conflict, conflict_msg = file_manager.check_filename_conflict(filename)
+        
         file.save(os.path.join('media', filename))
     else:
         raise Exception('File is None')
@@ -539,7 +617,6 @@ if __name__ == '__main__':
     for i in range(len(keys)):
         if keys[i]['max_age'] < datetime.utcnow():
             keys.pop(i)
-            sync_keys()
 
     if DEV: app.run(port=3500, host='0.0.0.0')
     else:
