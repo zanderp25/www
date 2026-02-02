@@ -8,6 +8,8 @@ from link_shortener import LinkShortener
 from upload_key_manager import UploadKeyManager
 from artifact_processor import ArtifactProcessor
 from template_renderer import TemplateRenderer
+from markdown import markdown
+from urllib.parse import urlparse, quote
 
 app = Flask(__name__)
 DEV = not os.path.exists('.prod')
@@ -127,8 +129,10 @@ def media(path):
         files.sort()
         index = open("fileIndex.html").read()
         file_data = ""
+        # Strip trailing slash from path to avoid double slashes
+        clean_path = path.rstrip('/')
         for file in files:
-            file_path = "/".join([path, file])
+            file_path = f"{clean_path}/{file}"
             file_size = os.path.getsize(os.path.join('media', file_path))
             is_dir = os.path.isdir(os.path.join('media', file_path))
             file_path = ("/" + file_path).replace(' ', '%20') # for URLs
@@ -138,7 +142,26 @@ def media(path):
         data = f'// DATA START\nlet pwd = "/{path}";\nlet files = [{file_data}];\n// DATA END'
         index = re.sub(pattern, data, index)
         return index
+    # Markdown rendering support
     download = "download" in request.args
+    full_path = os.path.join('media', path)
+    ext = os.path.splitext(path)[1].lower()
+    if os.path.isfile(full_path) and ext in ('.md', '.markdown') and not download:
+        try:
+            with open(full_path, 'r', encoding='utf-8') as f:
+                md_text = f.read()
+            # Convert Markdown to HTML with useful extensions
+            html_content = markdown(
+                md_text,
+                extensions=['extra', 'codehilite', 'toc']
+            )
+            # Rewrite HEIC/HEIF image URLs to conversion endpoint
+            html_content = rewrite_heic_image_urls(html_content, base_path=os.path.dirname(path))
+            # Use filename as title
+            title = os.path.basename(path)
+            return render_markdown_page(title, html_content)
+        except Exception as e:
+            return render_error_page('Markdown render failed', f'Could not render file: {str(e)}'), 500
     return send_from_directory('media', path, as_attachment=download)
 
 @app.route('/favicon.ico')
@@ -535,6 +558,90 @@ def render_processing_page(task_id):
         </body>
         </html>
         """
+
+def render_markdown_page(title: str, content_html: str):
+    """Render a Markdown file inside a simple HTML template"""
+    try:
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        template_path = os.path.join(script_dir, 'markdown.html')
+        with open(template_path, 'r') as f:
+            tpl = f.read()
+        tpl = tpl.replace('$TITLE', title)
+        tpl = tpl.replace('$CONTENT', content_html)
+        return tpl
+    except Exception:
+        # Minimal fallback
+        return f"""
+        <html>
+        <head><title>{title}</title></head>
+        <body>
+            <a href="?download">Download</a>
+            <hr/>
+            {content_html}
+        </body>
+        </html>
+        """
+
+@app.route('/heic/<path:filename>')
+def heic_fallback(filename):
+    """Convert HEIC/HEIF files to JPEG for browser compatibility"""
+    try:
+        ext = os.path.splitext(filename)[1].lower()
+        if ext not in ('.heic', '.heif'):
+            return 'Unsupported file type', 415
+
+        source_path = os.path.join('media', filename)
+        if not os.path.isfile(source_path):
+            return 'Not found', 404
+
+        cache_dir = os.path.join('media', '.heic_cache')
+        os.makedirs(cache_dir, exist_ok=True)
+
+        base_name = os.path.splitext(os.path.basename(filename))[0]
+        cached_name = f"{base_name}.jpg"
+        cached_path = os.path.join(cache_dir, cached_name)
+
+        if not os.path.exists(cached_path) or os.path.getmtime(cached_path) < os.path.getmtime(source_path):
+            from PIL import Image
+            import pillow_heif
+            pillow_heif.register_heif_opener()
+
+            with Image.open(source_path) as img:
+                img = img.convert('RGB')
+                img.save(cached_path, format='JPEG', quality=90, optimize=True)
+
+        return send_from_directory(cache_dir, cached_name)
+    except ImportError:
+        return 'HEIC conversion not available (missing dependencies)', 503
+    except Exception as e:
+        return f'HEIC conversion failed: {str(e)}', 500
+
+def rewrite_heic_image_urls(html_content: str, base_path: str = "") -> str:
+    """Rewrite image src pointing to .heic/.heif to the conversion endpoint."""
+    def _replace(match: re.Match) -> str:
+        src = match.group(1)
+        parsed = urlparse(src)
+        # Ignore absolute external URLs
+        if parsed.scheme in ('http', 'https'):
+            return match.group(0)
+
+        # Strip query/fragment for filesystem path
+        path = parsed.path
+        if not path.lower().endswith(('.heic', '.heif')):
+            return match.group(0)
+
+        # Normalize to media-relative path
+        if path.startswith('/'):
+            media_path = path.lstrip('/')
+        else:
+            media_path = os.path.normpath(os.path.join(base_path, path)) if base_path else path
+            media_path = media_path.lstrip('/')
+        # Encode path safely
+        encoded = quote(media_path)
+        new_src = f"/heic/{encoded}"
+        return match.group(0).replace(src, new_src)
+
+    return re.sub(r'<img[^>]+src=["\']([^"\']+)["\']', _replace, html_content)
 
 @app.route('/clicks-ani-world')
 def clicks_ani_world():
