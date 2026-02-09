@@ -1,9 +1,0 @@
-bcrypt
-flask
-werkzeug
-waitress
-python-docx
-Markdown
-Pygments
-Pillow
-pillow-heif

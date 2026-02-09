@@ -18,19 +18,6 @@ __pycache__
 # old site files
 /old
 
-# Media files
-/media/media/
-/media/.prod
-/media/keys.json
-/media/links.json
-
-# Temporary media files
-/media/world.zip
-/media/sabimora.zip
-/media/token_hash
-/media/hashes.py
-/media/roster.csv
-
 # Environment variables
 .env
 
